@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3r d'ESO - Tecnologia | Espai de l'Alumnat</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Lexend', 'Inter', sans-serif; }
+        
+        /* Ajustos d'accessibilitat */
+        body.font-size-sm { font-size: 14px; }
+        body.font-size-base { font-size: 16px; }
+        body.font-size-lg { font-size: 18px; }
+        body.font-size-xl { font-size: 20px; }
+
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .bg-white,
+        body.high-contrast .bg-slate-50,
+        body.high-contrast .bg-slate-100 {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffff00 !important;
+        }
+        body.high-contrast .text-slate-800,
+        body.high-contrast .text-slate-700,
+        body.high-contrast .text-slate-600 {
+            color: #ffffff !important;
+        }
+
+        .dropdown-menu { display: none; }
+        .dropdown:hover .dropdown-menu { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+
+    <!-- Barra d'Accessibilitat i Lectura Fàcil -->
+    <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2 font-medium">
+                <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
+                <span>Lectura Fàcil & Accessibilitat:</span>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
+                    <span class="px-2 text-slate-400 font-bold">Text:</span>
+                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold" title="Petit">A-</button>
+                    <button onclick="setFontSize('base')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold bg-slate-700" title="Normal">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sm font-bold" title="Gran">A+</button>
+                    <button onclick="setFontSize('xl')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-base font-bold" title="Molt Gran">A++</button>
+                </div>
+
+                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-lg transition text-xs">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span>Alt Contrast</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Capçalera Principal de 3r d'ESO -->
+    <header class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
+            
+            <div class="flex items-center space-x-3">
+                <!-- Enllaç per tornar al Portal General -->
+                <a href="../index.html" class="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-2xl transition flex items-center justify-center" title="Tornar al Portal General de Tecnologia">
+                    <i class="fa-solid fa-house text-lg"></i>
+                </a>
+                <div class="bg-emerald-500 text-slate-950 p-2.5 rounded-2xl shadow-md flex items-center justify-center font-bold text-2xl w-12 h-12">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">Curs Academic</span>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Tecnologia 3r d'ESO</h1>
+                </div>
+            </div>
+
+            <!-- Navegació entre Cursos / Menú desplegable -->
+            <div class="flex items-center gap-3">
+                <!-- Menú Desplegable de 2n -->
+                <a href="../2eso/index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Anar a 2n ESO
+                </a>
+
+                <!-- Desplegable d'Accés Ràpid a UDs de 3r -->
+                <div class="relative dropdown">
+                    <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow transition">
+                        <i class="fa-solid fa-list-check"></i> Unitats Didàctiques <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="dropdown-menu absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 text-slate-800 z-50 overflow-hidden">
+                        <div class="bg-emerald-50 p-3 border-b border-emerald-100 text-xs font-bold text-emerald-900">
+                            Unitats de 3r d'ESO
+                        </div>
+                        <a href="ud1-maquines-mecanismes.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 font-bold border-b border-slate-100">
+                            <strong>UD 1:</strong> Màquines i Mecanismes
+                        </a>
+                        <a href="ud2-plastics.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
+                            <strong>UD 2:</strong> Plàstics i Materials
+                        </a>
+                        <a href="ud3-electricitat.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
+                            <strong>UD 3:</strong> Circuits Elèctrics
+                        </a>
+                        <a href="ud4-tic.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
+                            <strong>UD 4:</strong> TIC i Seguretat Digital
+                        </a>
+                        <a href="ud5-robotica.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600">
+                            <strong>UD 5:</strong> Control i Robòtica
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Contingut Principal de la Presentació -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-10">
+
+        <!-- Banner de Benvinguda i Presentació de l'Assignatura -->
+        <section class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+            <div class="max-w-3xl space-y-4 relative z-10">
+                <span class="bg-yellow-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow">Espai de l'Alumnat</span>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Benvinguts a Tecnologia de 3r d'ESO!</h2>
+                <p class="text-emerald-100 leading-relaxed text-sm sm:text-base">
+                    En aquest curs farem un pas més en el disseny i la construcció. Aprendrem com funcionen les <strong>màquines i els seus mecanismes</strong>, analitzarem els <strong>plàstics</strong>, dissenyarem <strong>circuits elèctrics</strong> i programarem els nostres primers projectes de <strong>robòtica i control</strong>.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-3">
+                    <a href="#unitats" class="bg-white text-slate-900 hover:bg-emerald-50 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark text-emerald-700"></i> Explorar les Unitats
+                    </a>
+                    <a href="#normes-taller" class="bg-emerald-950/60 hover:bg-emerald-950/80 text-emerald-200 border border-emerald-400/30 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-helmet-safety text-yellow-400"></i> Normes del Taller
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mètode de Treball / Informació de l'Assignatura (Targetes Informatives) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">Projectes de Taller</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Disseny i construcció en equip aplicant el mètode tecnològic pas a pas.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div class="w-10 h-10 bg-blue-100 text-blue-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">Recursos Digitals</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Simuladors de palanques, circuits elèctrics virtuals i exercicis autovaluables.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div class="w-10 h-10 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">Avaluació Contínua</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Memòria del projecte, feina diària al taller, exercicis de la web i proves pràctiques.</p>
+            </div>
+        </section>
+
+        <!-- Graella d'Unitats Didàctiques (Accés Directe als Continguts) -->
+        <section id="unitats" class="space-y-6">
+            <div class="border-l-4 border-emerald-600 pl-4">
+                <h2 class="text-2xl font-black text-slate-800">Unitats Didàctiques de 3r d'ESO</h2>
+                <p class="text-slate-600 text-sm">Selecciona la unitat de treball actual per accedir als apunts, exercicis i eines:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- UD 1 (DISPONIBLE) -->
+                <article class="bg-white rounded-3xl p-6 border-2 border-emerald-300 shadow-md hover:shadow-lg transition space-y-4 flex flex-col justify-between relative overflow-hidden">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full uppercase">UD 1</span>
+                            <span class="bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-md uppercase">Disponible</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">Màquines i Mecanismes</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i simulador interactiu d'equilibri.
+                        </p>
+                    </div>
+                    <a href="ud1-maquines-mecanismes.html" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 mt-4">
+                        <i class="fa-solid fa-arrow-right"></i> Entrar a la Unitat 1
+                    </a>
+                </article>
+
+                <!-- UD 2 (Properament) -->
+                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 2</span>
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700">Plàstics i Materials de Construcció</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Tipus de plàstics (termoplàstics, termoestables), tècniques de conformat i impacte ambiental.
+                        </p>
+                    </div>
+                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                        En preparació
+                    </button>
+                </article>
+
+                <!-- UD 3 (Properament) -->
+                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 3</span>
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700">Circuits Elèctrics i Magnètics</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Llei d'Ohm, circuits en sèrie i paral·lel, simula la intensitat, el voltatge i la resistència.
+                        </p>
+                    </div>
+                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                        En preparació
+                    </button>
+                </article>
+
+                <!-- UD 4 (Properament) -->
+                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 4</span>
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700">TIC i Seguretat Digital</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Fulls de càlcul per a la memòria de projectes, xarxes locals i bones pràctiques de ciberseguretat.
+                        </p>
+                    </div>
+                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                        En preparació
+                    </button>
+                </article>
+
+                <!-- UD 5 (Properament) -->
+                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 5</span>
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-700">Control i Robòtica</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Programació de plaques de control (Arduino / Micro:bit), sensors, actuadors i automatismes.
+                        </p>
+                    </div>
+                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                        En preparació
+                    </button>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Secció de Normes de Seguretat i Taller -->
+        <section id="normes-taller" class="bg-amber-50 rounded-3xl p-6 sm:p-8 border border-amber-200 space-y-4">
+            <div class="flex items-center gap-3 text-amber-900">
+                <i class="fa-solid fa-triangle-exclamation text-2xl text-amber-600"></i>
+                <h3 class="text-lg font-bold">Recordatori Importat de Taller</h3>
+            </div>
+            <ul class="list-disc list-inside text-xs sm:text-sm text-amber-950 space-y-2">
+                <li>Utilitza sempre les <strong>ulleres de protecció</strong> quan utilitzis eines de tall o perforació.</li>
+                <li>Recull-te el cabell llarg i no portis la roba de carrer penjant quan treballis a les taules de manipulació.</li>
+                <li>Mantén l'espai de treball net i recull el material 5 minuts abans de sonar el timbre.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Peu de pàgina -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="text-slate-200 font-bold">Departament de Tecnologia — Tecnologia 3r d'ESO</p>
+            <p>Repositori de continguts oberts allotment a GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts d'Accessibilitat -->
+    <script>
+        function setFontSize(size) {
+            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
+            document.body.classList.add('font-size-' + size);
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+    </script>
+</body>
+</html>
