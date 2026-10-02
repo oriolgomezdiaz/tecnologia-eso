@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia ESO | Recursos i Projectes</title>
+    <!-- Fonts de lectura fàcil -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Integrat per a un prototip d'un sol fitxer i visualització ràpida */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #198754;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --card-border: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        /* Estils del Menú de Navegació */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Submenús per Unitats Didàctiques */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            min-width: 220px;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-menu a {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: block;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* Botons d'Accés Ràpid */
+        .btn-eso-2 {
+            background-color: var(--primary-color);
+            color: white !important;
+        }
+
+        .btn-eso-3 {
+            background-color: var(--secondary-color);
+            color: white !important;
+        }
+
+        /* Secció Hero / Principal */
+        .hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Targetes de Cursos */
+        .courses-grid {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+        }
+
+        .card-2eso h2 { color: var(--primary-color); }
+        .card-3eso h2 { color: var(--secondary-color); }
+
+        .card ul {
+            list-style-type: square;
+            margin-left: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card a.card-link {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Adaptabilitat per a pantalles petites */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">⚙️ Tecnologia ESO</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inici</a></li>
+                    
+                    <!-- MENÚ 2n D'ESO -->
+                    <li class="dropdown">
+                        <a href="2eso/index.html" class="btn-eso-2">2n ESO ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="2eso/ud1-mètode-projectes.html">UD 1: Mètode de Projectes</a>
+                            <a href="2eso/ud2-materials.html">UD 2: Materials d'Ús Tècnic</a>
+                            <a href="2eso/ud3-estructures.html">UD 3: Estructures</a>
+                            <a href="2eso/ud4-mecanismes.html">UD 4: Mecanismes</a>
+                            <a href="2eso/ud5-programacio.html">UD 5: Programació i Robòtica</a>
+                        </div>
+                    </li>
+
+                    <!-- MENÚ 3r D'ESO -->
+                    <li class="dropdown">
+                        <a href="3eso/index.html" class="btn-eso-3">3r ESO ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="3eso/ud1-plastics.html">UD 1: Plàstics i Materials de Construcció</a>
+                            <a href="3eso/ud2-electricitat.html">UD 2: Circuit Elèctric i Magnètic</a>
+                            <a href="3eso/ud3-sistemes-mecanics.html">UD 3: Sistemes Mecànics Complexos</a>
+                            <a href="3eso/ud4-tecnologies-informacio.html">UD 4: TIC i Seguretat Digital</a>
+                            <a href="3eso/ud5-control-robotica.html">UD 5: Control i Robòtica</a>
+                        </div>
+                    </li>
+
+                    <li><a href="#tallers">Taller/Avisos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Plataforma de Continguts de Tecnologia</h1>
+            <p>Benvinguts i benvingudes al repositori d'apunts, projectes, guies de taller i activitats pràctiques per als cursos de 2n i 3r d'ESO.</p>
+        </section>
+
+        <section class="courses-grid">
+            <!-- Targeta 2n ESO -->
+            <article class="card card-2eso">
+                <h2>2n d'ESO</h2>
+                <p>Introducció al procés tecnològic, anàlisi de materials, estructures bàsiques i primers passos en programació.</p>
+                <br>
+                <h3>Unitats Principals:</h3>
+                <ul>
+                    <li>Mètode de Projectes i Dibuix Tècnic</li>
+                    <li>Materials: Fusta i Metalls</li>
+                    <li>Estructures i Esforços</li>
+                    <li>Mecanismes de Transmissió</li>
+                </ul>
+                <a href="2eso/index.html" class="card-link btn-eso-2">Accedir al contingut de 2n</a>
+            </article>
+
+            <!-- Targeta 3r ESO -->
+            <article class="card card-3eso">
+                <h2>3r d'ESO</h2>
+                <p>Aprofundiment en circuits elèctrics, plàstics, sistemes mecànics i projectes de robòtica i control.</p>
+                <br>
+                <h3>Unitats Principals:</h3>
+                <ul>
+                    <li>Plàstics i Nous Materials</li>
+                    <li>Electricitat i Electrònica Bàsica</li>
+                    <li>Sistemes de Transmissió i Transformació</li>
+                    <li>Programació i Control amb Arduino/Micro:bit</li>
+                </ul>
+                <a href="3eso/index.html" class="card-link btn-eso-3">Accedir al contingut de 3r</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Departaments de Tecnologia. Material educatiu sota llicència lliure. Allotjat a GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
