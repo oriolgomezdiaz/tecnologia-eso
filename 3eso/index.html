@@ -81,14 +81,13 @@
                     <i class="fa-solid fa-microchip"></i>
                 </div>
                 <div>
-                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">Curs Academic</span>
+                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">Curs Acadèmic</span>
                     <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Tecnologia 3r d'ESO</h1>
                 </div>
             </div>
 
-            <!-- Navegació entre Cursos / Menú desplegable -->
+            <!-- Navegació / Menú desplegable -->
             <div class="flex items-center gap-3">
-               
                 <!-- Desplegable d'Accés Ràpid a UDs de 3r -->
                 <div class="relative dropdown">
                     <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow transition">
@@ -121,7 +120,7 @@
     </header>
 
     <!-- Contingut Principal de la Presentació -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-12">
 
         <!-- Banner de Benvinguda i Presentació de l'Assignatura -->
         <section class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
@@ -133,41 +132,61 @@
                 </p>
                 <div class="pt-2 flex flex-wrap gap-3">
                     <a href="#unitats" class="bg-white text-slate-900 hover:bg-emerald-50 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow transition flex items-center gap-2">
-                        <i class="fa-solid fa-book-bookmark text-emerald-700"></i> Explorar les Unitats
+                        <i class="fa-solid fa-book-bookmark text-emerald-700"></i> Explorar les Unitats Didàctiques
                     </a>
-                    
                 </div>
             </div>
-        </div>
-
-        <!-- Mètode de Treball / Informació de l'Assignatura (Targetes Informatives) -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div class="w-10 h-10 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
-                    <i class="fa-solid fa-pen-ruler"></i>
-                </div>
-                <h3 class="font-bold text-slate-800 text-base">Projectes de Taller</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Disseny i construcció en equip aplicant el mètode tecnològic pas a pas.</p>
-            </div> -->
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div class="w-10 h-10 bg-blue-100 text-blue-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div> -->
-                <h3 class="font-bold text-slate-800 text-base">Recursos Digitals</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Simuladors de palanques, circuits elèctrics virtuals i exercicis autovaluables.</p>
-            </div>
-
-            <!-- <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                <div class="w-10 h-10 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center font-bold text-lg mb-2">
-                    <i class="fa-solid fa-list-check"></i>
-                </div>
-                <h3 class="font-bold text-slate-800 text-base">Avaluació Contínua</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Memòria del projecte, feina diària al taller, exercicis de la web i proves pràctiques.</p>
-            </div>-->
         </section>
 
-        <!-- Graella d'Unitats Didàctiques (Accés Directe als Continguts) -->
+        <!-- SECCIÓ 1: RECURSOS DIGITALS I EINES GENERALS -->
+        <section id="recursos-generals" class="bg-blue-50/60 rounded-3xl p-6 sm:p-8 border border-blue-100 space-y-4">
+            <div class="flex items-center gap-3 border-b border-blue-200/80 pb-3">
+                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800">Recursos Digitals i Eines Generals</h3>
+                    <p class="text-xs text-slate-500">Ajudes interactives, simuladors i eines transversals per a tot el curs</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Simuladors Virtuals</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            Simula palanques en equilibri, mecanismes de transmissió i circuits elèctrics interactius directament des de la web.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Activitats Autovaluables</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            Tests ràpids d'autoavaluació i targetes interactives (flashcards) per repassar abans dels exàmens.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEPARADOR VISUAL -->
+        <div class="relative flex py-2 items-center">
+            <div class="flex-grow border-t border-slate-200"></div>
+            <span class="flex-shrink mx-4 text-slate-400 text-xs font-bold uppercase tracking-wider bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
+                <i class="fa-solid fa-graduation-cap text-emerald-600 mr-1"></i> Continguts del Curs
+            </span>
+            <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <!-- SECCIÓ 2: GRAELLA D'UNITATS DIDÀCTIQUES -->
         <section id="unitats" class="space-y-6">
             <div class="border-l-4 border-emerald-600 pl-4">
                 <h2 class="text-2xl font-black text-slate-800">Unitats Didàctiques de 3r d'ESO</h2>
@@ -188,7 +207,7 @@
                             Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i simulador interactiu d'equilibri.
                         </p>
                     </div>
-                    <a href="ud1-maquines-mecanismes.html" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 mt-4">
+                    <a href="ud1-maquines-mecanismes.html" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 mt-4 shadow-sm">
                         <i class="fa-solid fa-arrow-right"></i> Entrar a la Unitat 1
                     </a>
                 </article>
@@ -264,14 +283,13 @@
             </div>
         </section>
 
-        
     </main>
 
     <!-- Peu de pàgina -->
     <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs">
         <div class="max-w-7xl mx-auto px-4 space-y-2">
             <p class="text-slate-200 font-bold">Departament de Tecnologia — Tecnologia 3r d'ESO</p>
-            <p>Repositori de continguts oberts allotment a GitHub Pages.</p>
+            <p>Repositori de continguts oberts allotjat a GitHub Pages.</p>
         </div>
     </footer>
 
