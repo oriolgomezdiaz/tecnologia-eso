@@ -3,307 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3r d'ESO - Tecnologia | Espai de l'Alumnat</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
+    <title>3r d'ESO - Tecnologia | TecnoLab</title>
+    <!-- Fonts modernes i accessibles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per a icones molones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Lexend', 'Inter', sans-serif; }
-        
-        /* Ajustos d'accessibilitat */
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --accent: #f59e0b;
+            --bg-main: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            transition: all 0.2s ease;
+        }
+
+        /* Ajustos d'accessibilitat de mida de font */
         body.font-size-sm { font-size: 14px; }
         body.font-size-base { font-size: 16px; }
         body.font-size-lg { font-size: 18px; }
         body.font-size-xl { font-size: 20px; }
 
+        /* Mode Alt Contrast */
         body.high-contrast {
             background-color: #000000 !important;
             color: #ffffff !important;
         }
-        body.high-contrast .bg-white,
-        body.high-contrast .bg-slate-50,
-        body.high-contrast .bg-slate-100 {
+        body.high-contrast header,
+        body.high-contrast .card,
+        body.high-contrast .recursos-box,
+        body.high-contrast .accessibility-bar {
             background-color: #121212 !important;
             color: #ffffff !important;
             border-color: #ffff00 !important;
         }
-        body.high-contrast .text-slate-800,
-        body.high-contrast .text-slate-700,
-        body.high-contrast .text-slate-600 {
-            color: #ffffff !important;
+        body.high-contrast .text-muted,
+        body.high-contrast p {
+            color: #e2e8f0 !important;
+        }
+        body.high-contrast a {
+            color: #ffff00 !important;
         }
 
-        .dropdown-menu { display: none; }
-        .dropdown:hover .dropdown-menu { display: block; }
+        h1, h2, h3, .logo {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Barra d'Accessibilitat */
+        .accessibility-bar {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            padding: 0.4rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .access-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-access {
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #334155;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .btn-access:hover {
+            background-color: #334155;
+        }
+
+        .btn-contrast {
+            background-color: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Capçalera i Navegació */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+        }
+
+        .logo a {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-home {
+            background-color: #e2e8f0;
+        }
+        .btn-home:hover {
+            background-color: #cbd5e1;
+        }
+
+        /* Submenús */
+        .dropdown {
+            position: relative;
+        }
+
+        .btn-dropdown {
+            background-color: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-dropdown:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            min-width: 260px;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 0.4rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-menu a {
+            padding: 0.65rem 0.9rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Banner Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #064e3b, #0f172a);
+            color: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fbbf24;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #a7f3d0;
+            max-width: 750px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: white;
+            color: #064e3b;
+            font-weight: 800;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hero:hover {
+            background-color: #d1fae5;
+            transform: translateY(-2px);
+        }
+
+        /* Secció Recursos Generals */
+        .recursos-box {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius);
+        }
+
+        .recursos-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #1e40af;
+        }
+
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .recurs-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #dbeafe;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .recurs-card h4 {
+            font-size: 1rem;
+            color: #1e3a8a;
+            margin-bottom: 0.4rem;
+        }
+
+        .recurs-card p {
+            font-size: 0.85rem;
+            color: #475569;
+            margin-bottom: 1rem;
+        }
+
+        .btn-simulador {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-simulador:hover {
+            background-color: #bfdbfe;
+        }
+
+        /* Secció d'Unitats Didàctiques */
+        .section-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .unit-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        .unit-card.disabled {
+            opacity: 0.7;
+        }
+
+        .unit-card.disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .badge-ud {
+            background-color: #d1fae5;
+            color: #065f46;
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .status-pending {
+            background-color: #e2e8f0;
+            color: #64748b;
+        }
+
+        .unit-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .unit-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-unit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-available {
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-available:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-disabled {
+            background-color: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            margin-top: 4rem;
+        }
+
+        footer strong { color: white; }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+<body class="font-size-base">
 
-    <!-- Barra d'Accessibilitat i Lectura Fàcil -->
-    <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
-            <div class="flex items-center gap-2 font-medium">
-                <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
-                <span>Lectura Fàcil & Accessibilitat:</span>
-            </div>
-            
-            <div class="flex flex-wrap items-center gap-3">
-                <div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
-                    <span class="px-2 text-slate-400 font-bold">Text:</span>
-                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold" title="Petit">A-</button>
-                    <button onclick="setFontSize('base')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold bg-slate-700" title="Normal">A</button>
-                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sm font-bold" title="Gran">A+</button>
-                    <button onclick="setFontSize('xl')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-base font-bold" title="Molt Gran">A++</button>
-                </div>
-
-                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-lg transition text-xs">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span>Alt Contrast</span>
-                </button>
-            </div>
+    <!-- Barra d'Accessibilitat -->
+    <div class="accessibility-bar">
+        <div>
+            <i class="fa-solid fa-universal-access text-yellow-400"></i>
+            <span>Lectura Fàcil & Accessibilitat</span>
+        </div>
+        <div class="access-controls">
+            <span>Mida text:</span>
+            <button onclick="setFontSize('sm')" class="btn-access" title="Text Petit">A-</button>
+            <button onclick="setFontSize('base')" class="btn-access" title="Text Normal">A</button>
+            <button onclick="setFontSize('lg')" class="btn-access" title="Text Gran">A+</button>
+            <button onclick="setFontSize('xl')" class="btn-access" title="Text Molt Gran">A++</button>
+            <button onclick="toggleHighContrast()" class="btn-contrast">
+                <i class="fa-solid fa-circle-half-stroke"></i> Alt Contrast
+            </button>
         </div>
     </div>
 
-    <!-- Capçalera Principal de 3r d'ESO -->
-    <header class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
-            
-            <div class="flex items-center space-x-3">
-                <!-- Enllaç per tornar al Portal General -->
-                <a href="../index.html" class="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-2xl transition flex items-center justify-center" title="Tornar al Portal General de Tecnologia">
-                    <i class="fa-solid fa-house text-lg"></i>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <i class="fa-solid fa-microchip text-emerald-600"></i>
+                    <span>TecnoLab</span> 3r d'ESO
                 </a>
-                <div class="bg-emerald-500 text-slate-950 p-2.5 rounded-2xl shadow-md flex items-center justify-center font-bold text-2xl w-12 h-12">
-                    <i class="fa-solid fa-microchip"></i>
-                </div>
-                <div>
-                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">Curs Acadèmic</span>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Tecnologia 3r d'ESO</h1>
-                </div>
             </div>
-
-            <!-- Navegació / Menú desplegable -->
-            <div class="flex items-center gap-3">
-                <!-- Desplegable d'Accés Ràpid a UDs de 3r -->
-                <div class="relative dropdown">
-                    <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow transition">
-                        <i class="fa-solid fa-list-check"></i> Unitats Didàctiques <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </button>
-                    <div class="dropdown-menu absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 text-slate-800 z-50 overflow-hidden">
-                        <div class="bg-emerald-50 p-3 border-b border-emerald-100 text-xs font-bold text-emerald-900">
-                            Unitats de 3r d'ESO
+            
+            <nav>
+                <ul>
+                    <li><a href="../index.html" class="btn-home"><i class="fa-solid fa-house"></i> Inici General</a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="btn-dropdown"><i class="fa-solid fa-list-check"></i> Unitats Didàctiques <i class="fa-solid fa-chevron-down text-xs"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="3ESO_U1_espai_estudi.html"><i class="fa-solid fa-gears text-emerald-600"></i> UD 1: Màquines i Mecanismes</a>
+                            <a href="#"><i class="fa-solid fa-bolt text-slate-400"></i> UD 2: Electricitat</a>
+                            <a href="#"><i class="fa-solid fa-diagram-project text-slate-400"></i> UD 3: Diagrames de Flux</a>
+                            <a href="#"><i class="fa-solid fa-robot text-slate-400"></i> UD 4: Programació i Robòtica</a>
+                            <a href="#"><i class="fa-solid fa-laptop-code text-slate-400"></i> UD 5: Digitalització</a>
                         </div>
-                        <a href="ud1-maquines-mecanismes.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 font-bold border-b border-slate-100">
-                            <strong>UD 1:</strong> Màquines i Mecanismes
-                        </a>
-                        <a href="ud2-plastics.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
-                            <strong>UD 2:</strong> Plàstics i Materials
-                        </a>
-                        <a href="ud3-electricitat.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
-                            <strong>UD 3:</strong> Circuits Elèctrics
-                        </a>
-                        <a href="ud4-tic.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
-                            <strong>UD 4:</strong> TIC i Seguretat Digital
-                        </a>
-                        <a href="ud5-robotica.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600">
-                            <strong>UD 5:</strong> Control i Robòtica
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Contingut Principal de la Presentació -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-12">
-
-        <!-- Banner de Benvinguda i Presentació de l'Assignatura -->
-        <section class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
-            <div class="max-w-3xl space-y-4 relative z-10">
-                <span class="bg-yellow-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow">Espai de l'Alumnat</span>
-                <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Benvinguts a Tecnologia de 3r d'ESO!</h2>
-                <p class="text-emerald-100 leading-relaxed text-sm sm:text-base">
-                    En aquest curs farem un pas més en el disseny i la construcció. Aprendrem com funcionen les <strong>màquines i els seus mecanismes</strong>, analitzarem els <strong>plàstics</strong>, dissenyarem <strong>circuits elèctrics</strong> i programarem els nostres primers projectes de <strong>robòtica i control</strong>.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#unitats" class="bg-white text-slate-900 hover:bg-emerald-50 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow transition flex items-center gap-2">
-                        <i class="fa-solid fa-book-bookmark text-emerald-700"></i> Explorar les Unitats Didàctiques
-                    </a>
-                </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <i class="fa-solid fa-rocket"></i> Curs Acadèmic
             </div>
+            <h1>Explora el món de la tecnologia i la robòtica ⚡</h1>
+            <p>Descobreix com funcionen els mecanismes, dissenya circuits elèctrics, crea esquemes de coordinació i dona vida als teus primers projectes robòtics.</p>
+            <a href="#unitats" class="btn-hero">
+                <i class="fa-solid fa-book-bookmark"></i> Veure Unitats Didàctiques
+            </a>
         </section>
 
-        <!-- SECCIÓ 1: RECURSOS DIGITALS I EINES GENERALS -->
-        <section id="recursos-generals" class="bg-blue-50/60 rounded-3xl p-6 sm:p-8 border border-blue-100 space-y-4">
-            <div class="flex items-center gap-3 border-b border-blue-200/80 pb-3">
-                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
+        <!-- Secció Recursos Digitals Generals -->
+        <section class="recursos-box">
+            <div class="recursos-title">
+                <i class="fa-solid fa-laptop-code fa-lg"></i>
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800">Recursos Digitals i Eines Generals</h3>
-                    <p class="text-xs text-slate-500">Ajudes interactives, simuladors i eines transversals per a tot el curs</p>
+                    <h3 style="font-size: 1.1rem; font-weight:700;">Recursos Digitals i Eines Interactives</h3>
+                    <p style="font-size:0.85rem; color:#475569;">Simuladors i eines pràctiques per reforçar l'aprenentatge del curs.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <!-- Targeta de Simuladors Virtuals amb enllaç a PhET -->
-                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex flex-col justify-between space-y-3">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 bg-blue-100 text-blue-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
-                            <i class="fa-solid fa-sliders"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm">Simuladors Virtuals</h4>
-                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                                Simula palanques en equilibri, mecanismes de transmissió i circuits elèctrics interactius directament des de la web.
-                            </p>
-                        </div>
-                    </div>
-                    <a href="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_es_ES.html" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="inline-flex items-center justify-between w-full p-3 bg-blue-50 hover:bg-blue-100/80 border border-blue-200 rounded-xl transition-all group shadow-sm mt-2">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-solid fa-scale-balanced text-blue-600 text-lg group-hover:scale-110 transition-transform"></i>
-                            <span class="font-bold text-slate-800 text-xs group-hover:text-blue-700">Simulador de Palanques (PhET)</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-blue-400 group-hover:text-blue-600 text-xs"></i>
-                    </a>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex items-start gap-4">
-                    <div class="w-10 h-10 bg-indigo-100 text-indigo-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
-                        <i class="fa-solid fa-check-double"></i>
-                    </div>
+            <div class="recursos-grid">
+                <div class="recurs-card">
                     <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Activitats Autovaluables</h4>
-                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Tests ràpids d'autoavaluació i targetes interactives (flashcards) per repassar abans dels exàmens.
-                        </p>
+                        <h4><i class="fa-solid fa-sliders text-blue-600 mr-1"></i> Simuladors Virtuals</h4>
+                        <p>Simula el comportament de palanques, la Llei de la Palanca i l'equilibri de forces directament al navegador.</p>
                     </div>
+                    <a href="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_es_ES.html" target="_blank" rel="noopener noreferrer" class="btn-simulador">
+                        <span><i class="fa-solid fa-scale-balanced mr-1"></i> Simulador PhET de Palanques</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="recurs-card">
+                    <div>
+                        <h4><i class="fa-solid fa-check-double text-indigo-600 mr-1"></i> Activitats d'Autoavaluació</h4>
+                        <p>Exercicis pràctics i reptes ràpids per posar a prova els teus coneixements abans de les avalucions del curs.</p>
+                    </div>
+                    <span style="font-size:0.8rem; font-weight:700; color:#64748b; background:#f1f5f9; padding:0.4rem 0.8rem; border-radius:6px; display:inline-block;">Incloses dins de cada unitat</span>
                 </div>
             </div>
         </section>
 
-        <!-- SEPARADOR VISUAL -->
-        <div class="relative flex py-2 items-center">
-            <div class="flex-grow border-t border-slate-200"></div>
-            <span class="flex-shrink mx-4 text-slate-400 text-xs font-bold uppercase tracking-wider bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
-                <i class="fa-solid fa-graduation-cap text-emerald-600 mr-1"></i> Continguts del Curs
-            </span>
-            <div class="flex-grow border-t border-slate-200"></div>
-        </div>
-
-        <!-- SECCIÓ 2: GRAELLA D'UNITATS DIDÀCTIQUES -->
-        <section id="unitats" class="space-y-6">
-            <div class="border-l-4 border-emerald-600 pl-4">
-                <h2 class="text-2xl font-black text-slate-800">Unitats Didàctiques de 3r d'ESO</h2>
-                <p class="text-slate-600 text-sm">Selecciona la unitat de treball actual per accedir als apunts, exercicis i eines:</p>
+        <!-- Graella d'Unitats Didàctiques -->
+        <section id="unitats" class="section-container">
+            <div class="section-header">
+                <h2>Unitats Didàctiques de 3r d'ESO</h2>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Accedeix als apunts, activitats, exercicis i esquemes visuals de cada tema:</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="units-grid">
                 
-                <!-- UD 1 (DISPONIBLE) -->
-                <article class="bg-white rounded-3xl p-6 border-2 border-emerald-300 shadow-md hover:shadow-lg transition space-y-4 flex flex-col justify-between relative overflow-hidden">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full uppercase">UD 1</span>
-                            <span class="bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-md uppercase">Disponible</span>
+                <!-- UD 1 (Disponible) -->
+                <article class="unit-card">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge-ud">UD 1</span>
+                            <span class="badge-status status-available">Disponible</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800">Màquines i Mecanismes</h3>
-                        <p class="text-slate-600 text-xs leading-relaxed">
-                            Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i simulador interactiu d'equilibri.
-                        </p>
+                        <h3>Màquines i Mecanismes</h3>
+                        <p>Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i la resolució d'exercicis pràctics.</p>
                     </div>
-                    <a href="3ESO_U1_espai_estudi.html" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 mt-4 shadow-sm">
-                        <i class="fa-solid fa-arrow-right"></i> Entrar a la Unitat 1
+                    <a href="3ESO_U1_espai_estudi.html" class="btn-unit btn-available">
+                        Accedir a la Unitat 1 <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </article>
 
-                <!-- UD 2 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 2</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
+                <!-- UD 2 (En preparació) -->
+                <article class="unit-card disabled">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge-ud">UD 2</span>
+                            <span class="badge-status status-pending">Trimestre 2</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-700">Electricitat</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Llei d'Ohm, circuits en sèrie i paral·lel, simula la intensitat, el voltatge i la resistència.
-                        </p>
+                        <h3>Electricitat</h3>
+                        <p>Circuits elèctrics, Llei d'Ohm, magnituds elèctriques (voltatge, intensitat, resistència) i simulacions en sèrie/paral·lel.</p>
                     </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                    <button disabled class="btn-unit btn-disabled">
                         En preparació
                     </button>
                 </article>
 
-                <!-- UD 3 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 3</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
+                <!-- UD 3 (En preparació) -->
+                <article class="unit-card disabled">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge-ud">UD 3</span>
+                            <span class="badge-status status-pending">Trimestre 2</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-700">Diagrames de flux</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Descripció, objectius i elements.
-                        </p>
+                        <h3>Diagrames de Flux</h3>
+                        <p>Disseny d'algorismes, simbologia estàndard, condicions i organització lògica de processos tecnològics.</p>
                     </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                    <button disabled class="btn-unit btn-disabled">
                         En preparació
                     </button>
                 </article>
 
-                <!-- UD 4 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 4</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
+                <!-- UD 4 (En preparació) -->
+                <article class="unit-card disabled">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge-ud">UD 4</span>
+                            <span class="badge-status status-pending">Trimestre 3</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-700">Robòtica</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                         Programació de plaques de control (Arduino / Micro:bit), sensors, actuadors i automatismes.   
-                        </p>
+                        <h3>Programació i Robòtica</h3>
+                        <p>Programació de plaques de control (Arduino / Micro:bit), ús de sensors, actuadors i automatismes.</p>
                     </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                    <button disabled class="btn-unit btn-disabled">
                         En preparació
                     </button>
                 </article>
 
-                <!-- UD 5 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 5</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
+                <!-- UD 5 (En preparació) -->
+                <article class="unit-card disabled">
+                    <div>
+                        <div class="card-top">
+                            <span class="badge-ud">UD 5</span>
+                            <span class="badge-status status-pending">Trimestre 3</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-700">Digitalització</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                           Plataformes d'aprenentatge, netiqueta, seguretat a la xarxa.
-                        </p>
+                        <h3>Digitalització</h3>
+                        <p>Eines d'aprenentatge digital, seguretat a la xarxa, identitat digital i entorns col·laboratius.</p>
                     </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
+                    <button disabled class="btn-unit btn-disabled">
                         En preparació
                     </button>
                 </article>
 
             </div>
         </section>
-
     </main>
 
-    <!-- Peu de pàgina -->
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs">
-        <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p class="text-slate-200 font-bold">Departament de Tecnologia — Tecnologia 3r d'ESO</p>
-            <p>Repositori de continguts oberts allotjat a GitHub Pages.</p>
-        </div>
+    <footer>
+        <p><strong>Departament de Tecnologia</strong> &copy; Recursos educatius d'accés lliure | Allotjat a GitHub Pages</p>
     </footer>
 
     <!-- Scripts d'Accessibilitat -->
