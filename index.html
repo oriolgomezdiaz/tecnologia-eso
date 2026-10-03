@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia ESO | Recursos i Projectes</title>
-    <!-- Fonts de lectura fàcil -->
+    <title>TecnoLab ESO | Descobreix, Crea i Programa</title>
+    <!-- Fonts modernes i accessibles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per a icones molones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS Integrat per a un prototip d'un sol fitxer i visualització ràpida */
         :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #198754;
-            --bg-light: #f8f9fa;
-            --text-dark: #212529;
-            --card-border: #e0e0e0;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #10b981;
+            --secondary-hover: #059669;
+            --accent-yellow: #f59e0b;
+            --bg-main: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --radius: 16px;
         }
 
         * {
@@ -26,18 +32,25 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
+            color: var(--text-main);
+            background-color: var(--bg-main);
         }
 
+        h1, h2, h3, .logo {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Capçalera i Navegació */
         header {
-            background-color: #ffffff;
-            border-bottom: 2px solid var(--card-border);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid #e2e8f0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .header-container {
@@ -46,37 +59,51 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
+            padding: 0.8rem 1.5rem;
         }
 
         .logo a {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* Estils del Menú de Navegació */
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
+            align-items: center;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
-        nav a:hover {
-            background-color: #e9ecef;
+        nav a.btn-nav {
+            background-color: #e2e8f0;
         }
 
-        /* Submenús per Unitats Didàctiques */
+        nav a.btn-nav:hover {
+            background-color: #cbd5e1;
+        }
+
+        /* Submenús */
         .dropdown {
             position: relative;
         }
@@ -84,15 +111,16 @@
         .dropdown-menu {
             display: none;
             position: absolute;
-            top: 100%;
+            top: 110%;
             left: 0;
             background-color: #ffffff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid var(--card-border);
-            border-radius: 4px;
-            min-width: 250px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            min-width: 270px;
             flex-direction: column;
-            gap: 0;
+            overflow: hidden;
+            padding: 0.4rem;
         }
 
         .dropdown:hover .dropdown-menu {
@@ -100,124 +128,219 @@
         }
 
         .dropdown-menu a {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #f0f0f0;
-            display: block;
+            padding: 0.65rem 0.9rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
         }
 
-        .dropdown-menu a:last-child {
-            border-bottom: none;
+        .dropdown-menu a:hover {
+            background-color: #f1f5f9;
         }
 
         .dropdown-menu a.index-link {
-            background-color: #e8f5e9;
+            background-color: #d1fae5;
+            color: #065f46;
             font-weight: 700;
-            color: var(--secondary-color);
+            margin-bottom: 0.3rem;
         }
 
         .dropdown-menu a.index-link:hover {
-            background-color: #d4edda;
+            background-color: #a7f3d0;
         }
 
-        /* Botons d'Accés Ràpid */
+        /* Botons d'Accés Curs */
         .btn-eso-2 {
-            background-color: var(--primary-color);
+            background-color: var(--primary);
             color: white !important;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
         }
+        .btn-eso-2:hover { background-color: var(--primary-hover); }
 
         .btn-eso-3 {
-            background-color: var(--secondary-color);
+            background-color: var(--secondary);
             color: white !important;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
         }
+        .btn-eso-3:hover { background-color: var(--secondary-hover); }
 
-        /* Secció Hero / Principal */
+        /* Secció Hero */
         .hero {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
             text-align: center;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fbbf24;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(251, 191, 36, 0.3);
         }
 
         .hero h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.1rem;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         /* Targetes de Cursos */
         .courses-grid {
             max-width: 1200px;
-            margin: 0 auto 3rem auto;
+            margin: 2rem auto 4rem auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             padding: 0 1rem;
         }
 
         .card {
-            background-color: white;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid #e2e8f0;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .card h2 {
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 1rem;
         }
 
-        .card-2eso h2 { color: var(--primary-color); }
-        .card-3eso h2 { color: var(--secondary-color); }
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
 
-        .card ul {
-            list-style-type: square;
-            margin-left: 1.2rem;
+        .card-2eso .card-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .card-3eso .card-icon { background: linear-gradient(135deg, #10b981, #047857); }
+
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
         }
 
-        .card a.card-link {
-            display: inline-block;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            color: white;
+        .card h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+        }
+
+        .topics-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .topics-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
             font-weight: 500;
+            background-color: #f8fafc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .card-2eso .topics-list i { color: var(--primary); }
+        .card-3eso .topics-list i { color: var(--secondary); }
+
+        .card-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
         }
 
         footer {
-            background-color: #343a40;
-            color: white;
+            background-color: #0f172a;
+            color: #94a3b8;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
         }
 
-        /* Adaptabilitat per a pantalles petites */
+        footer strong { color: white; }
+
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 1rem;
             }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            .dropdown-menu {
-                position: static;
-                box-shadow: none;
-            }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -226,53 +349,123 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html">⚙️ Tecnologia ESO</a>
+                <a href="index.html">
+                    <i class="fa-solid fa-laptop-code text-blue-600"></i>
+                    <span>TecnoLab</span> ESO
+                </a>
             </div>
             
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="btn-nav"><i class="fa-solid fa-house"></i> Inici</a></li>
+                    
+                    <!-- MENÚ 2n D'ESO -->
+                    <li class="dropdown">
+                        <a href="2eso/index.html" class="btn-eso-2">2n ESO <i class="fa-solid fa-chevron-down text-xs"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="2eso/ud1-mètode-projectes.html"><i class="fa-solid fa-pen-ruler"></i> UD 1: Mètode de Projectes</a>
+                            <a href="2eso/ud2-materials.html"><i class="fa-solid fa-cubes"></i> UD 2: Materials d'Ús Tècnic</a>
+                            <a href="2eso/ud3-estructures.html"><i class="fa-solid fa-building"></i> UD 3: Estructures</a>
+                            <a href="2eso/ud4-mecanismes.html"><i class="fa-solid fa-gears"></i> UD 4: Mecanismes</a>
+                            <a href="2eso/ud5-programacio.html"><i class="fa-solid fa-code"></i> UD 5: Programació i Robòtica</a>
+                        </div>
+                    </li>
+
+                    <!-- MENÚ 3r D'ESO -->
+                    <li class="dropdown">
+                        <a href="3eso/index.html" class="btn-eso-3">3r ESO <i class="fa-solid fa-chevron-down text-xs"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="3eso/index.html" class="index-link"><i class="fa-solid fa-compass"></i> Índex General de 3r</a>
+                            <a href="3eso/ud1-plastics.html"><i class="fa-solid fa-bottle-water"></i> UD 1: Plàstics i Materials</a>
+                            <a href="3eso/ud2-electricitat.html"><i class="fa-solid fa-bolt"></i> UD 2: Circuits Elèctrics</a>
+                            <a href="3eso/ud3-sistemes-mecanics.html"><i class="fa-solid fa-cogs"></i> UD 3: Sistemes Mecànics</a>
+                            <a href="3eso/ud4-tecnologies-informacio.html"><i class="fa-solid fa-shield-halved"></i> UD 4: TIC i Seguretat Digital</a>
+                            <a href="3eso/ud5-control-robotica.html"><i class="fa-solid fa-robot"></i> UD 5: Control i Robòtica</a>
+                        </div>
+                    </li>
+
+                    <li><a href="#tallers" class="btn-nav"><i class="fa-solid fa-wrench"></i> Taller</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section Juvenil -->
         <section class="hero">
-            <h1>Plataforma de Continguts de Tecnologia</h1>
-            <p>Benvinguts i benvingudes al repositori d'apunts, projectes, guies de taller i activitats pràctiques per als cursos de 2n i 3r d'ESO.</p>
+            <div class="hero-badge">
+                <i class="fa-solid fa-rocket"></i> Espai d'Aprenentatge Digital
+            </div>
+            <h1>Crea, experimenta i construeix el futur 🚀</h1>
+            <p>El teu espai amb tots els apunts, projectes de taller, simuladors i reptes de robòtica per als cursos de 2n i 3r d'ESO.</p>
         </section>
 
+        <!-- Graella de Cursos -->
         <section class="courses-grid">
+            
             <!-- Targeta 2n ESO -->
             <article class="card card-2eso">
-                <h2>2n d'ESO</h2>
-                <p>Introducció al procés tecnològic, anàlisi de materials, estructures bàsiques i primers passos en programació.</p>
-                <br>
-                <h3>Unitats Principals:</h3>
-                <ul>
-                    <li>Mètode de Projectes i Dibuix Tècnic</li>
-                    <li>Materials: Fusta i Metalls</li>
-                    <li>Estructures i Esforços</li>
-                    <li>Mecanismes de Transmissió</li>
-                </ul>
-                <a href="2eso/index.html" class="card-link btn-eso-2">Accedir al contingut de 2n</a>
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <div>
+                            <h2>2n d'ESO</h2>
+                            <p style="margin:0; font-size: 0.85rem; font-weight:600; color:var(--primary);">Primeres passes tecnològiques</p>
+                        </div>
+                    </div>
+                    
+                    <p>Aprèn a dissenyar els teus propis projectes, analitzar materials del dia a dia i entendre com funcionen les estructures i màquines bàsiques.</p>
+                    
+                    <h3>Què aprendrem?</h3>
+                    <ul class="topics-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Mètode de Projectes i Dibuix Tècnic</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Fusta, metalls i les seves eines</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Com resisteixen les Estructures</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Engranatges i Mecanismes</li>
+                    </ul>
+                </div>
+
+                <a href="2eso/index.html" class="card-link-btn btn-eso-2">
+                    Explorar 2n d'ESO <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </article>
 
             <!-- Targeta 3r ESO -->
             <article class="card card-3eso">
-                <h2>3r d'ESO</h2>
-                <p>Aprofundiment en circuits elèctrics, plàstics, sistemes mecànics i projectes de robòtica i control.</p>
-                <br>
-                <h3>Unitats Principals:</h3>
-                <ul>
-                    <li>Plàstics i Nous Materials</li>
-                    <li>Electricitat i Electrònica Bàsica</li>
-                    <li>Sistemes de Transmissió i Transformació</li>
-                    <li>Programació i Control amb Arduino/Micro:bit</li>
-                </ul>
-                <a href="3eso/index.html" class="card-link btn-eso-3">Accedir al contingut de 3r</a>
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h2>3r d'ESO</h2>
+                            <p style="margin:0; font-size: 0.85rem; font-weight:600; color:var(--secondary);">Control, electrònica i robòtica</p>
+                        </div>
+                    </div>
+
+                    <p>Endinsa't en el món de l'electricitat, descobreix nous materials com els plàstics i dona vida als teus reptes amb la programació.</p>
+
+                    <h3>Què aprendrem?</h3>
+                    <ul class="topics-list">
+                        <li><i class="fa-solid fa-check-circle"></i> Plàstics i nous materials</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Circuits Elèctrics i Electrònica</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Mecanismes de Transmissió</li>
+                        <li><i class="fa-solid fa-check-circle"></i> Programació amb Arduino / Micro:bit</li>
+                    </ul>
+                </div>
+
+                <a href="3eso/index.html" class="card-link-btn btn-eso-3">
+                    Explorar 3r d'ESO <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </article>
+
         </section>
     </main>
 
     <footer>
-        <p>&copy; Departament de Tecnologia. Material educatiu sota llicència lliure. Allotjat a GitHub Pages.</p>
+        <p><strong>Departament de Tecnologia</strong> &copy; Recursos educatius d'accés lliure | Allotjat a GitHub Pages</p>
     </footer>
 
 </body>
