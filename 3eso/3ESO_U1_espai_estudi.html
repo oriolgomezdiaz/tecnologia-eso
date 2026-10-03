@@ -142,7 +142,7 @@
         </div>
     </header>
 
-    <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS (Persistent a la part superior) -->
+    <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS -->
     <nav class="bg-slate-900 border-b-2 border-blue-600 sticky top-10 z-40 shadow-lg">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-2 overflow-x-auto no-scrollbar gap-1.5 sm:gap-2">
@@ -384,7 +384,7 @@
                         🛒 Menys Força + Més Braç
                     </button>
                     <button onclick="setPreset('desequilibri')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
-                        ⚠️️ Càrrega feixuga
+                        ⚠ Càrrega feixuga
                     </button>
                 </div>
 
@@ -513,15 +513,15 @@
                         <div>
                             <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 1</span>
                             <h3 class="text-base font-bold text-slate-800 mt-2">
-                                El Trencanous: Per trencar una nou cal vèncer una resistència $R = 200\text{ N}$. La nou està a $d_R = 4\text{ cm}$ del fulcre. Si fem una força de $F = 60\text{ N}$ amb la mà, a quina distància ($d_F$) hem de fer la força?
+                                El Trencanous: Per trencar una nou cal vèncer una resistència <i>R</i> = 200 N. La nou està a <i>d</i><sub>R</sub> = 4 cm del fulcre. Si fem una força de <i>F</i> = 60 N amb la mà, a quina distància (<i>d</i><sub>F</sub>) hem de fer la força?
                             </h3>
                         </div>
 
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
                             <div><strong>R:</strong> 200 N</div>
-                            <div><strong>dR:</strong> 4 cm</div>
+                            <div><strong>d<sub>R</sub>:</strong> 4 cm</div>
                             <div><strong>F:</strong> 60 N</div>
-                            <div><strong>dF:</strong> ? cm</div>
+                            <div><strong>d<sub>F</sub>:</strong> ? cm</div>
                         </div>
 
                         <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -533,10 +533,10 @@
 
                         <div id="sol-ex3" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
                             <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
-                            <p><strong>1. Fórmula:</strong> $F \cdot d_F = R \cdot d_R$</p>
-                            <p><strong>2. Substituïm dades:</strong> $60 \cdot d_F = 200 \cdot 4$</p>
-                            <p><strong>3. Multiplicam:</strong> $60 \cdot d_F = 800$</p>
-                            <p><strong>4. Aïllem:</strong> $d_F = \frac{800}{60} = 13,33\text{ cm}$</p>
+                            <p><strong>1. Fórmula:</strong> <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub></p>
+                            <p><strong>2. Substituïm dades:</strong> 60 · <i>d</i><sub>F</sub> = 200 · 4</p>
+                            <p><strong>3. Multiplicam:</strong> 60 · <i>d</i><sub>F</sub> = 800</p>
+                            <p><strong>4. Aïllem:</strong> <i>d</i><sub>F</sub> = 800 / 60 = 13,33 cm</p>
                             <p class="text-blue-700 font-bold text-sm pt-1">✅ Resposta: 13,33 cm del suport.</p>
                         </div>
                     </div>
@@ -546,15 +546,15 @@
                         <div>
                             <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 2</span>
                             <h3 class="text-base font-bold text-slate-800 mt-2">
-                                La Pala de Fosa: Volem aixecar una càrrega $R = 120\text{ N}$. Fem una força $F = 40\text{ N}$ a una distància $d_F = 1,2\text{ metres}$ del fulcre. A quina distància ($d_R$) es troba la càrrega?
+                                La Pala de Fosa: Volem aixecar una càrrega <i>R</i> = 120 N. Fem una força <i>F</i> = 40 N a una distància <i>d</i><sub>F</sub> = 1,2 metres del fulcre. A quina distància (<i>d</i><sub>R</sub>) es troba la càrrega?
                             </h3>
                         </div>
 
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
                             <div><strong>R:</strong> 120 N</div>
                             <div><strong>F:</strong> 40 N</div>
-                            <div><strong>dF:</strong> 1,2 m</div>
-                            <div><strong>dR:</strong> ? m</div>
+                            <div><strong>d<sub>F</sub>:</strong> 1,2 m</div>
+                            <div><strong>d<sub>R</sub>:</strong> ? m</div>
                         </div>
 
                         <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -566,10 +566,10 @@
 
                         <div id="sol-ex4" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
                             <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
-                            <p><strong>1. Fórmula:</strong> $F \cdot d_F = R \cdot d_R$</p>
-                            <p><strong>2. Substituïm:</strong> $40 \cdot 1,2 = 120 \cdot d_R$</p>
-                            <p><strong>3. Multiplicam:</strong> $48 = 120 \cdot d_R$</p>
-                            <p><strong>4. Aïllem:</strong> $d_R = \frac{48}{120} = 0,4\text{ metres}$</p>
+                            <p><strong>1. Fórmula:</strong> <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub></p>
+                            <p><strong>2. Substituïm:</strong> 40 · 1,2 = 120 · <i>d</i><sub>R</sub></p>
+                            <p><strong>3. Multiplicam:</strong> 48 = 120 · <i>d</i><sub>R</sub></p>
+                            <p><strong>4. Aïllem:</strong> <i>d</i><sub>R</sub> = 48 / 120 = 0,4 metres</p>
                             <p class="text-blue-700 font-bold text-sm pt-1">✅ Resposta: 0,4 metres (40 cm).</p>
                         </div>
                     </div>
@@ -704,13 +704,13 @@
                         <h3 class="font-bold text-slate-800 text-sm">Quina és la fórmula correcta de la Llei de la Palanca?</h3>
                         <div class="space-y-2 text-xs font-medium text-slate-700">
                             <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="a" class="accent-blue-600"> a) $F \cdot R = d_F \cdot d_R$
+                                <input type="radio" name="q4" value="a" class="accent-blue-600"> a) <i>F</i> · <i>R</i> = <i>d</i><sub>F</sub> · <i>d</i><sub>R</sub>
                             </label>
                             <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="b" class="accent-blue-600"> b) $F \cdot d_F = R \cdot d_R$
+                                <input type="radio" name="q4" value="b" class="accent-blue-600"> b) <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub>
                             </label>
                             <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="c" class="accent-blue-600"> c) $F + d_F = R + d_R$
+                                <input type="radio" name="q4" value="c" class="accent-blue-600"> c) <i>F</i> + <i>d</i><sub>F</sub> = <i>R</i> + <i>d</i><sub>R</sub>
                             </label>
                         </div>
                     </div>
@@ -988,7 +988,7 @@
         // Flashcards Logic
         const flashcardsData = [
             { tag: "Pregunta 1 de 5", text: "Quins són els 3 elements principals de qualsevol màquina?", ans: "1. Element Motriu (energia inicial)<br>2. Mecanisme (transmet moviment)<br>3. Element Receptor (tasca útil)" },
-            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · dF = R · dR</strong>" },
+            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · d<sub>F</sub> = R · d<sub>R</sub></strong>" },
             { tag: "Pregunta 3 de 5", text: "En quin tipus de palanca el Fulcre està al mig?", ans: "En les palanques de <strong>1er Gènere</strong> (ex: tisores, balancí)." },
             { tag: "Pregunta 4 de 5", text: "En quin tipus de palanca la Resistència està al mig?", ans: "En les palanques de <strong>2n Gènere</strong> (ex: carretó, trencanous)." },
             { tag: "Pregunta 5 de 5", text: "En quina unitat es mesuren les forces (F i R)?", ans: "En <strong>Newtons (N)</strong>." }
