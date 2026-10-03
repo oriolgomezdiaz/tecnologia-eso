@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia 3r ESO - Màquines i Mecanismes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Lexend and Inter for high legibility -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Lexend', 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Font size adjustment classes for accessibility */
+        body.font-size-sm { font-size: 14px; }
+        body.font-size-base { font-size: 16px; }
+        body.font-size-lg { font-size: 18px; }
+        body.font-size-xl { font-size: 20px; }
+
+        /* High contrast mode styling */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .bg-white,
+        body.high-contrast .bg-slate-50,
+        body.high-contrast .bg-slate-100,
+        body.high-contrast .bg-blue-50 {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffff00 !important;
+        }
+        body.high-contrast .text-slate-800,
+        body.high-contrast .text-slate-700,
+        body.high-contrast .text-slate-600,
+        body.high-contrast .text-blue-900 {
+            color: #ffffff !important;
+        }
+        body.high-contrast button {
+            border: 2px solid #ffff00 !important;
+        }
+
+        /* Active Navigation Tab */
+        .tab-btn.active {
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Flashcard flip effect */
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+
+    <!-- Accessibility Control Bar -->
+    <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2 font-medium">
+                <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
+                <span>Opcions de Lectura Fàcil:</span>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- Text size controls -->
+                <div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
+                    <span class="px-2 text-slate-400 font-bold">Mida text:</span>
+                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold" title="Text Petit">A-</button>
+                    <button onclick="setFontSize('base')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold bg-slate-700" title="Text Normal">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sm font-bold" title="Text Gran">A+</button>
+                    <button onclick="setFontSize('xl')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-base font-bold" title="Text Molt Gran">A++</button>
+                </div>
+
+                <!-- High contrast toggle -->
+                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-lg transition text-xs">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span>Alt Contrast</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-2.5 rounded-2xl shadow-md text-blue-900 flex items-center justify-center font-bold text-2xl w-12 h-12">
+                    <i class="fa-solid fa-gear text-blue-600 animate-spin-slow"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-blue-500/30 text-blue-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-wider">3r d'ESO</span>
+                        <span class="text-xs text-blue-300">IES S'Arenal</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Unitat 1: Màquines i Mecanismes</h1>
+                </div>
+            </div>
+
+            <div class="hidden sm:flex items-center space-x-2 bg-blue-950/80 px-4 py-2 rounded-xl border border-blue-700/50 text-xs sm:text-sm">
+                <i class="fa-solid fa-book-open-reader text-yellow-400 text-base"></i>
+                <div>
+                    <p class="font-bold">Guia d'Estudi Adaptada</p>
+                    <p class="text-blue-300 text-xs">Explicacions senzilles i visuals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-slate-950/60 backdrop-blur-md border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex overflow-x-auto space-x-2 py-2.5 scrollbar-none">
+                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-book"></i> 1. Teoria Resumida
+                </button>
+                <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-sliders"></i> 2. Simulador de Palanques
+                </button>
+                <button onclick="switchTab('exercicis')" id="tab-exercicis" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-pen-to-square"></i> 3. Exercicis Pas a Pas
+                </button>
+                <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-clone"></i> 4. Targetes de Repàs
+                </button>
+                <button onclick="switchTab('test')" id="tab-test" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-circle-check"></i> 5. Test d'Autoavaluació
+                </button>
+                <button onclick="switchTab('glossari')" id="tab-glossari" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-magnifying-glass"></i> 6. Diccionari Clau
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- TAB 1: TEORIA EN LECTURA FÀCIL -->
+        <section id="sec-teoria" class="tab-content space-y-8">
+            
+            <!-- Intro Banner -->
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="max-w-3xl space-y-3">
+                    <span class="bg-yellow-400 text-slate-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Idees Principals</span>
+                    <h2 class="text-2xl sm:text-3xl font-black">Què és una màquina?</h2>
+                    <p class="text-blue-100 leading-relaxed text-sm sm:text-base">
+                        Una <strong>màquina</strong> és un conjunt d'elements que utilitzen energia per fer un <strong>treball útil</strong> d'una manera més fàcil i ràpida.
+                    </p>
+                </div>
+            </div>
+
+            <!-- The 3 Parts of any Machine -->
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-600 pl-3">
+                    <h3 class="text-xl font-extrabold text-slate-800">Les 3 parts principals de qualsevol màquina:</h3>
+                    <p class="text-slate-600 text-sm">Totes les màquines tenen un origen d'energia, un camí de transmissió i un resultat final.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Part 1: Element Motriu -->
+                    <div class="bg-white rounded-2xl p-6 border-2 border-amber-200 shadow-sm hover:shadow-md transition space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-2xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">Part 1</span>
+                        <h4 class="text-lg font-bold text-slate-800">Element Motriu</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            És la <strong>font d'energia</strong> que posa en marxa la màquina.
+                        </p>
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 text-xs text-amber-900 font-medium">
+                            <i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i> <strong>Exemples:</strong> Els nostres músculs (pedalar), un motor elèctric, la força del vent.
+                        </div>
+                    </div>
+
+                    <!-- Part 2: Mecanisme -->
+                    <div class="bg-white rounded-2xl p-6 border-2 border-blue-200 shadow-sm hover:shadow-md transition space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-2xl">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Part 2</span>
+                        <h4 class="text-lg font-bold text-slate-800">Mecanisme</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Transmet o <strong>transforma el moviment</strong> des de l'inici fins al final.
+                        </p>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 text-xs text-blue-900 font-medium">
+                            <i class="fa-solid fa-lightbulb text-blue-600 mr-1"></i> <strong>Exemples:</strong> La cadena de la bici, engranatges, eixos, palanques.
+                        </div>
+                    </div>
+
+                    <!-- Part 3: Element Receptor -->
+                    <div class="bg-white rounded-2xl p-6 border-2 border-emerald-200 shadow-sm hover:shadow-md transition space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-2xl">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">Part 3</span>
+                        <h4 class="text-lg font-bold text-slate-800">Element Receptor</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Rep el moviment final i fa la <strong>tasca o treball útil</strong>.
+                        </p>
+                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-xs text-emerald-900 font-medium">
+                            <i class="fa-solid fa-lightbulb text-emerald-600 mr-1"></i> <strong>Exemples:</strong> La roda posterior, la pedra de moldre, les ganivetes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Palanques & Llei de la Palanca -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-800">La Palanca i la seva Llei</h3>
+                        <p class="text-xs text-slate-500">Una de les màquines simples més antigues de la humanitat</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4">
+                        <p class="text-slate-700 text-sm leading-relaxed">
+                            Una <strong>palanca</strong> és una barra rígida que gira al voltant d'un punt de suport anomenat <strong>Fulcre (O)</strong>.
+                        </p>
+                        
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs sm:text-sm">
+                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                                <span><strong class="text-blue-600">F (Força / Potència):</strong> Força que fa la mà o motor</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">Newtons (N)</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                                <span><strong class="text-red-600">R (Resistència):</strong> Pes o càrrega que volem moure</span>
+                                <span class="bg-red-100 text-red-800 px-2 py-0.5 rounded font-bold">Newtons (N)</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                                <span><strong class="text-indigo-600">d<sub>F</sub> (Braç de Força):</strong> Distància entre la Força i el Fulcre</span>
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">Metres (m)</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                                <span><strong class="text-emerald-600">d<sub>R</sub> (Braç de Resistència):</strong> Distància entre la Resistència i el Fulcre</span>
+                                <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Metres (m)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formula Box -->
+                    <div class="bg-gradient-to-br from-indigo-900 to-blue-900 text-white p-6 rounded-3xl shadow-lg space-y-4 text-center">
+                        <span class="bg-indigo-500/40 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-400/30">Fórmula de l'Equilibri</span>
+                        <div class="text-2xl sm:text-3xl font-black tracking-wider my-2 bg-white/10 p-4 rounded-2xl border border-white/10 font-mono">
+                            F · d<sub>F</sub> = R · d<sub>R</sub>
+                        </div>
+                        <p class="text-xs text-indigo-200 leading-relaxed">
+                            "Força per la seva distància és igual a Resistència per la seva distància."
+                        </p>
+                        <div class="bg-yellow-400/20 text-yellow-200 p-3 rounded-xl text-xs border border-yellow-400/30 text-left">
+                            <i class="fa-solid fa-triangle-exclamation mr-1 text-yellow-400"></i>
+                            <strong>Consell d'Examen:</strong> Fes servir sempre les mateixes unitats per a les dues distàncies (les dues en metres o les dues en cm).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Generes de Palanques -->
+                <div class="pt-4 border-t border-slate-100">
+                    <h4 class="font-extrabold text-slate-800 text-base mb-4">Els 3 Tipus de Palanques segons la posició:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl border-2 border-blue-200 bg-blue-50/50 space-y-2">
+                            <span class="text-xs font-black text-blue-700 uppercase bg-blue-200 px-2 py-0.5 rounded">1er Gènere</span>
+                            <h5 class="font-bold text-slate-800 text-sm">Fulcre al mig</h5>
+                            <p class="text-xs text-slate-600">El punt de suport (O) queda entre la Força (F) i la Càrrega (R).</p>
+                            <div class="text-xs font-bold text-blue-900 pt-1"><i class="fa-solid fa-scissors"></i> Exemples: Tisores, alicates, balancí.</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border-2 border-amber-200 bg-amber-50/50 space-y-2">
+                            <span class="text-xs font-black text-amber-700 uppercase bg-amber-200 px-2 py-0.5 rounded">2n Gènere</span>
+                            <h5 class="font-bold text-slate-800 text-sm">Resistència al mig</h5>
+                            <p class="text-xs text-slate-600">La càrrega (R) fica entre el punt de suport (O) i la Força (F).</p>
+                            <div class="text-xs font-bold text-amber-900 pt-1"><i class="fa-solid fa-wheelbarrow"></i> Exemples: Carretó, trencanous.</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl border-2 border-emerald-200 bg-emerald-50/50 space-y-2">
+                            <span class="text-xs font-black text-emerald-700 uppercase bg-emerald-200 px-2 py-0.5 rounded">3er Gènere</span>
+                            <h5 class="font-bold text-slate-800 text-sm">Força al mig</h5>
+                            <p class="text-xs text-slate-600">La nostra força (F) s'aplica entre el punt de suport (O) i la Càrrega (R).</p>
+                            <div class="text-xs font-bold text-emerald-900 pt-1"><i class="fa-solid fa-grip-lines"></i> Exemples: Pinces de gel, pala de fosa.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SIMULADOR INTERACTIU DE PALANQUES -->
+        <section id="sec-simulador" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-blue-600"></i>
+                        Simulador Virtual d'Equilibri
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-1">
+                        Experimenta amb els valors de la Força i de les Distàncies per aconseguir l'equilibri de la barra.
+                    </p>
+                </div>
+
+                <!-- Presets Quick Buttons -->
+                <div class="flex flex-wrap items-center gap-2 bg-slate-100 p-3 rounded-2xl">
+                    <span class="text-xs font-bold text-slate-500 mr-2">Carregar Exemples:</span>
+                    <button onclick="setPreset('balanci')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                        🎡 Balancí equilibrat
+                    </button>
+                    <button onclick="setPreset('carreta')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                        🛒 Menys Força + Més Braç
+                    </button>
+                    <button onclick="setPreset('desequilibri')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                        ⚠️ Càrrega molt feixuga
+                    </button>
+                </div>
+
+                <!-- Interactive Canvas SVG -->
+                <div class="bg-slate-900 rounded-3xl p-6 text-white shadow-inner flex flex-col items-center justify-center min-h-[320px] relative overflow-hidden">
+                    
+                    <!-- Dynamic State Indicator Badge -->
+                    <div id="sim-status-badge" class="absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-emerald-500 text-white shadow">
+                        <i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri
+                    </div>
+
+                    <!-- SVG Balance Beam -->
+                    <svg id="lever-svg" viewBox="0 0 800 300" class="w-full max-w-2xl h-auto">
+                        <!-- Horizontal Axis Line -->
+                        <line x1="50" y1="180" x2="750" y2="180" stroke="#334155" stroke-width="2" stroke-dasharray="4"/>
+                        
+                        <!-- Fulcrum (Center Point at X=400, Y=180) -->
+                        <polygon points="400,180 370,235 430,235" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                        <circle cx="400" cy="180" r="6" fill="#ffffff"/>
+                        <text x="400" y="255" text-anchor="middle" fill="#cbd5e1" font-size="12" font-weight="bold">Fulcre (O)</text>
+
+                        <!-- Lever Beam Group (Rotates dynamically) -->
+                        <g id="lever-beam-group" transform="rotate(0, 400, 180)">
+                            <!-- Wooden Bar -->
+                            <rect x="80" y="172" width="640" height="16" rx="4" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+
+                            <!-- Left Vector (Force F) -->
+                            <g id="vector-f">
+                                <line id="arrow-f-line" x1="200" y1="90" x2="200" y2="165" stroke="#3b82f6" stroke-width="4"/>
+                                <rect id="box-f" x="165" y="45" width="70" height="42" rx="8" fill="#3b82f6"/>
+                                <text id="text-f-val" x="200" y="70" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">F</text>
+                                <line x1="200" y1="185" x2="400" y2="185" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3"/>
+                                <text id="text-df-val" x="300" y="202" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="bold">dF</text>
+                            </g>
+
+                            <!-- Right Vector (Resistance R) -->
+                            <g id="vector-r">
+                                <line id="arrow-r-line" x1="600" y1="90" x2="600" y2="165" stroke="#ef4444" stroke-width="4"/>
+                                <rect id="box-r" x="565" y="45" width="70" height="42" rx="8" fill="#ef4444"/>
+                                <text id="text-r-val" x="600" y="70" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">R</text>
+                                <line x1="400" y1="185" x2="600" y2="185" stroke="#ef4444" stroke-width="2" stroke-dasharray="3"/>
+                                <text id="text-dr-val" x="500" y="202" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">dR</text>
+                            </g>
+                        </g>
+                    </svg>
+
+                    <!-- Realtime Math Display -->
+                    <div class="mt-4 bg-slate-800/90 px-6 py-3 rounded-2xl border border-slate-700 text-center flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm font-mono">
+                        <div class="text-blue-400">
+                            Moments Motriu (F · d<sub>F</sub>): <span id="calc-mf" class="font-bold text-base">100</span> N·m
+                        </div>
+                        <div class="text-slate-400 font-bold">=</div>
+                        <div class="text-red-400">
+                            Moments Resistent (R · d<sub>R</sub>): <span id="calc-mr" class="font-bold text-base">100</span> N·m
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sliders Panel -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-6 rounded-3xl border border-slate-200">
+                    <!-- Left Controls: Force F -->
+                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h4 class="font-bold text-blue-600 text-sm"><i class="fa-solid fa-hand-pointer"></i> Força Motriu (F)</h4>
+                            <span id="label-f-val" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-black">100 N</span>
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                                <span>Magnitud de la Força (F)</span>
+                                <span>10 N - 500 N</span>
+                            </label>
+                            <input type="range" id="slider-f" min="10" max="500" value="100" class="w-full accent-blue-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                                <span>Braç de Força (d<sub>F</sub>)</span>
+                                <span id="label-df-val" class="text-blue-600 font-bold">1.0 m</span>
+                            </label>
+                            <input type="range" id="slider-df" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-blue-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                        </div>
+                    </div>
+
+                    <!-- Right Controls: Resistance R -->
+                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h4 class="font-bold text-red-600 text-sm"><i class="fa-solid fa-weight-hanging"></i> Càrrega / Resistència (R)</h4>
+                            <span id="label-r-val" class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-black">100 N</span>
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                                <span>Magnitud del Pes (R)</span>
+                                <span>10 N - 500 N</span>
+                            </label>
+                            <input type="range" id="slider-r" min="10" max="500" value="100" class="w-full accent-red-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                                <span>Braç de Resistència (d<sub>R</sub>)</span>
+                                <span id="label-dr-val" class="text-red-600 font-bold">1.0 m</span>
+                            </label>
+                            <input type="range" id="slider-dr" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-red-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Balance Button -->
+                <div class="flex justify-center">
+                    <button onclick="autoBalanceLever()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Equilibrium Automàtic (Calcula d<sub>R</sub> automàticament)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: EXERCICIS PAS A PAS -->
+        <section id="sec-exercicis" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-800">Exercicis de la Fitxa Resolts Pas a Pas</h2>
+                    <p class="text-slate-600 text-sm mt-1">Intenta resoldre'ls primer pel teu compte i comprova si el resultat és correcte!</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Problem 1: Nutcracker -->
+                    <div class="border-2 border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-4 hover:border-blue-300 transition">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 1</span>
+                                <h3 class="text-base font-bold text-slate-800 mt-2">
+                                    El Trencanous: Per trencar una nou cal vèncer una resistència R = 200 N. La nou està a d<sub>R</sub> = 4 cm del fulcre. Si fem una força de F = 60 N amb la mà, a quina distància (d<sub>F</sub>) hem de fer la força?
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
+                            <div><strong>R:</strong> 200 N</div>
+                            <div><strong>dR:</strong> 4 cm</div>
+                            <div><strong>F:</strong> 60 N</div>
+                            <div><strong>dF:</strong> ? cm</div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <input type="number" id="ans-ex3" step="0.1" placeholder="Introdueix dF (en cm)" class="text-xs p-3 border rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+                            <button onclick="checkEx3()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition">Comprova</button>
+                            <button onclick="toggleSolution('sol-ex3')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition">Veure explicació pas a pas</button>
+                        </div>
+                        <div id="feedback-ex3" class="text-xs font-bold hidden"></div>
+
+                        <!-- Solution Breakdown -->
+                        <div id="sol-ex3" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
+                            <p><strong>1. Formula:</strong> $F \cdot d_F = R \cdot d_R$</p>
+                            <p><strong>2. Substituïm les dades:</strong> $60 \cdot d_F = 200 \cdot 4$</p>
+                            <p><strong>3. Multiplicam el costat dret:</strong> $60 \cdot d_F = 800$</p>
+                            <p><strong>4. Aïllem la incògnita:</strong> $d_F = \frac{800}{60} = 13,33\text{ cm}$</p>
+                            <p class="text-blue-700 font-bold text-sm pt-1">
+                                ✅ Resposta final: La mà s'ha de posar a 13,33 cm del suport.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 2: Shovel -->
+                    <div class="border-2 border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-4 hover:border-blue-300 transition">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 2</span>
+                                <h3 class="text-base font-bold text-slate-800 mt-2">
+                                    La Pala de Fosa: Volem aixecar una càrrega R = 120 N. Fem una força F = 40 N a una distància d<sub>F</sub> = 1,2 metres del fulcre. A quina distància (d<sub>R</sub>) es troba la càrrega?
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
+                            <div><strong>R:</strong> 120 N</div>
+                            <div><strong>F:</strong> 40 N</div>
+                            <div><strong>dF:</strong> 1,2 m</div>
+                            <div><strong>dR:</strong> ? m</div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <input type="number" id="ans-ex4" step="0.1" placeholder="Introdueix dR (en metres)" class="text-xs p-3 border rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+                            <button onclick="checkEx4()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition">Comprova</button>
+                            <button onclick="toggleSolution('sol-ex4')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition">Veure explicació pas a pas</button>
+                        </div>
+                        <div id="feedback-ex4" class="text-xs font-bold hidden"></div>
+
+                        <!-- Solution Breakdown -->
+                        <div id="sol-ex4" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
+                            <p><strong>1. Formula:</strong> $F \cdot d_F = R \cdot d_R$</p>
+                            <p><strong>2. Substituïm les dades:</strong> $40 \cdot 1,2 = 120 \cdot d_R$</p>
+                            <p><strong>3. Multiplicam:</strong> $48 = 120 \cdot d_R$</p>
+                            <p><strong>4. Aïllem d<sub>R</sub>:</strong> $d_R = \frac{48}{120} = 0,4\text{ metres}$</p>
+                            <p class="text-blue-700 font-bold text-sm pt-1">
+                                ✅ Resposta final: La càrrega es troba a 0,4 metres (40 cm) del fulcre.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: TARGETES DE REPÀS (FLASHCARDS) -->
+        <section id="sec-cards" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="text-center max-w-xl mx-auto space-y-2">
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-black px-3 py-1 rounded-full uppercase">Mètode d'Estudi Flashcards</span>
+                    <h2 class="text-2xl font-black text-slate-800">Targetes de Repàs Ràpid</h2>
+                    <p class="text-slate-600 text-sm">Fes clic a la targeta per girar-la i veure la resposta correcta!</p>
+                </div>
+
+                <!-- Flashcard Display Box -->
+                <div class="flex flex-col items-center justify-center space-y-6">
+                    <div id="flashcard" onclick="flipCard()" class="w-full max-w-md h-64 cursor-pointer perspective border border-slate-200 rounded-3xl bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-xl flex items-center justify-center p-6 text-center transition transform hover:scale-[1.02]">
+                        <div id="flashcard-content" class="space-y-3">
+                            <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full" id="card-tag">Pregunta 1 de 5</span>
+                            <h3 class="text-xl font-bold leading-snug" id="card-text">Quins són els 3 elements principals de qualsevol màquina?</h3>
+                            <p class="text-xs text-blue-200">(Fes clic per veure la resposta)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="prevCard()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i> Anterior
+                        </button>
+                        <span id="card-counter" class="text-xs font-bold text-slate-500">1 / 5</span>
+                        <button onclick="nextCard()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2">
+                            Següent <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: TEST D'AUTOAVALUACIÓ -->
+        <section id="sec-test" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-800">Test d'Autoavaluació Ràpida</h2>
+                        <p class="text-slate-600 text-sm mt-1">Respon les 5 preguntes per comprovar si ho tens tot assolit.</p>
+                    </div>
+                    <div id="quiz-score-badge" class="hidden bg-blue-100 text-blue-900 text-sm font-black px-4 py-2 rounded-2xl border border-blue-200">
+                        Puntuació: <span id="quiz-score">0</span> / 5
+                    </div>
+                </div>
+
+                <form id="quiz-form" class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
+                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 1</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Quin element d'una màquina s'encarrega de donar l'energia inicial?</h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="a" class="accent-blue-600"> a) L'element receptor.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="b" class="accent-blue-600"> b) L'element motriu.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q1" value="c" class="accent-blue-600"> c) El mecanisme de transmissió.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
+                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 2</span>
+                        <h3 class="font-bold text-slate-800 text-sm">En un molí de vent tradicional, quin és l'element receptor?</h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="a" class="accent-blue-600"> a) La força del vent.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="b" class="accent-blue-600"> b) L'eix de transmissió.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q2" value="c" class="accent-blue-600"> c) La mola de pedra que aixafa el blat.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
+                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 3</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Com s'anomena el punt de suport sobre el qual gira una palanca?</h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="a" class="accent-blue-600"> a) Fulcre.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="b" class="accent-blue-600"> b) Pinyó.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q3" value="c" class="accent-blue-600"> c) Eix motriu.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
+                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 4</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Quina és la formula correcta de la Llei de la Palanca?</h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q4" value="a" class="accent-blue-600"> a) $F \cdot R = d_F \cdot d_R$
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q4" value="b" class="accent-blue-600"> b) $F \cdot d_F = R \cdot d_R$
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q4" value="c" class="accent-blue-600"> c) $F + d_F = R + d_R$
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
+                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 5</span>
+                        <h3 class="font-bold text-slate-800 text-sm">Si volem aixecar una càrrega de 100 N a 2 m del fulcre, quanta força cal a 4 m de distància?</h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q5" value="a" class="accent-blue-600"> a) 50 N (la meitat de força).
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q5" value="b" class="accent-blue-600"> b) 200 N.
+                            </label>
+                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
+                                <input type="radio" name="q5" value="c" class="accent-blue-600"> c) 100 N.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center pt-2">
+                        <button type="button" onclick="evaluateQuiz()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-sm px-8 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Corregir el Test
+                        </button>
+                    </div>
+                </form>
+
+                <div id="quiz-feedback-box" class="hidden p-6 rounded-2xl text-center space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- TAB 6: DICCIONARI DE TERMES CLAU -->
+        <section id="sec-glossari" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-800">Diccionari de Termes Clau</h2>
+                    <p class="text-slate-600 text-sm mt-1">Cerca ràpida de paraules o conceptes que surten a l'examen.</p>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                    <input type="text" id="glossary-search" oninput="filterGlossary()" placeholder="Escriu una paraula (ex: fulcre, força, Newton)..." class="w-full pl-11 pr-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-blue-500 outline-none text-xs sm:text-sm font-medium">
+                </div>
+
+                <!-- Glossary Items List -->
+                <div id="glossary-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Fulcre (O)</h4>
+                        <p class="text-xs text-slate-600">És el punt de suport immòbil sobre el qual gira la barra de la palanca.</p>
+                    </div>
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Força o Potència (F)</h4>
+                        <p class="text-xs text-slate-600">L'energia o esforç aplicat per la mà o motor per vèncer una resistència. Es mesura en Newtons (N).</p>
+                    </div>
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Resistència (R)</h4>
+                        <p class="text-xs text-slate-600">El pes o la càrrega oposada que volem aixecar o moure. Es mesura en Newtons (N).</p>
+                    </div>
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Braç de Força (dF)</h4>
+                        <p class="text-xs text-slate-600">La distància en metres o centímetres des d'on apliquem la força fins al fulcre.</p>
+                    </div>
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Braç de Resistència (dR)</h4>
+                        <p class="text-xs text-slate-600">La distància en metres o centímetres des d'on està la càrrega fins al fulcre.</p>
+                    </div>
+                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-blue-700 text-sm">Newton (N)</h4>
+                        <p class="text-xs text-slate-600">Unitat de mesura de la força en el Sistema Internacional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <div class="flex justify-center items-center gap-2 text-white font-bold text-sm">
+                <i class="fa-solid fa-graduation-cap text-yellow-400"></i>
+                <span>Departament de Tecnologia — IES S'Arenal</span>
+            </div>
+            <p>© Adaptat per a l'alumnat d'ESO · Disseny d'alta llegibilitat</p>
+        </div>
+    </footer>
+
+    <script>
+        // Accessibility Controls
+        function setFontSize(sizeClass) {
+            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
+            document.body.classList.add('font-size-' + sizeClass);
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if (tabId === 'simulador') {
+                updateSim();
+            }
+        }
+
+        // Simulator Logic
+        function updateSim() {
+            const F = parseFloat(document.getElementById('slider-f').value);
+            const dF = parseFloat(document.getElementById('slider-df').value);
+            const R = parseFloat(document.getElementById('slider-r').value);
+            const dR = parseFloat(document.getElementById('slider-dr').value);
+
+            document.getElementById('label-f-val').innerText = F + ' N';
+            document.getElementById('label-df-val').innerText = dF.toFixed(1) + ' m';
+            document.getElementById('label-r-val').innerText = R + ' N';
+            document.getElementById('label-dr-val').innerText = dR.toFixed(1) + ' m';
+
+            const MF = F * dF;
+            const MR = R * dR;
+
+            document.getElementById('calc-mf').innerText = MF.toFixed(1);
+            document.getElementById('calc-mr').innerText = MR.toFixed(1);
+
+            const diff = MR - MF;
+            let angle = Math.max(-14, Math.min(14, diff * 0.05));
+
+            document.getElementById('lever-beam-group').setAttribute('transform', `rotate(${angle}, 400, 180)`);
+
+            const offsetF = (dF / 3.0) * 280;
+            const offsetR = (dR / 3.0) * 280;
+
+            const posXF = 400 - offsetF;
+            const posXR = 400 + offsetR;
+
+            document.getElementById('arrow-f-line').setAttribute('x1', posXF);
+            document.getElementById('arrow-f-line').setAttribute('x2', posXF);
+            document.getElementById('box-f').setAttribute('x', posXF - 35);
+            document.getElementById('text-f-val').setAttribute('x', posXF);
+            document.getElementById('text-f-val').textContent = F + ' N';
+            document.getElementById('text-df-val').setAttribute('x', 400 - offsetF / 2);
+
+            document.getElementById('arrow-r-line').setAttribute('x1', posXR);
+            document.getElementById('arrow-r-line').setAttribute('x2', posXR);
+            document.getElementById('box-r').setAttribute('x', posXR - 35);
+            document.getElementById('text-r-val').setAttribute('x', posXR);
+            document.getElementById('text-r-val').textContent = R + ' N';
+            document.getElementById('text-dr-val').setAttribute('x', 400 + offsetR / 2);
+
+            const badge = document.getElementById('sim-status-badge');
+            if (Math.abs(MF - MR) < 0.1) {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-emerald-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri';
+            } else if (MF > MR) {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-blue-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Força (F)';
+            } else {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-red-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Càrrega (R)';
+            }
+        }
+
+        function autoBalanceLever() {
+            const F = parseFloat(document.getElementById('slider-f').value);
+            const dF = parseFloat(document.getElementById('slider-df').value);
+            const R = parseFloat(document.getElementById('slider-r').value);
+
+            let neededDR = (F * dF) / R;
+            neededDR = Math.max(0.2, Math.min(3.0, neededDR));
+
+            document.getElementById('slider-dr').value = neededDR.toFixed(1);
+            updateSim();
+        }
+
+        function setPreset(type) {
+            if (type === 'balanci') {
+                document.getElementById('slider-f').value = 100;
+                document.getElementById('slider-df').value = 1.5;
+                document.getElementById('slider-r').value = 100;
+                document.getElementById('slider-dr').value = 1.5;
+            } else if (type === 'carreta') {
+                document.getElementById('slider-f').value = 50;
+                document.getElementById('slider-df').value = 2.0;
+                document.getElementById('slider-r').value = 200;
+                document.getElementById('slider-dr').value = 0.5;
+            } else if (type === 'desequilibri') {
+                document.getElementById('slider-f').value = 50;
+                document.getElementById('slider-df').value = 1.0;
+                document.getElementById('slider-r').value = 300;
+                document.getElementById('slider-dr').value = 2.0;
+            }
+            updateSim();
+        }
+
+        // Exercises Solutions Logic
+        function toggleSolution(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+
+        function checkEx3() {
+            const val = parseFloat(document.getElementById('ans-ex3').value);
+            const fb = document.getElementById('feedback-ex3');
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+            if (Math.abs(val - 13.33) <= 0.3 || Math.abs(val - 13.3) <= 0.3) {
+                fb.classList.add('text-emerald-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Molt bé! Resposta correcta: 13,33 cm.';
+            } else {
+                fb.classList.add('text-red-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (200 * 4) / 60 = 13,33 cm.';
+            }
+        }
+
+        function checkEx4() {
+            const val = parseFloat(document.getElementById('ans-ex4').value);
+            const fb = document.getElementById('feedback-ex4');
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+            if (Math.abs(val - 0.4) <= 0.05) {
+                fb.classList.add('text-emerald-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correcte! Resposta: 0,4 metres (40 cm).';
+            } else {
+                fb.classList.add('text-red-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (40 * 1.2) / 120 = 0,4 m.';
+            }
+        }
+
+        // Flashcards Logic
+        const flashcardsData = [
+            { tag: "Pregunta 1 de 5", text: "Quins són els 3 elements principals de qualsevol màquina?", ans: "1. Element Motriu (energia inicial)<br>2. Mecanisme (transmet moviment)<br>3. Element Receptor (tasca útil)" },
+            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · dF = R · dR</strong>" },
+            { tag: "Pregunta 3 de 5", text: "En quin tipus de palanca el Fulcre està al mig?", ans: "En les palanques de <strong>1er Gènere</strong> (ex: tisores, balancí)." },
+            { tag: "Pregunta 4 de 5", text: "En quin tipus de palanca la Resistència està al mig?", ans: "En les palanques de <strong>2n Gènere</strong> (ex: carretó, trencanous)." },
+            { tag: "Pregunta 5 de 5", text: "En quina unitat es mesuren les forces (F i R)?", ans: "En <strong>Newtons (N)</strong>." }
+        ];
+
+        let currentCardIndex = 0;
+        let isCardFlipped = false;
+
+        function updateCardDisplay() {
+            isCardFlipped = false;
+            const card = flashcardsData[currentCardIndex];
+            document.getElementById('card-tag').innerText = card.tag;
+            document.getElementById('card-text').innerHTML = card.text;
+            document.getElementById('card-counter').innerText = (currentCardIndex + 1) + " / " + flashcardsData.length;
+        }
+
+        function flipCard() {
+            const textEl = document.getElementById('card-text');
+            if (!isCardFlipped) {
+                textEl.innerHTML = flashcardsData[currentCardIndex].ans;
+                isCardFlipped = true;
+            } else {
+                textEl.innerHTML = flashcardsData[currentCardIndex].text;
+                isCardFlipped = false;
+            }
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % flashcardsData.length;
+            updateCardDisplay();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + flashcardsData.length) % flashcardsData.length;
+            updateCardDisplay();
+        }
+
+        // Quiz Logic
+        function evaluateQuiz() {
+            const answers = { q1: 'b', q2: 'c', q3: 'a', q4: 'b', q5: 'a' };
+            let score = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+
+            document.getElementById('quiz-score-badge').classList.remove('hidden');
+            document.getElementById('quiz-score').innerText = score;
+
+            const box = document.getElementById('quiz-feedback-box');
+            box.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-amber-100', 'text-amber-900', 'bg-red-100', 'text-red-900');
+
+            if (score === 5) {
+                box.classList.add('bg-emerald-100', 'text-emerald-900');
+                box.innerHTML = '🏆 <strong>Enhorabona! 5/5 perfecte!</strong><p class="text-xs mt-1">Has après tots els conceptes clau de la unitat.</p>';
+            } else if (score >= 3) {
+                box.classList.add('bg-amber-100', 'text-amber-900');
+                box.innerHTML = `👍 <strong>Bona feina! Puntuació: ${score}/5</strong><p class="text-xs mt-1">Repassa les targetes d'estudi per treure el 10!</p>`;
+            } else {
+                box.classList.add('bg-red-100', 'text-red-900');
+                box.innerHTML = `📖 <strong>Puntuació: ${score}/5</strong><p class="text-xs mt-1">Revisa la secció de teoria i torna a provar-ho.</p>`;
+            }
+        }
+
+        // Glossary Filter Logic
+        function filterGlossary() {
+            const query = document.getElementById('glossary-search').value.toLowerCase();
+            document.querySelectorAll('.glossary-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize simulator on page load
+        window.onload = function() {
+            updateSim();
+        };
+    </script>
+</body>
+</html>
