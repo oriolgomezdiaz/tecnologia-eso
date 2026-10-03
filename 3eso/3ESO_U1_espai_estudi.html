@@ -8,12 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Lexend and Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Lexend and Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         body {
-            font-family: 'Lexend', 'Inter', sans-serif;
+            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif;
             letter-spacing: 0.01em;
         }
         
@@ -47,12 +47,16 @@
         }
 
         /* Active Navigation Tab Style */
+        .tab-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         .tab-btn.active {
             background-color: #2563eb;
             color: #ffffff !important;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
-            border-color: #3b82f6 !important;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+            border-color: #60a5fa !important;
+            transform: translateY(-1px);
         }
 
         /* Custom scrollbar for mobile navigation strip */
@@ -65,8 +69,11 @@
         }
 
         /* Flashcard flip effect */
+        .card-perspective {
+            perspective: 1000px;
+        }
         .card-inner {
-            transition: transform 0.6s;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
         }
         .card-flipped .card-inner {
@@ -80,17 +87,17 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+<body class="bg-slate-100/80 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
 
     <!-- Accessibility Bar -->
-    <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+    <div class="bg-slate-900/95 backdrop-blur-md text-slate-200 text-xs py-2 px-4 border-b border-slate-800/80 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center gap-3">
-                <a href="index.html" class="inline-flex items-center gap-1.5 bg-blue-800/90 hover:bg-blue-700 text-yellow-300 px-3 py-1 rounded-lg border border-blue-600/60 text-xs font-bold transition shadow-sm">
+                <a href="index.html" class="inline-flex items-center gap-1.5 bg-blue-700/90 hover:bg-blue-600 text-yellow-300 px-3.5 py-1.5 rounded-xl border border-blue-500/50 text-xs font-bold transition shadow-sm hover:scale-105">
                     <i class="fa-solid fa-house"></i>
                     <span>Torna al menú de 3r</span>
                 </a>
-                <div class="hidden md:flex items-center gap-2 font-medium border-l border-slate-700 pl-3">
+                <div class="hidden md:flex items-center gap-2 font-medium border-l border-slate-700/80 pl-3 text-slate-300">
                     <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
                     <span>Opcions de Lectura Fàcil</span>
                 </div>
@@ -98,16 +105,16 @@
             
             <div class="flex flex-wrap items-center gap-2">
                 <!-- Text size controls -->
-                <div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
+                <div class="flex items-center bg-slate-800/90 rounded-xl p-1 border border-slate-700/80">
                     <span class="px-2 text-slate-400 font-bold hidden sm:inline">Mida text:</span>
-                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold" title="Text Petit">A-</button>
-                    <button onclick="setFontSize('base')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold bg-slate-700" title="Text Normal">A</button>
-                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sm font-bold" title="Text Gran">A+</button>
-                    <button onclick="setFontSize('xl')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-base font-bold" title="Text Molt Gran">A++</button>
+                    <button onclick="setFontSize('sm')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold transition" title="Text Petit">A-</button>
+                    <button onclick="setFontSize('base')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold bg-slate-700 transition" title="Text Normal">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-sm font-bold transition" title="Text Gran">A+</button>
+                    <button onclick="setFontSize('xl')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-base font-bold transition" title="Text Molt Gran">A++</button>
                 </div>
 
                 <!-- High contrast toggle -->
-                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-lg transition text-xs">
+                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold px-3.5 py-1.5 rounded-xl transition text-xs shadow-sm active:scale-95">
                     <i class="fa-solid fa-circle-half-stroke"></i>
                     <span class="hidden sm:inline">Alt Contrast</span>
                 </button>
@@ -116,26 +123,27 @@
     </div>
 
     <!-- Header Principal -->
-    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white p-2.5 rounded-2xl shadow-md text-blue-900 flex items-center justify-center font-bold text-2xl w-12 h-12">
-                    <i class="fa-solid fa-gear text-blue-600"></i>
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white shadow-xl relative overflow-hidden border-b border-blue-900/40">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap justify-between items-center gap-4 relative z-10">
+            <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg ring-4 ring-blue-500/20 text-white flex items-center justify-center font-bold text-2xl w-14 h-14">
+                    <i class="fa-solid fa-gear fa-spin-pulse" style="--fa-animation-duration: 12s;"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="bg-blue-500/30 text-blue-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-wider">3r d'ESO</span>
-                        <span class="text-xs text-blue-300">IES S'Arenal · Tecnologia</span>
+                        <span class="bg-blue-500/20 text-blue-300 text-[11px] font-black px-3 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-widest backdrop-blur-sm">3r d'ESO</span>
+                        <span class="text-xs text-blue-200/80 font-medium">IES S'Arenal · Tecnologia</span>
                     </div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Unitat 1: Màquines i Mecanismes</h1>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">Unitat 1: Màquines i Mecanismes</h1>
                 </div>
             </div>
 
             <!-- Indicador de Secció Actual -->
-            <div class="hidden sm:flex items-center gap-3 bg-blue-950/80 px-4 py-2 rounded-2xl border border-blue-700/50">
-                <div class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-sm" id="section-badge-num">1</div>
+            <div class="hidden sm:flex items-center gap-3.5 bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blue-500/30 shadow-inner">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center font-black text-sm shadow-md" id="section-badge-num">1</div>
                 <div>
-                    <p class="text-xs text-blue-300 uppercase font-bold">Secció Activa</p>
+                    <p class="text-[10px] text-blue-300/80 uppercase font-bold tracking-wider">Secció Activa</p>
                     <p class="font-extrabold text-sm text-white" id="section-badge-title">Teoria Resumida</p>
                 </div>
             </div>
@@ -143,43 +151,43 @@
     </header>
 
     <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS -->
-    <nav class="bg-slate-900 border-b-2 border-blue-600 sticky top-10 z-40 shadow-lg">
+    <nav class="bg-slate-900/95 backdrop-blur-md border-b-2 border-blue-600 sticky top-10 z-40 shadow-xl">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between py-2 overflow-x-auto no-scrollbar gap-1.5 sm:gap-2">
+            <div class="flex items-center justify-between py-2.5 overflow-x-auto no-scrollbar gap-2">
                 
-                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">1</span>
-                    <i class="fa-solid fa-book"></i>
+                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">1</span>
+                    <i class="fa-solid fa-book text-sm"></i>
                     <span>Teoria</span>
                 </button>
 
-                <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">2</span>
-                    <i class="fa-solid fa-sliders"></i>
+                <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">2</span>
+                    <i class="fa-solid fa-sliders text-sm"></i>
                     <span>Simulador</span>
                 </button>
 
-                <button onclick="switchTab('exercicis')" id="tab-exercicis" class="tab-btn whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">3</span>
-                    <i class="fa-solid fa-pen-to-square"></i>
+                <button onclick="switchTab('exercicis')" id="tab-exercicis" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">3</span>
+                    <i class="fa-solid fa-pen-to-square text-sm"></i>
                     <span>Exercicis</span>
                 </button>
 
-                <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">4</span>
-                    <i class="fa-solid fa-clone"></i>
+                <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">4</span>
+                    <i class="fa-solid fa-clone text-sm"></i>
                     <span>Targetes</span>
                 </button>
 
-                <button onclick="switchTab('test')" id="tab-test" class="tab-btn whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">5</span>
-                    <i class="fa-solid fa-circle-check"></i>
+                <button onclick="switchTab('test')" id="tab-test" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">5</span>
+                    <i class="fa-solid fa-circle-check text-sm"></i>
                     <span>Test</span>
                 </button>
 
-                <button onclick="switchTab('glossari')" id="tab-glossari" class="tab-btn whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center font-black">6</span>
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                <button onclick="switchTab('glossari')" id="tab-glossari" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">6</span>
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
                     <span>Diccionari</span>
                 </button>
 
@@ -194,80 +202,95 @@
         <section id="sec-teoria" class="tab-content space-y-8">
             
             <!-- Banner d'Introducció -->
-            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-                <div class="max-w-3xl space-y-3">
-                    <span class="bg-yellow-400 text-slate-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Secció 1 · Idees Principals</span>
-                    <h2 class="text-2xl sm:text-3xl font-black">Què és una màquina?</h2>
-                    <p class="text-blue-100 leading-relaxed text-sm sm:text-base">
-                        Una <strong>màquina</strong> és un conjunt d'elements que utilitzen energia per fer un <strong>treball útil</strong> d'una manera més fàcil, ràpida i amb menys esforç.
+            <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden ring-1 ring-white/20">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl font-black">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div class="max-w-3xl space-y-3 relative z-10">
+                    <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm inline-block">Secció 1 · Idees Principals</span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Què és una màquina?</h2>
+                    <p class="text-blue-50 leading-relaxed text-sm sm:text-base font-medium">
+                        Una <strong class="text-white underline decoration-amber-400 decoration-2">màquina</strong> és un conjunt d'elements que utilitzen energia per fer un <strong class="text-white underline decoration-amber-400 decoration-2">treball útil</strong> d'una manera més fàcil, ràpida i amb menys esforç.
                     </p>
                 </div>
             </div>
 
             <!-- Les 3 Parts de qualsevol Màquina -->
-            <div class="space-y-4">
-                <div class="border-l-4 border-blue-600 pl-3">
+            <div class="space-y-5">
+                <div class="border-l-4 border-blue-600 pl-4 py-0.5">
                     <h3 class="text-xl font-extrabold text-slate-800">Les 3 parts principals de qualsevol màquina:</h3>
                     <p class="text-slate-600 text-sm">Totes les màquines tenen un origen d'energia, un camí de transmissió i un resultat final.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Part 1 -->
-                    <div class="bg-white rounded-2xl p-6 border-2 border-amber-200 shadow-sm hover:shadow-md transition space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-2xl">
-                            <i class="fa-solid fa-bolt"></i>
+                    <div class="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Part 1</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Element Motriu</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                És la <strong class="text-slate-800">font d'energia</strong> que posa en marxa la màquina.
+                            </p>
                         </div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">Part 1</span>
-                        <h4 class="text-lg font-bold text-slate-800">Element Motriu</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            És la <strong>font d'energia</strong> que posa en marxa la màquina.
-                        </p>
-                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 text-xs text-amber-900 font-medium">
-                            <i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i> <strong>Exemples:</strong> Els nostres músculs (pedalar), un motor elèctric, la força del vent.
+                        <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-100 text-xs text-amber-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i> <strong>Exemples:</strong> Els nostres músculs (pedalar), un motor elèctric, la força del vent.
                         </div>
                     </div>
 
                     <!-- Part 2 -->
-                    <div class="bg-white rounded-2xl p-6 border-2 border-blue-200 shadow-sm hover:shadow-md transition space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-2xl">
-                            <i class="fa-solid fa-arrows-spin"></i>
+                    <div class="bg-white rounded-3xl p-6 border border-blue-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-arrows-spin"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Part 2</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Mecanisme</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Transmet o <strong class="text-slate-800">transforma el moviment</strong> des de l'inici fins al final.
+                            </p>
                         </div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Part 2</span>
-                        <h4 class="text-lg font-bold text-slate-800">Mecanisme</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Transmet o <strong>transforma el moviment</strong> des de l'inici fins al final.
-                        </p>
-                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 text-xs text-blue-900 font-medium">
-                            <i class="fa-solid fa-lightbulb text-blue-600 mr-1"></i> <strong>Exemples:</strong> La cadena de la bici, engranatges, eixos, palanques.
+                        <div class="bg-blue-50/80 p-3.5 rounded-2xl border border-blue-100 text-xs text-blue-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-blue-600 mr-1.5"></i> <strong>Exemples:</strong> La cadena de la bici, engranatges, eixos, palanques.
                         </div>
                     </div>
 
                     <!-- Part 3 -->
-                    <div class="bg-white rounded-2xl p-6 border-2 border-emerald-200 shadow-sm hover:shadow-md transition space-y-3">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-2xl">
-                            <i class="fa-solid fa-bullseye"></i>
+                    <div class="bg-white rounded-3xl p-6 border border-emerald-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Part 3</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Element Receptor</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Rep el moviment final i fa la <strong class="text-slate-800">tasca o treball útil</strong>.
+                            </p>
                         </div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">Part 3</span>
-                        <h4 class="text-lg font-bold text-slate-800">Element Receptor</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Rep el moviment final i fa la <strong>tasca o treball útil</strong>.
-                        </p>
-                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-xs text-emerald-900 font-medium">
-                            <i class="fa-solid fa-lightbulb text-emerald-600 mr-1"></i> <strong>Exemples:</strong> La roda posterior, la pedra de moldre, les ganivetes.
+                        <div class="bg-emerald-50/80 p-3.5 rounded-2xl border border-emerald-100 text-xs text-emerald-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-emerald-600 mr-1.5"></i> <strong>Exemples:</strong> La roda posterior, la pedra de moldre, les ganivetes.
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Palanques i Llei de la Palanca -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xl">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+                <div class="flex items-center gap-3.5 border-b border-slate-100 pb-5">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-2xl shadow-sm">
                         <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <div>
                         <h3 class="text-xl font-extrabold text-slate-800">La Palanca i la seva Llei</h3>
-                        <p class="text-xs text-slate-500">Una de les màquines simples més antigues i utilitzades</p>
+                        <p class="text-xs text-slate-500 font-medium">Una de les màquines simples més antigues i utilitzades</p>
                     </div>
                 </div>
 
@@ -277,83 +300,91 @@
                             Una <strong>palanca</strong> és una barra rígida que gira al voltant d'un punt de suport anomenat <strong>Fulcre (O)</strong>.
                         </p>
                         
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs sm:text-sm">
-                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-2 text-xs sm:text-sm">
+                            <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
                                 <span><strong class="text-blue-600">F (Força / Potència):</strong> Força que fa la mà o motor</span>
-                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">Newtons (N)</span>
+                                <span class="bg-blue-100 text-blue-800 px-2.5 py-1 rounded-lg font-extrabold text-xs">Newtons (N)</span>
                             </div>
-                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
-                                <span><strong class="text-red-600">R (Resistència):</strong> Pes o càrrega que volem moure</span>
-                                <span class="bg-red-100 text-red-800 px-2 py-0.5 rounded font-bold">Newtons (N)</span>
+                            <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
+                                <span><strong class="text-rose-600">R (Resistència):</strong> Pes o càrrega que volem moure</span>
+                                <span class="bg-rose-100 text-rose-800 px-2.5 py-1 rounded-lg font-extrabold text-xs">Newtons (N)</span>
                             </div>
-                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                            <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
                                 <span><strong class="text-indigo-600">d<sub>F</sub> (Braç de Força):</strong> Distància entre la Força i el Fulcre</span>
-                                <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">Metres (m)</span>
+                                <span class="bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-lg font-extrabold text-xs">Metres (m)</span>
                             </div>
-                            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+                            <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
                                 <span><strong class="text-emerald-600">d<sub>R</sub> (Braç de Resistència):</strong> Distància entre la Resistència i el Fulcre</span>
-                                <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Metres (m)</span>
+                                <span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg font-extrabold text-xs">Metres (m)</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Formula Box -->
-                    <div class="bg-gradient-to-br from-indigo-900 to-blue-900 text-white p-6 rounded-3xl shadow-lg space-y-4 text-center">
-                        <span class="bg-indigo-500/40 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-400/30">Fórmula de l'Equilibri</span>
-                        <div class="text-2xl sm:text-3xl font-black tracking-wider my-2 bg-white/10 p-4 rounded-2xl border border-white/10 font-mono">
+                    <div class="bg-gradient-to-br from-indigo-900 via-indigo-950 to-blue-950 text-white p-6 rounded-3xl shadow-xl space-y-4 text-center ring-1 ring-white/10 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 w-24 h-24 bg-blue-500/10 rounded-full blur-xl"></div>
+                        <span class="bg-indigo-500/30 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full uppercase border border-indigo-400/30 tracking-wider">Fórmula de l'Equilibri</span>
+                        <div class="text-2xl sm:text-3xl font-black tracking-widest my-2 bg-slate-900/60 p-4 rounded-2xl border border-indigo-500/30 font-mono shadow-inner text-yellow-300">
                             F · d<sub>F</sub> = R · d<sub>R</sub>
                         </div>
-                        <p class="text-xs text-indigo-200 leading-relaxed">
+                        <p class="text-xs text-indigo-200/90 leading-relaxed font-medium">
                             "Força per la seva distància és igual a Resistència per la seva distància."
                         </p>
                     </div>
                 </div>
 
                 <!-- 3 Generes -->
-                <div class="pt-4 border-t border-slate-100">
+                <div class="pt-5 border-t border-slate-100">
                     <h4 class="font-extrabold text-slate-800 text-base mb-4">Els 3 Tipus de Palanques segons la posició:</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="p-4 rounded-2xl border-2 border-blue-200 bg-blue-50/50 space-y-2">
-                            <span class="text-xs font-black text-blue-700 uppercase bg-blue-200 px-2 py-0.5 rounded">1er Gènere</span>
-                            <h5 class="font-bold text-slate-800 text-sm">Fulcre al mig</h5>
-                            <p class="text-xs text-slate-600">El punt de suport (O) queda entre la Força (F) i la Càrrega (R).</p>
-    
-                        <!-- Imatge integrada -->
-                        <div class="pt-2">
-                            <img src="../imatges/1rGrau.png" alt="Palanca de 1r gènere" class="w-full h-auto rounded-xl border border-blue-200 bg-white p-1">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <div class="p-5 rounded-2xl border-2 border-blue-200/80 bg-blue-50/40 space-y-3 flex flex-col justify-between hover:shadow-sm transition">
+                            <div class="space-y-2">
+                                <span class="text-[10px] font-black text-blue-700 uppercase bg-blue-200 px-2.5 py-1 rounded-md tracking-wider">1er Gènere</span>
+                                <h5 class="font-extrabold text-slate-800 text-base">Fulcre al mig</h5>
+                                <p class="text-xs text-slate-600 leading-relaxed">El punt de suport (O) queda entre la Força (F) i la Càrrega (R).</p>
+                                
+                                <!-- Imatge integrada -->
+                                <div class="pt-2">
+                                    <img src="../imatges/1rGrau.png" alt="Palanca de 1r gènere" class="w-full h-auto rounded-xl border border-blue-200 bg-white p-1.5 shadow-2xs">
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-blue-900 pt-1 border-t border-blue-100"><i class="fa-solid fa-scissors mr-1"></i> Exemples: Tisores, alicates, balancí.</div>
                         </div>
 
-                        <div class="text-xs font-bold text-blue-900 pt-1"><i class="fa-solid fa-scissors"></i> Exemples: Tisores, alicates, balancí.</div>
-                </div>
+                        <div class="p-5 rounded-2xl border-2 border-amber-200/80 bg-amber-50/40 space-y-3 flex flex-col justify-between hover:shadow-sm transition">
+                            <div class="space-y-2">
+                                <span class="text-[10px] font-black text-amber-800 uppercase bg-amber-200 px-2.5 py-1 rounded-md tracking-wider">2n Gènere</span>
+                                <h5 class="font-extrabold text-slate-800 text-base">Resistència al mig</h5>
+                                <p class="text-xs text-slate-600 leading-relaxed">La càrrega (R) es troba entre el punt de suport (O) i la Força (F).</p>
+                                
+                                <!-- Imatge integrada -->
+                                <div class="pt-2">
+                                    <img src="../imatges/2nGrau.png" alt="Palanca de 2n gènere" class="w-full h-auto rounded-xl border border-amber-200 bg-white p-1.5 shadow-2xs">
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-amber-950 pt-1 border-t border-amber-100"><i class="fa-solid fa-wheelbarrow mr-1"></i> Exemples: Carretó, trencanous.</div>
+                        </div>
 
-                        <div class="p-4 rounded-2xl border-2 border-amber-200 bg-amber-50/50 space-y-2">
-                            <span class="text-xs font-black text-amber-700 uppercase bg-amber-200 px-2 py-0.5 rounded">2n Gènere</span>
-                            <h5 class="font-bold text-slate-800 text-sm">Resistència al mig</h5>
-                            <p class="text-xs text-slate-600">La càrrega (R) es troba entre el punt de suport (O) i la Força (F).</p>
-                            <!-- Imatge integrada -->
-                        <div class="pt-2">
-                            <img src="../imatges/2nGrau.png" alt="Palanca de 2n gènere" class="w-full h-auto rounded-xl border border-blue-200 bg-white p-1">
-                        </div>
-                            <div class="text-xs font-bold text-amber-900 pt-1"><i class="fa-solid fa-wheelbarrow"></i> Exemples: Carretó, trencanous.</div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl border-2 border-emerald-200 bg-emerald-50/50 space-y-2">
-                            <span class="text-xs font-black text-emerald-700 uppercase bg-emerald-200 px-2 py-0.5 rounded">3er Gènere</span>
-                            <h5 class="font-bold text-slate-800 text-sm">Força al mig</h5>
-                            <p class="text-xs text-slate-600">La nostra força (F) s'aplica entre el punt de suport (O) i la Càrrega (R).</p>
-                            <!-- Imatge integrada -->
-                        <div class="pt-2">
-                            <img src="../imatges/3rGrau.png" alt="Palanca de 3r gènere" class="w-full h-auto rounded-xl border border-blue-200 bg-white p-1">
-                        </div>
-                            <div class="text-xs font-bold text-emerald-900 pt-1"><i class="fa-solid fa-grip-lines"></i> Exemples: Pinces de gel, pala.</div>
+                        <div class="p-5 rounded-2xl border-2 border-emerald-200/80 bg-emerald-50/40 space-y-3 flex flex-col justify-between hover:shadow-sm transition">
+                            <div class="space-y-2">
+                                <span class="text-[10px] font-black text-emerald-800 uppercase bg-emerald-200 px-2.5 py-1 rounded-md tracking-wider">3er Gènere</span>
+                                <h5 class="font-extrabold text-slate-800 text-base">Força al mig</h5>
+                                <p class="text-xs text-slate-600 leading-relaxed">La nostra força (F) s'aplica entre el punt de suport (O) i la Càrrega (R).</p>
+                                
+                                <!-- Imatge integrada -->
+                                <div class="pt-2">
+                                    <img src="../imatges/3rGrau.png" alt="Palanca de 3r gènere" class="w-full h-auto rounded-xl border border-emerald-200 bg-white p-1.5 shadow-2xs">
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-emerald-950 pt-1 border-t border-emerald-100"><i class="fa-solid fa-grip-lines mr-1"></i> Exemples: Pinces de gel, pala.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Navegació Inferior a la Següent Secció -->
-            <div class="flex justify-end pt-4">
-                <button onclick="switchTab('simulador')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+            <div class="flex justify-end pt-2">
+                <button onclick="switchTab('simulador')" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-blue-500/25 transition flex items-center gap-2.5">
                     <span>Anar al 2. Simulador</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -362,10 +393,10 @@
 
         <!-- TAB 2: SIMULADOR INTERACTIU DE PALANQUES -->
         <section id="sec-simulador" class="tab-content hidden space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
                 <div>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full uppercase">Secció 2 · Pràctica Virtual</span>
-                    <h2 class="text-2xl font-black text-slate-800 mt-2 flex items-center gap-2">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Secció 2 · Pràctica Virtual</span>
+                    <h2 class="text-2xl font-black text-slate-800 mt-2 flex items-center gap-2.5">
                         <i class="fa-solid fa-sliders text-blue-600"></i>
                         Simulador Virtual d'Equilibri
                     </h2>
@@ -375,23 +406,25 @@
                 </div>
 
                 <!-- Presets -->
-                <div class="flex flex-wrap items-center gap-2 bg-slate-100 p-3 rounded-2xl">
-                    <span class="text-xs font-bold text-slate-500 mr-2">Carregar Exemples:</span>
-                    <button onclick="setPreset('balanci')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                <div class="flex flex-wrap items-center gap-2 bg-slate-100/80 p-3 rounded-2xl border border-slate-200/60">
+                    <span class="text-xs font-bold text-slate-600 mr-2 flex items-center gap-1">
+                        <i class="fa-solid fa-bookmark text-slate-400"></i> Exemples ràpids:
+                    </span>
+                    <button onclick="setPreset('balanci')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-200 transition shadow-2xs active:scale-95">
                         🎡 Balancí equilibrat
                     </button>
-                    <button onclick="setPreset('carreta')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                    <button onclick="setPreset('carreta')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-200 transition shadow-2xs active:scale-95">
                         🛒 Menys Força + Més Braç
                     </button>
-                    <button onclick="setPreset('desequilibri')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+                    <button onclick="setPreset('desequilibri')" class="bg-white hover:bg-slate-200 text-slate-800 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-200 transition shadow-2xs active:scale-95">
                         ⚠ Càrrega feixuga
                     </button>
                 </div>
 
                 <!-- Canvas SVG -->
-                <div class="bg-slate-900 rounded-3xl p-6 text-white shadow-inner flex flex-col items-center justify-center min-h-[320px] relative overflow-hidden">
+                <div class="bg-gradient-to-b from-slate-950 to-slate-900 rounded-3xl p-6 text-white shadow-xl flex flex-col items-center justify-center min-h-[340px] relative overflow-hidden border border-slate-800">
                     
-                    <div id="sim-status-badge" class="absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-emerald-500 text-white shadow">
+                    <div id="sim-status-badge" class="absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-emerald-500 text-white shadow-lg transition-all">
                         <i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri
                     </div>
 
@@ -422,33 +455,33 @@
                         </g>
                     </svg>
 
-                    <div class="mt-4 bg-slate-800/90 px-6 py-3 rounded-2xl border border-slate-700 text-center flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm font-mono">
+                    <div class="mt-4 bg-slate-900/90 backdrop-blur px-6 py-3.5 rounded-2xl border border-slate-700/80 text-center flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm font-mono shadow-inner">
                         <div class="text-blue-400">
-                            Moments Motriu (F · d<sub>F</sub>): <span id="calc-mf" class="font-bold text-base">100</span> N·m
+                            Moments Motriu (F · d<sub>F</sub>): <span id="calc-mf" class="font-black text-base text-white">100</span> N·m
                         </div>
-                        <div class="text-slate-400 font-bold">=</div>
-                        <div class="text-red-400">
-                            Moments Resistent (R · d<sub>R</sub>): <span id="calc-mr" class="font-bold text-base">100</span> N·m
+                        <div class="text-slate-500 font-bold">=</div>
+                        <div class="text-rose-400">
+                            Moments Resistent (R · d<sub>R</sub>): <span id="calc-mr" class="font-black text-base text-white">100</span> N·m
                         </div>
                     </div>
                 </div>
 
                 <!-- Sliders Panel -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-6 rounded-3xl border border-slate-200">
-                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h4 class="font-bold text-blue-600 text-sm"><i class="fa-solid fa-hand-pointer"></i> Força Motriu (F)</h4>
-                            <span id="label-f-val" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-black">100 N</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50/80 p-6 rounded-3xl border border-slate-200/80">
+                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs">
+                        <div class="flex items-center justify-between border-b pb-2.5">
+                            <h4 class="font-extrabold text-blue-600 text-sm flex items-center gap-1.5"><i class="fa-solid fa-hand-pointer"></i> Força Motriu (F)</h4>
+                            <span id="label-f-val" class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-xs font-black">100 N</span>
                         </div>
                         <div>
-                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1.5">
                                 <span>Magnitud de la Força (F)</span>
                                 <span>10 N - 500 N</span>
                             </label>
                             <input type="range" id="slider-f" min="10" max="500" value="100" class="w-full accent-blue-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
                         </div>
                         <div>
-                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1.5">
                                 <span>Braç de Força (d<sub>F</sub>)</span>
                                 <span id="label-df-val" class="text-blue-600 font-bold">1.0 m</span>
                             </label>
@@ -456,42 +489,42 @@
                         </div>
                     </div>
 
-                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h4 class="font-bold text-red-600 text-sm"><i class="fa-solid fa-weight-hanging"></i> Càrrega / Resistència (R)</h4>
-                            <span id="label-r-val" class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-black">100 N</span>
+                    <div class="space-y-4 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-2xs">
+                        <div class="flex items-center justify-between border-b pb-2.5">
+                            <h4 class="font-extrabold text-rose-600 text-sm flex items-center gap-1.5"><i class="fa-solid fa-weight-hanging"></i> Càrrega / Resistència (R)</h4>
+                            <span id="label-r-val" class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full text-xs font-black">100 N</span>
                         </div>
                         <div>
-                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1.5">
                                 <span>Magnitud del Pes (R)</span>
                                 <span>10 N - 500 N</span>
                             </label>
-                            <input type="range" id="slider-r" min="10" max="500" value="100" class="w-full accent-red-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                            <input type="range" id="slider-r" min="10" max="500" value="100" class="w-full accent-rose-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
                         </div>
                         <div>
-                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1">
+                            <label class="text-xs text-slate-500 font-semibold flex justify-between mb-1.5">
                                 <span>Braç de Resistència (d<sub>R</sub>)</span>
-                                <span id="label-dr-val" class="text-red-600 font-bold">1.0 m</span>
+                                <span id="label-dr-val" class="text-rose-600 font-bold">1.0 m</span>
                             </label>
-                            <input type="range" id="slider-dr" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-red-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
+                            <input type="range" id="slider-dr" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-rose-600 h-2 bg-slate-200 rounded-lg cursor-pointer" oninput="updateSim()">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-center">
-                    <button onclick="autoBalanceLever()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <button onclick="autoBalanceLever()" class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-md transition flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Equilibri Automàtic
                     </button>
                 </div>
             </div>
 
             <!-- Navegació Inferior -->
-            <div class="flex justify-between items-center pt-4">
+            <div class="flex justify-between items-center pt-2">
                 <button onclick="switchTab('teoria')" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Anterior: Teoria</span>
                 </button>
-                <button onclick="switchTab('exercicis')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+                <button onclick="switchTab('exercicis')" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
                     <span>Següent: Exercicis</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -500,24 +533,24 @@
 
         <!-- TAB 3: EXERCICIS PAS A PAS -->
         <section id="sec-exercicis" class="tab-content hidden space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
                 <div>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full uppercase">Secció 3 · Problemes Resolts</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Secció 3 · Problemes Resolts</span>
                     <h2 class="text-2xl font-black text-slate-800 mt-2">Exercicis Resolts Pas a Pas</h2>
                     <p class="text-slate-600 text-sm mt-1">Intenta resoldre'ls primer pel teu compte i comprova la teva resposta!</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Problema 1 -->
-                    <div class="border-2 border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-4 hover:border-blue-300 transition">
+                    <div class="border-2 border-slate-200/80 rounded-2xl p-6 bg-slate-50/50 space-y-4 hover:border-blue-300 transition">
                         <div>
                             <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 1</span>
-                            <h3 class="text-base font-bold text-slate-800 mt-2">
+                            <h3 class="text-base font-extrabold text-slate-800 mt-2.5 leading-snug">
                                 El Trencanous: Per trencar una nou cal vèncer una resistència <i>R</i> = 200 N. La nou està a <i>d</i><sub>R</sub> = 4 cm del fulcre. Si fem una força de <i>F</i> = 60 N amb la mà, a quina distància (<i>d</i><sub>F</sub>) hem de fer la força?
                             </h3>
                         </div>
 
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono shadow-2xs">
                             <div><strong>R:</strong> 200 N</div>
                             <div><strong>d<sub>R</sub>:</strong> 4 cm</div>
                             <div><strong>F:</strong> 60 N</div>
@@ -525,13 +558,13 @@
                         </div>
 
                         <div class="flex flex-wrap items-center gap-3 pt-2">
-                            <input type="number" id="ans-ex3" step="0.1" placeholder="Introdueix dF (en cm)" class="text-xs p-3 border rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 outline-none">
-                            <button onclick="checkEx3()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition">Comprova</button>
-                            <button onclick="toggleSolution('sol-ex3')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition">Explicació pas a pas</button>
+                            <input type="number" id="ans-ex3" step="0.1" placeholder="Introdueix dF (en cm)" class="text-xs p-3 border border-slate-300 rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none shadow-2xs">
+                            <button onclick="checkEx3()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition shadow-2xs active:scale-95">Comprova</button>
+                            <button onclick="toggleSolution('sol-ex3')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition active:scale-95">Explicació pas a pas</button>
                         </div>
                         <div id="feedback-ex3" class="text-xs font-bold hidden"></div>
 
-                        <div id="sol-ex3" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
+                        <div id="sol-ex3" class="hidden bg-blue-50/50 p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
                             <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
                             <p><strong>1. Fórmula:</strong> <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub></p>
                             <p><strong>2. Substituïm dades:</strong> 60 · <i>d</i><sub>F</sub> = 200 · 4</p>
@@ -542,15 +575,15 @@
                     </div>
 
                     <!-- Problema 2 -->
-                    <div class="border-2 border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-4 hover:border-blue-300 transition">
+                    <div class="border-2 border-slate-200/80 rounded-2xl p-6 bg-slate-50/50 space-y-4 hover:border-blue-300 transition">
                         <div>
                             <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full border border-blue-200">Exercici 2</span>
-                            <h3 class="text-base font-bold text-slate-800 mt-2">
+                            <h3 class="text-base font-extrabold text-slate-800 mt-2.5 leading-snug">
                                 La Pala de Fosa: Volem aixecar una càrrega <i>R</i> = 120 N. Fem una força <i>F</i> = 40 N a una distància <i>d</i><sub>F</sub> = 1,2 metres del fulcre. A quina distància (<i>d</i><sub>R</sub>) es troba la càrrega?
                             </h3>
                         </div>
 
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-slate-200 font-mono shadow-2xs">
                             <div><strong>R:</strong> 120 N</div>
                             <div><strong>F:</strong> 40 N</div>
                             <div><strong>d<sub>F</sub>:</strong> 1,2 m</div>
@@ -558,13 +591,13 @@
                         </div>
 
                         <div class="flex flex-wrap items-center gap-3 pt-2">
-                            <input type="number" id="ans-ex4" step="0.1" placeholder="Introdueix dR (en metres)" class="text-xs p-3 border rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 outline-none">
-                            <button onclick="checkEx4()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition">Comprova</button>
-                            <button onclick="toggleSolution('sol-ex4')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition">Explicació pas a pas</button>
+                            <input type="number" id="ans-ex4" step="0.1" placeholder="Introdueix dR (en metres)" class="text-xs p-3 border border-slate-300 rounded-xl w-48 font-semibold bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none shadow-2xs">
+                            <button onclick="checkEx4()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-3 rounded-xl transition shadow-2xs active:scale-95">Comprova</button>
+                            <button onclick="toggleSolution('sol-ex4')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-4 py-3 rounded-xl transition active:scale-95">Explicació pas a pas</button>
                         </div>
                         <div id="feedback-ex4" class="text-xs font-bold hidden"></div>
 
-                        <div id="sol-ex4" class="hidden bg-white p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
+                        <div id="sol-ex4" class="hidden bg-blue-50/50 p-5 rounded-2xl border-l-4 border-blue-600 text-xs text-slate-700 space-y-2">
                             <h4 class="font-bold text-slate-800 text-sm">Passos per resoldre el problema:</h4>
                             <p><strong>1. Fórmula:</strong> <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub></p>
                             <p><strong>2. Substituïm:</strong> 40 · 1,2 = 120 · <i>d</i><sub>R</sub></p>
@@ -577,12 +610,12 @@
             </div>
 
             <!-- Navegació Inferior -->
-            <div class="flex justify-between items-center pt-4">
+            <div class="flex justify-between items-center pt-2">
                 <button onclick="switchTab('simulador')" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Anterior: Simulador</span>
                 </button>
-                <button onclick="switchTab('cards')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+                <button onclick="switchTab('cards')" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
                     <span>Següent: Targetes</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -591,28 +624,28 @@
 
         <!-- TAB 4: TARGETES DE REPÀS (FLASHCARDS) -->
         <section id="sec-cards" class="tab-content hidden space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
                 <div class="text-center max-w-xl mx-auto space-y-2">
-                    <span class="bg-indigo-100 text-indigo-800 text-xs font-black px-3 py-1 rounded-full uppercase">Secció 4 · Memòria Ràpida</span>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Secció 4 · Memòria Ràpida</span>
                     <h2 class="text-2xl font-black text-slate-800">Targetes de Repàs</h2>
                     <p class="text-slate-600 text-sm">Fes clic a la targeta per girar-la i veure la resposta correcta!</p>
                 </div>
 
                 <div class="flex flex-col items-center justify-center space-y-6">
-                    <div id="flashcard" onclick="flipCard()" class="w-full max-w-md h-64 cursor-pointer border border-slate-200 rounded-3xl bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-xl flex items-center justify-center p-6 text-center transition transform hover:scale-[1.02]">
+                    <div id="flashcard" onclick="flipCard()" class="w-full max-w-md h-64 cursor-pointer border border-indigo-200 rounded-3xl bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-700 text-white shadow-xl flex items-center justify-center p-6 text-center transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl">
                         <div id="flashcard-content" class="space-y-3">
-                            <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full" id="card-tag">Pregunta 1 de 5</span>
-                            <h3 class="text-xl font-bold leading-snug" id="card-text">Quins són els 3 elements principals de qualsevol màquina?</h3>
-                            <p class="text-xs text-blue-200">(Fes clic per veure la resposta)</p>
+                            <span class="bg-white/20 backdrop-blur-md text-white text-xs font-extrabold px-3.5 py-1 rounded-full border border-white/20" id="card-tag">Pregunta 1 de 5</span>
+                            <h3 class="text-xl font-extrabold leading-snug tracking-tight" id="card-text">Quins són els 3 elements principals de qualsevol màquina?</h3>
+                            <p class="text-xs text-blue-200/80 font-medium">(Fes clic per veure la resposta)</p>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <button onclick="prevCard()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2">
+                        <button onclick="prevCard()" class="bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-800 px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2">
                             <i class="fa-solid fa-arrow-left"></i> Anterior
                         </button>
-                        <span id="card-counter" class="text-xs font-bold text-slate-500">1 / 5</span>
-                        <button onclick="nextCard()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2">
+                        <span id="card-counter" class="text-xs font-extrabold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">1 / 5</span>
+                        <button onclick="nextCard()" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 shadow-sm">
                             Següent <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -620,12 +653,12 @@
             </div>
 
             <!-- Navegació Inferior -->
-            <div class="flex justify-between items-center pt-4">
+            <div class="flex justify-between items-center pt-2">
                 <button onclick="switchTab('exercicis')" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Anterior: Exercicis</span>
                 </button>
-                <button onclick="switchTab('test')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+                <button onclick="switchTab('test')" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
                     <span>Següent: Test</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -634,106 +667,106 @@
 
         <!-- TAB 5: TEST D'AUTOAVALUACIÓ -->
         <section id="sec-test" class="tab-content hidden space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-4">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-5">
                     <div>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full uppercase">Secció 5 · Comprova el que saps</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Secció 5 · Comprova el que saps</span>
                         <h2 class="text-2xl font-black text-slate-800 mt-2">Test d'Autoavaluació</h2>
                         <p class="text-slate-600 text-sm mt-1">Respon les 5 preguntes per comprovar el teu nivell.</p>
                     </div>
-                    <div id="quiz-score-badge" class="hidden bg-blue-100 text-blue-900 text-sm font-black px-4 py-2 rounded-2xl border border-blue-200">
+                    <div id="quiz-score-badge" class="hidden bg-blue-100 text-blue-900 text-sm font-black px-4 py-2 rounded-2xl border border-blue-200 shadow-2xs">
                         Puntuació: <span id="quiz-score">0</span> / 5
                     </div>
                 </div>
 
                 <form id="quiz-form" class="space-y-6">
                     <!-- Q1 -->
-                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
-                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 1</span>
-                        <h3 class="font-bold text-slate-800 text-sm">Quin element d'una màquina s'encarrega de donar l'energia inicial?</h3>
-                        <div class="space-y-2 text-xs font-medium text-slate-700">
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q1" value="a" class="accent-blue-600"> a) L'element receptor.
+                    <div class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-3">
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Pregunta 1</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Quin element d'una màquina s'encarrega de donar l'energia inicial?</h3>
+                        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q1" value="a" class="accent-blue-600 w-4 h-4"> <span>a) L'element receptor.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q1" value="b" class="accent-blue-600"> b) L'element motriu.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q1" value="b" class="accent-blue-600 w-4 h-4"> <span>b) L'element motriu.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q1" value="c" class="accent-blue-600"> c) El mecanisme de transmissió.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q1" value="c" class="accent-blue-600 w-4 h-4"> <span>c) El mecanisme de transmissió.</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
-                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 2</span>
-                        <h3 class="font-bold text-slate-800 text-sm">En un molí de vent tradicional, quin és l'element receptor?</h3>
-                        <div class="space-y-2 text-xs font-medium text-slate-700">
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q2" value="a" class="accent-blue-600"> a) La força del vent.
+                    <div class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-3">
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Pregunta 2</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">En un molí de vent tradicional, quin és l'element receptor?</h3>
+                        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q2" value="a" class="accent-blue-600 w-4 h-4"> <span>a) La força del vent.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q2" value="b" class="accent-blue-600"> b) L'eix de transmissió.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q2" value="b" class="accent-blue-600 w-4 h-4"> <span>b) L'eix de transmissió.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q2" value="c" class="accent-blue-600"> c) La mola de pedra que aixafa el blat.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q2" value="c" class="accent-blue-600 w-4 h-4"> <span>c) La mola de pedra que aixafa el blat.</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
-                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 3</span>
-                        <h3 class="font-bold text-slate-800 text-sm">Com s'anomena el punt de suport sobre el qual gira una palanca?</h3>
-                        <div class="space-y-2 text-xs font-medium text-slate-700">
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q3" value="a" class="accent-blue-600"> a) Fulcre.
+                    <div class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-3">
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Pregunta 3</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Com s'anomena el punt de suport sobre el qual gira una palanca?</h3>
+                        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q3" value="a" class="accent-blue-600 w-4 h-4"> <span>a) Fulcre.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q3" value="b" class="accent-blue-600"> b) Pinyó.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q3" value="b" class="accent-blue-600 w-4 h-4"> <span>b) Pinyó.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q3" value="c" class="accent-blue-600"> c) Eix motriu.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q3" value="c" class="accent-blue-600 w-4 h-4"> <span>c) Eix motriu.</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
-                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 4</span>
-                        <h3 class="font-bold text-slate-800 text-sm">Quina és la fórmula correcta de la Llei de la Palanca?</h3>
-                        <div class="space-y-2 text-xs font-medium text-slate-700">
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="a" class="accent-blue-600"> a) <i>F</i> · <i>R</i> = <i>d</i><sub>F</sub> · <i>d</i><sub>R</sub>
+                    <div class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-3">
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Pregunta 4</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Quina és la fórmula correcta de la Llei de la Palanca?</h3>
+                        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q4" value="a" class="accent-blue-600 w-4 h-4"> <span>a) <i>F</i> · <i>R</i> = <i>d</i><sub>F</sub> · <i>d</i><sub>R</sub></span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="b" class="accent-blue-600"> b) <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q4" value="b" class="accent-blue-600 w-4 h-4"> <span>b) <i>F</i> · <i>d</i><sub>F</sub> = <i>R</i> · <i>d</i><sub>R</sub></span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q4" value="c" class="accent-blue-600"> c) <i>F</i> + <i>d</i><sub>F</sub> = <i>R</i> + <i>d</i><sub>R</sub>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q4" value="c" class="accent-blue-600 w-4 h-4"> <span>c) <i>F</i> + <i>d</i><sub>F</sub> = <i>R</i> + <i>d</i><sub>R</sub></span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="p-5 rounded-2xl border-2 border-slate-100 bg-slate-50/80 space-y-3">
-                        <span class="text-xs font-black text-blue-600 uppercase">Pregunta 5</span>
-                        <h3 class="font-bold text-slate-800 text-sm">Si volem aixecar una càrrega de 100 N a 2 m del fulcre, quanta força cal a 4 m de distància?</h3>
-                        <div class="space-y-2 text-xs font-medium text-slate-700">
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q5" value="a" class="accent-blue-600"> a) 50 N (la meitat de força).
+                    <div class="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-3">
+                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Pregunta 5</span>
+                        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Si volem aixecar una càrrega de 100 N a 2 m del fulcre, quanta força cal a 4 m de distància?</h3>
+                        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q5" value="a" class="accent-blue-600 w-4 h-4"> <span>a) 50 N (la meitat de força).</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q5" value="b" class="accent-blue-600"> b) 200 N.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q5" value="b" class="accent-blue-600 w-4 h-4"> <span>b) 200 N.</span>
                             </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50">
-                                <input type="radio" name="q5" value="c" class="accent-blue-600"> c) 100 N.
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/80 cursor-pointer hover:bg-blue-50/50 transition shadow-2xs">
+                                <input type="radio" name="q5" value="c" class="accent-blue-600 w-4 h-4"> <span>c) 100 N.</span>
                             </label>
                         </div>
                     </div>
 
                     <div class="flex justify-center pt-2">
-                        <button type="button" onclick="evaluateQuiz()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black text-sm px-8 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2">
+                        <button type="button" onclick="evaluateQuiz()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-95 text-white font-black text-sm px-8 py-3.5 rounded-2xl shadow-lg transition flex items-center gap-2">
                             <i class="fa-solid fa-paper-plane"></i> Corregir el Test
                         </button>
                     </div>
@@ -743,12 +776,12 @@
             </div>
 
             <!-- Navegació Inferior -->
-            <div class="flex justify-between items-center pt-4">
+            <div class="flex justify-between items-center pt-2">
                 <button onclick="switchTab('cards')" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Anterior: Targetes</span>
                 </button>
-                <button onclick="switchTab('glossari')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
+                <button onclick="switchTab('glossari')" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2">
                     <span>Següent: Diccionari</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -757,48 +790,48 @@
 
         <!-- TAB 6: DICCIONARI DE TERMES CLAU -->
         <section id="sec-glossari" class="tab-content hidden space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
                 <div>
-                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3 py-1 rounded-full uppercase">Secció 6 · Vocabulari</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Secció 6 · Vocabulari</span>
                     <h2 class="text-2xl font-black text-slate-800 mt-2">Diccionari de Termes Clau</h2>
                     <p class="text-slate-600 text-sm mt-1">Cerca ràpida de paraules o conceptes que surten a l'examen.</p>
                 </div>
 
                 <div class="relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
-                    <input type="text" id="glossary-search" oninput="filterGlossary()" placeholder="Escriu una paraula (ex: fulcre, força, Newton)..." class="w-full pl-11 pr-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-blue-500 outline-none text-xs sm:text-sm font-medium">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400"></i>
+                    <input type="text" id="glossary-search" oninput="filterGlossary()" placeholder="Escriu una paraula (ex: fulcre, força, Newton)..." class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none text-xs sm:text-sm font-medium transition shadow-2xs">
                 </div>
 
                 <div id="glossary-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Fulcre (O)</h4>
-                        <p class="text-xs text-slate-600">És el punt de suport immòbil sobre el qual gira la barra de la palanca.</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Fulcre (O)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">És el punt de suport immòbil sobre el qual gira la barra de la palanca.</p>
                     </div>
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Força o Potència (F)</h4>
-                        <p class="text-xs text-slate-600">L'energia o esforç aplicat per la mà o motor per vèncer una resistència. Es mesura en Newtons (N).</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Força o Potència (F)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">L'energia o esforç aplicat per la mà o motor per vèncer una resistència. Es mesura en Newtons (N).</p>
                     </div>
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Resistència (R)</h4>
-                        <p class="text-xs text-slate-600">El pes o la càrrega oposada que volem aixecar o moure. Es mesura en Newtons (N).</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Resistència (R)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">El pes o la càrrega oposada que volem aixecar o moure. Es mesura en Newtons (N).</p>
                     </div>
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Braç de Força (dF)</h4>
-                        <p class="text-xs text-slate-600">La distància en metres o centímetres des d'on apliquem la força fins al fulcre.</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Braç de Força (dF)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">La distància en metres o centímetres des d'on apliquem la força fins al fulcre.</p>
                     </div>
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Braç de Resistència (dR)</h4>
-                        <p class="text-xs text-slate-600">La distància en metres o centímetres des d'on està la càrrega fins al fulcre.</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Braç de Resistència (dR)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">La distància en metres o centímetres des d'on està la càrrega fins al fulcre.</p>
                     </div>
-                    <div class="glossary-item p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-1">
-                        <h4 class="font-bold text-blue-700 text-sm">Newton (N)</h4>
-                        <p class="text-xs text-slate-600">Unitat de mesura de la força en el Sistema Internacional.</p>
+                    <div class="glossary-item p-4.5 rounded-2xl border border-slate-200/80 bg-slate-50/50 space-y-1.5 hover:border-blue-300 transition">
+                        <h4 class="font-extrabold text-blue-700 text-sm">Newton (N)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Unitat de mesura de la força en el Sistema Internacional.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Navegació Inferior -->
-            <div class="flex justify-start pt-4">
+            <div class="flex justify-start pt-2">
                 <button onclick="switchTab('test')" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl transition flex items-center gap-2">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Anterior: Test</span>
@@ -809,10 +842,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto">
+    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800/80 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
             <div class="flex justify-center items-center gap-2 text-white font-bold text-sm">
-                <i class="fa-solid fa-graduation-cap text-yellow-400"></i>
+                <i class="fa-solid fa-graduation-cap text-amber-400 text-base"></i>
                 <span>Departament de Tecnologia — IES S'Arenal</span>
             </div>
             <p>© Adaptat per a l'alumnat d'ESO · Disseny d'alta llegibilitat i usabilitat</p>
