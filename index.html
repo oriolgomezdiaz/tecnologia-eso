@@ -90,7 +90,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid var(--card-border);
             border-radius: 4px;
-            min-width: 220px;
+            min-width: 250px;
             flex-direction: column;
             gap: 0;
         }
@@ -107,6 +107,16 @@
 
         .dropdown-menu a:last-child {
             border-bottom: none;
+        }
+
+        .dropdown-menu a.index-link {
+            background-color: #e8f5e9;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .dropdown-menu a.index-link:hover {
+            background-color: #d4edda;
         }
 
         /* Botons d'Accés Ràpid */
@@ -234,10 +244,11 @@
                         </div>
                     </li>
 
-                    <!-- MENÚ 3r D'ESO -->
+                    <!-- MENÚ 3r D'ESO (MODIFICAT) -->
                     <li class="dropdown">
                         <a href="3eso/index.html" class="btn-eso-3">3r ESO ▾</a>
                         <div class="dropdown-menu">
+                            <a href="3eso/index.html" class="index-link">📋 Índex General de 3r d'ESO</a>
                             <a href="3eso/ud1-plastics.html">UD 1: Plàstics i Materials de Construcció</a>
                             <a href="3eso/ud2-electricitat.html">UD 2: Circuit Elèctric i Magnètic</a>
                             <a href="3eso/ud3-sistemes-mecanics.html">UD 3: Sistemes Mecànics Complexos</a>
