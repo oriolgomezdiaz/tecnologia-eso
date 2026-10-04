@@ -1,802 +1,123 @@
 <!DOCTYPE html>
-<html lang="ca" class="scroll-smooth">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3r d'ESO - Tecnologia | TecnoLab</title>
-    <!-- Fonts modernes i accessibles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome per a icones molones -->
+    <title>UD 1: Màquines i Mecanismes | Tecnologia 3r ESO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root {
-            --primary: #10b981;
-            --primary-hover: #059669;
-            --accent: #f59e0b;
-            --bg-main: #f1f5f9;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --radius: 18px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-main);
-            transition: all 0.2s ease;
-        }
-
-        /* Ajustos d'accessibilitat de mida de font */
-        body.font-size-sm { font-size: 14px; }
-        body.font-size-base { font-size: 16px; }
-        body.font-size-lg { font-size: 18px; }
-        body.font-size-xl { font-size: 20px; }
-
-        /* Mode Alt Contrast */
-        body.high-contrast {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-        }
-        body.high-contrast header,
-        body.high-contrast .card,
-        body.high-contrast .recursos-box,
-        body.high-contrast .accessibility-bar {
-            background-color: #121212 !important;
-            color: #ffffff !important;
-            border-color: #ffff00 !important;
-        }
-        body.high-contrast .text-muted,
-        body.high-contrast p {
-            color: #e2e8f0 !important;
-        }
-        body.high-contrast a {
-            color: #ffff00 !important;
-        }
-
-        h1, h2, h3, .logo {
-            font-family: 'Lexend', sans-serif;
-        }
-
-        /* Barra d'Accessibilitat */
-        .accessibility-bar {
-            background-color: #0f172a;
-            color: #cbd5e1;
-            font-size: 0.8rem;
-            padding: 0.4rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .access-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-access {
-            background-color: #1e293b;
-            color: white;
-            border: 1px solid #334155;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: background 0.2s;
-        }
-
-        .btn-access:hover {
-            background-color: #334155;
-        }
-
-        .btn-contrast {
-            background-color: #f59e0b;
-            color: #0f172a;
-            font-weight: 700;
-            border: none;
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        /* Capçalera i Navegació */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 2px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 1.5rem;
-        }
-
-        .logo a {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text-main);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, #10b981, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-home {
-            background-color: #e2e8f0;
-        }
-        .btn-home:hover {
-            background-color: #cbd5e1;
-        }
-
-        /* Submenús */
-        .dropdown {
-            position: relative;
-        }
-
-        .btn-dropdown {
-            background-color: var(--primary);
-            color: white !important;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .btn-dropdown:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 110%;
-            background-color: #ffffff;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            min-width: 260px;
-            flex-direction: column;
-            overflow: hidden;
-            padding: 0.4rem;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: flex;
-        }
-
-        .dropdown-menu a {
-            padding: 0.65rem 0.9rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #f1f5f9;
-        }
-
-        /* Banner Hero */
-        .hero {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 3rem 1.5rem;
-            text-align: center;
-            background: linear-gradient(135deg, #064e3b, #0f172a);
-            color: white;
-            border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fbbf24;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-
-        .hero h1 {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.05rem;
-            color: #a7f3d0;
-            max-width: 750px;
-            margin: 0 auto 1.5rem auto;
-        }
-
-        .btn-hero {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: white;
-            color: #064e3b;
-            font-weight: 800;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-hero:hover {
-            background-color: #d1fae5;
-            transform: translateY(-2px);
-        }
-
-        /* Secció Recursos Generals */
-        .recursos-box {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background-color: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: var(--radius);
-        }
-
-        .recursos-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            color: #1e40af;
-        }
-
-        .recursos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-
-        .recurs-card {
-            background: white;
-            padding: 1.2rem;
-            border-radius: 12px;
-            border: 1px solid #dbeafe;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .recurs-card h4 {
-            font-size: 1rem;
-            color: #1e3a8a;
-            margin-bottom: 0.4rem;
-        }
-
-        .recurs-card p {
-            font-size: 0.85rem;
-            color: #475569;
-            margin-bottom: 1rem;
-        }
-
-        .btn-simulador {
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #dbeafe;
-            color: #1e40af;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 0.6rem 0.9rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .btn-simulador:hover {
-            background-color: #bfdbfe;
-        }
-
-        /* Secció d'Unitats Didàctiques */
-        .section-container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .section-header {
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--primary);
-            padding-left: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.8rem;
-            color: var(--text-main);
-        }
-
-        .units-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .unit-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            border: 1px solid #e2e8f0;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .unit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.08);
-        }
-
-        .unit-card.disabled {
-            opacity: 0.7;
-        }
-
-        .unit-card.disabled:hover {
-            transform: none;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .badge-ud {
-            background-color: #d1fae5;
-            color: #065f46;
-            font-weight: 800;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
-
-        .badge-status {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        .status-available {
-            background-color: #10b981;
-            color: white;
-        }
-
-        .status-pending {
-            background-color: #e2e8f0;
-            color: #64748b;
-        }
-
-        .unit-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .unit-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-unit {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            border: none;
-        }
-
-        .btn-available {
-            background-color: var(--primary);
-            color: white;
-            cursor: pointer;
-        }
-
-        .btn-available:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-disabled {
-            background-color: #e2e8f0;
-            color: #94a3b8;
-            cursor: not-allowed;
-        }
-
-        footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 0.85rem;
-            margin-top: 4rem;
-        }
-
-        footer strong { color: white; }
-
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.95rem; }
-        }
+        /* Estils generals reutilitzats del lloc web */
+        :root { --primary: #1e293b; --accent: #10b981; --bg: #f8fafc; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: #334155; margin: 0; padding: 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card-module { background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .card-module:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .btn-action { display: inline-block; padding: 0.6rem 1rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; margin-top: 1rem; font-size: 0.9rem; }
+        .btn-action:hover { background: #0f172a; }
+        details summary::-webkit-details-marker { display: none; }
+        details[open] .icon-arrow { transform: rotate(180deg); }
     </style>
 </head>
-<body class="font-size-base">
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inici</a> &gt; <span>UD 1: Màquines i Mecanismes</span>
+        </nav>
 
-    <!-- Barra d'Accessibilitat -->
-    <div class="accessibility-bar">
-        <div>
-            <i class="fa-solid fa-universal-access text-yellow-400"></i>
-            <span>Lectura Fàcil & Accessibilitat</span>
-        </div>
-        <div class="access-controls">
-            <span>Mida text:</span>
-            <button onclick="setFontSize('sm')" class="btn-access" title="Text Petit">A-</button>
-            <button onclick="setFontSize('base')" class="btn-access" title="Text Normal">A</button>
-            <button onclick="setFontSize('lg')" class="btn-access" title="Text Gran">A+</button>
-            <button onclick="setFontSize('xl')" class="btn-access" title="Text Molt Gran">A++</button>
-            <button onclick="toggleHighContrast()" class="btn-contrast">
-                <i class="fa-solid fa-circle-half-stroke"></i> Alt Contrast
-            </button>
-        </div>
-    </div>
-
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="../index.html">
-                    <i class="fa-solid fa-microchip text-emerald-600"></i>
-                    <span>TecnoLab</span> 3r d'ESO
-                </a>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="../index.html" class="btn-home"><i class="fa-solid fa-house"></i> Inici General</a></li>
-                    
-                    <li class="dropdown">
-                        <a href="#" class="btn-dropdown"><i class="fa-solid fa-list-check"></i> Unitats Didàctiques <i class="fa-solid fa-chevron-down text-xs"></i></a>
-                        <div class="dropdown-menu">
-                            <a href="3ESO_U1_espai_estudi.html"><i class="fa-solid fa-gears text-emerald-600"></i> UP 1: Màquines i Mecanismes</a>
-                            <a href="#"><i class="fa-solid fa-bolt text-slate-400"></i> UP 2: Electricitat</a>
-                            <a href="#"><i class="fa-solid fa-bolt text-slate-400"></i> UP 3: Projecte</a>
-                            <a href="#"><i class="fa-solid fa-diagram-project text-slate-400"></i> UP 4: Diagrames de Flux</a>
-                            <a href="#"><i class="fa-solid fa-robot text-slate-400"></i> UP 5: Robòtica</a>
-                            <a href="#"><i class="fa-solid fa-laptop-code text-slate-400"></i> UP 6: Digitalització</a>
-                            <a href="#"><i class="fa-solid fa-laptop-code text-slate-400"></i> UP 7: Desenvolupament tecnològic. Impacte socioambiental.</a>
-                            
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-badge">
-                <i class="fa-solid fa-rocket"></i> Curs Acadèmic
-            </div>
-            <h1>Explora el món de la tecnologia i la robòtica ⚡</h1>
-            <p>Descobreix com funcionen els mecanismes, dissenya circuits elèctrics, crea esquemes de coordinació i dona vida als teus primers projectes robòtics.</p>
-            <a href="#unitats" class="btn-hero">
-                <i class="fa-solid fa-book-bookmark"></i> Veure Unitats Didàctiques
-            </a>
-        </section>
+        <header style="margin-bottom: 2rem;">
+            <h1 style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">UD 1: Màquines i Mecanismes</h1>
+            <p style="color: #64748b; margin: 0;">Selecciona el mòdul de treball per accedir als continguts teòrics, simuladors i exercicis.</p>
+        </header>
 
         <!-- Secció Eixos Transversals (PEC) - Desplegable -->
-        <section class="recursos-box" style="background-color: #f8fafc; border-color: #cbd5e1; margin-bottom: 2rem; padding: 0; overflow: hidden;">
-            <details style="width: 100%;">
-                <summary style="padding: 1.25rem 1.5rem; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f1f5f9'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div class="recursos-title" style="color: #0f172a; margin-bottom: 0; display: flex; align-items: center; gap: 0.75rem;">
-                        <i class="fa-solid fa-compass fa-lg text-emerald-600"></i>
+        <section style="background-color: white; border: 1px solid #cbd5e1; border-radius: 12px; margin-bottom: 2rem; overflow: hidden;">
+            <details>
+                <summary style="padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-compass fa-lg text-emerald-600" style="color: var(--accent);"></i>
                         <div>
-                            <h3 style="font-size: 1.1rem; font-weight:700; margin: 0;">Integració dels Eixos Transversals del PEC</h3>
-                            <p style="font-size:0.83rem; color:#475569; margin: 0;">Concreció didàctica i mecanismes de treball en la matèria de Tecnologia (IES S'Arenal)</p>
+                            <h3 style="font-size: 1rem; font-weight:700; margin: 0; color: var(--primary);">Integració dels Eixos Transversals del PEC</h3>
+                            <p style="font-size:0.8rem; color:#475569; margin: 0;">Concreció didàctica en la matèria de Tecnologia (IES S'Arenal)</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #64748b; font-size: 0.85rem; font-weight: 600;">
-                        <span class="text-desplegar">Desplegar/Replegar</span>
-                        <i class="fa-solid fa-chevron-down icon-arrow" style="transition: transform 0.3s ease;"></i>
-                    </div>
+                    <i class="fa-solid fa-chevron-down icon-arrow" style="transition: transform 0.3s; color: #64748b;"></i>
                 </summary>
-
-                <div style="padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid #e2e8f0; margin-top: 0.5rem; padding-top: 1rem;">
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                            <thead>
-                                <tr style="background-color: #1e293b; color: white; text-align: left;">
-                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Eix Transversal del PEC</th>
-                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Descripció de la Concreció Didàctica</th>
-                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Mecanismes de Treball / Activitats</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid #e2e8f0;">
-                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Comprensió Lectora i Expressió (PLC)</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Treball sistemàtic del vocabulari específic de la matèria, cerca d'informació i lectura crítica.</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Glossaris temàtics, lectura de textos, exposicions orals.</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
-                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Competència Digital i Pensament Crític</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Ús ètic i responsable de les eines digitals i programari específic de la matèria.</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">AULA Virtual, cerca guiada, eines col·laboratives.</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #e2e8f0;">
-                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Coeducació, Igualtat i Diversitat</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Eliminació d'estereotips, visibilització de referents femenins i llenguatge inclusiu.</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
-                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Desenvolupament Sostenible i Entorn Local</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Connexió dels continguts amb el medi ambient i la realitat socioeconòmica de S'Arenal i Mallorca.</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Projectes de recerca sobre l'entorn local i dades IBESTAT.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Convivència i Treball Cooperatiu</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Promoció del diàleg, resolució pacífica de conflictes i treball en equip heterogeni.</td>
-                                    <td style="padding: 0.75rem 1rem; color: #334155;">Rols cooperatius assignats, coavaluació de tasques.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div style="padding: 1rem 1.25rem; border-top: 1px solid #e2e8f0; background: #f8fafc;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.83rem; background: white; border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background-color: var(--primary); color: white; text-align: left;">
+                                <th style="padding: 0.6rem; width: 30%;">Eix PEC</th>
+                                <th style="padding: 0.6rem; width: 40%;">Concreció Didàctica</th>
+                                <th style="padding: 0.6rem; width: 30%;">Mecanismes / Activitats</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 0.6rem; font-weight: bold;">PLC (Comprensió)</td>
+                                <td style="padding: 0.6rem;">Vocabulari tècnic i lectura crítica.</td>
+                                <td style="padding: 0.6rem;">Glossaris i resolució de problemes.</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 0.6rem; font-weight: bold;">Digital / Crític</td>
+                                <td style="padding: 0.6rem;">Ús de simuladors i eines col·laboratives.</td>
+                                <td style="padding: 0.6rem;">Simuladors interactius de mecanismes.</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 0.6rem; font-weight: bold;">Sostenibilitat Local</td>
+                                <td style="padding: 0.6rem;">Eficiència energètica i entorn de Mallorca.</td>
+                                <td style="padding: 0.6rem;">Estudi de màquines industrials locals.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </details>
         </section>
 
-        <!-- Secció Recursos Digitals Generals -->
-        <section class="recursos-box">
-            <div class="recursos-title">
-                <i class="fa-solid fa-laptop-code fa-lg"></i>
+        <!-- Grid dels 4 Subblocs -->
+        <main class="grid-modules">
+            <!-- Subbloc 1.1 -->
+            <article class="card-module">
                 <div>
-                    <h3 style="font-size: 1.1rem; font-weight:700;">Recursos Digitals i Eines Interactives</h3>
-                    <p style="font-size:0.85rem; color:#475569;">Simuladors i eines pràctiques per reforçar l'aprenentatge del curs.</p>
+                    <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h2 style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">1.1 Palanques</h2>
+                    <p style="font-size: 0.85rem; color: #64748b;">Llei de la palanca, tipus de graus (1r, 2n i 3r) i càlcul de forces.</p>
                 </div>
-            </div>
+                <a href="3ESO_U1_1_palanques.html" class="btn-action">Entrar al Mòdul <i class="fa-solid fa-arrow-right"></i></a>
+            </article>
 
-            <div class="recursos-grid">
-                <div class="recurs-card">
-                    <div>
-                        <h4><i class="fa-solid fa-sliders text-blue-600 mr-1"></i> Simuladors Virtuals</h4>
-                        <p>Simula el comportament de palanques, la Llei de la Palanca i l'equilibri de forces directament al navegador.</p>
-                    </div>
-                    <a href="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_es_ES.html" target="_blank" rel="noopener noreferrer" class="btn-simulador">
-                        <span><i class="fa-solid fa-scale-balanced mr-1"></i> Simulador PhET de Palanques</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
+            <!-- Subbloc 1.2 -->
+            <article class="card-module">
+                <div>
+                    <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-arrows-spin"></i></div>
+                    <h2 style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">1.2 Politges i Polispasts</h2>
+                    <p style="font-size: 0.85rem; color: #64748b;">Politja fixa, mòbil, polispasts i transmissió per corretja.</p>
                 </div>
+                <a href="3ESO_U1_2_politges.html" class="btn-action">Entrar al Mòdul <i class="fa-solid fa-arrow-right"></i></a>
+            </article>
 
-                <div class="recurs-card">
-                    <div>
-                        <h4><i class="fa-solid fa-check-double text-indigo-600 mr-1"></i> Activitats d'Autoavaluació</h4>
-                        <p>Exercicis pràctics i reptes ràpids per posar a prova els teus coneixements abans de les avalucions del curs.</p>
-                    </div>
-                    <span style="font-size:0.8rem; font-weight:700; color:#64748b; background:#f1f5f9; padding:0.4rem 0.8rem; border-radius:6px; display:inline-block;">Incloses dins de cada unitat</span>
+            <!-- Subbloc 1.3 -->
+            <article class="card-module">
+                <div>
+                    <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-gear"></i></div>
+                    <h2 style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">1.3 Engranatges</h2>
+                    <p style="font-size: 0.85rem; color: #64748b;">Rodes dentades, relació de transmissió ($i$), trens d'engranatges i cargol sense fi.</p>
                 </div>
-            </div>
-        </section>
+                <a href="3ESO_U1_3_engranatges.html" class="btn-action">Entrar al Mòdul <i class="fa-solid fa-arrow-right"></i></a>
+            </article>
 
-        <!-- Graella d'Unitats Didàctiques -->
-        <section id="unitats" class="section-container">
-            <div class="section-header">
-                <h2>Unitats Didàctiques de 3r d'ESO</h2>
-                <p style="color:var(--text-muted); font-size:0.9rem;">Accedeix als apunts, activitats, exercicis i esquemes visuals de cada tema:</p>
-            </div>
-
-            <div class="units-grid">
-                
-                <!-- UP 1 (Disponible) -->
-                <article class="unit-card">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 1</span>
-                            <span class="badge-status status-available">Disponible</span>
-                        </div>
-                        <h3>Màquines i Mecanismes</h3>
-                        <p>Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i la resolució d'exercicis pràctics.</p>
-                    </div>
-                    <a href="3ESO_U1_espai_estudi.html" class="btn-unit btn-available">
-                        Accedir a la Unitat 1 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </article>
-
-                <!-- UP 2 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 2</span>
-                            <span class="badge-status status-pending">Trimestre 1</span>
-                        </div>
-                        <h3>Electricitat</h3>
-                        <p>Circuits elèctrics, Llei d'Ohm, magnituds elèctriques (voltatge, intensitat, resistència) i simulacions en sèrie/paral·lel.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-                <!-- UP 3 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 3</span>
-                            <span class="badge-status status-pending">Trimestre 1</span>
-                        </div>
-                        <h3>Projecte</h3>
-                        <p>Posada en pràctica dels coneixements teòrics obtinguts.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-                <!-- UP 4 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 4</span>
-                            <span class="badge-status status-pending">Trimestre 2</span>
-                        </div>
-                        <h3>Diagrames de Flux</h3>
-                        <p>Disseny d'algorismes, simbologia estàndard, condicions i organització lògica de processos tecnològics.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-                <!-- UP 5 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 5</span>
-                            <span class="badge-status status-pending">Trimestre 2</span>
-                        </div>
-                        <h3>Programació i Robòtica</h3>
-                        <p>Programació de plaques de control (Arduino / Micro:bit), ús de sensors, actuadors i automatismes.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-                <!-- UP 6 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 6</span>
-                            <span class="badge-status status-pending">Trimestre 3</span>
-                        </div>
-                        <h3>Digitalització</h3>
-                        <p>Eines d'aprenentatge digital, seguretat a la xarxa, identitat digital i entorns col·laboratius.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-                <!-- UP 7 (En preparació) -->
-                <article class="unit-card disabled">
-                    <div>
-                        <div class="card-top">
-                            <span class="badge-ud">UP 7</span>
-                            <span class="badge-status status-pending">Trimestre 3</span>
-                        </div>
-                        <h3>Desenvolupament tecnològic. Impacte socioambiental.</h3>
-                        <p>Eines d'aprenentatge digital, seguretat a la xarxa, identitat digital i entorns col·laboratius.</p>
-                    </div>
-                    <button disabled class="btn-unit btn-disabled">
-                        En preparació
-                    </button>
-                </article>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p><strong>Departament de Tecnologia</strong> &copy; Recursos educatius d'accés lliure | Allotjat a GitHub Pages</p>
-    </footer>
-
-    <!-- Scripts d'Accessibilitat -->
-    <script>
-        function setFontSize(size) {
-            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
-            document.body.classList.add('font-size-' + size);
-        }
-
-        function toggleHighContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-    </script>
+            <!-- Subbloc 1.4 -->
+            <article class="card-module">
+                <div>
+                    <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-shuffle"></i></div>
+                    <h2 style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">1.4 Transformació del Moviment</h2>
+                    <p style="font-size: 0.85rem; color: #64748b;">Mecanismes que passen de moviment circular a rectilini (pinyó-cremallera, biela-manivella, leva).</p>
+                </div>
+                <a href="3ESO_U1_4_transformacio.html" class="btn-action">Entrar al Mòdul <i class="fa-solid fa-arrow-right"></i></a>
+            </article>
+        </main>
+    </div>
 </body>
 </html>

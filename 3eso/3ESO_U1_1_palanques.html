@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1 Palanques | UD 1 Tecnologia 3r ESO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #1e293b; --accent: #10b981; --bg: #f8fafc; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: #334155; margin: 0; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .content-box { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 1.5rem; }
+        .formula-card { background: #f1f5f9; border-left: 4px solid var(--accent); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 1.1rem; }
+        .nav-submodules { display: flex; justify-content: space-between; margin-top: 2rem; }
+        .btn-nav { text-decoration: none; color: var(--primary); font-weight: 600; padding: 0.5rem 1rem; background: white; border: 1px solid #cbd5e1; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb per a navegació fàcil -->
+        <nav class="breadcrumb">
+            <a href="index.html">Inici</a> &gt; <a href="3ESO_U1_index.html">UD 1: Mecanismes</a> &gt; <span>1.1 Palanques</span>
+        </nav>
+
+        <header>
+            <h1 style="color: var(--primary);"><i class="fa-solid fa-scale-balanced" style="color: var(--accent);"></i> 1.1 Les Palanques</h1>
+        </header>
+
+        <section class="content-box">
+            <h2>Llei de la Palanca</h2>
+            <p>Una palanca és una màquina simple formada per una barra règida que gira al voltant d'un punt d'adossa o fulcre ($F$).</p>
+            
+            <div class="formula-card">
+                <strong>$F \cdot d_F = R \cdot d_R$</strong>
+            </div>
+            
+            <ul>
+                <li><strong>$F$:</strong> Força o potència aplicada (N).</li>
+                <li><strong>$d_F$:</strong> Distància de la força al fulcre (m).</li>
+                <li><strong>$R$:</strong> Resistència a vèncer (N).</li>
+                <li><strong>$d_R$:</strong> Distància de la resistència al fulcre (m).</li>
+            </ul>
+        </section>
+
+        <section class="content-box">
+            <h2>Tipus de Palanques</h2>
+            <p>Segons la posició relativa del fulcre, la força i la resistència:</p>
+            <ol>
+                <li><strong>Primer grau:</strong> El fulcre està entre la força i la resistència (ex: tisores, balancí).</li>
+                <li><strong>Segon grau:</strong> La resistència està entre el fulcre i la força (ex: carretó, trencanous).</li>
+                <li><strong>Tercer grau:</strong> La força està entre el fulcre i la resistència (ex: pinces, canya de pescar).</li>
+            </ol>
+        </section>
+
+        <!-- Navegació directa entre subblocs de la UD1 -->
+        <footer class="nav-submodules">
+            <a href="3ESO_U1_index.html" class="btn-nav"><i class="fa-solid fa-arrow-left"></i> Torna a l'índex UD1</a>
+            <a href="3ESO_U1_2_politges.html" class="btn-nav">Següent: 1.2 Politges <i class="fa-solid fa-arrow-right"></i></a>
+        </footer>
+    </div>
+</body>
+</html>
