@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia 3r ESO - Màquines i Mecanismes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Lexend i Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Font size adjustment classes for accessibility */
+        body.font-size-sm { font-size: 14px; }
+        body.font-size-base { font-size: 16px; }
+        body.font-size-lg { font-size: 18px; }
+        body.font-size-xl { font-size: 20px; }
+
+        /* High contrast mode styling */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .bg-white,
+        body.high-contrast .bg-slate-50,
+        body.high-contrast .bg-slate-100,
+        body.high-contrast .bg-blue-50,
+        body.high-contrast .bg-indigo-50 {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffff00 !important;
+        }
+        body.high-contrast .text-slate-800,
+        body.high-contrast .text-slate-700,
+        body.high-contrast .text-slate-600,
+        body.high-contrast .text-blue-900 {
+            color: #ffffff !important;
+        }
+        body.high-contrast button {
+            border: 2px solid #ffff00 !important;
+        }
+
+        /* Active Navigation Tab Style */
+        .tab-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tab-btn.active {
+            background-color: #2563eb;
+            color: #ffffff !important;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+            border-color: #60a5fa !important;
+            transform: translateY(-1px);
+        }
+
+        /* Custom scrollbar for mobile navigation strip */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-100/80 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+
+    <!-- Accessibility Bar -->
+    <div class="bg-slate-900/95 backdrop-blur-md text-slate-200 text-xs py-2 px-4 border-b border-slate-800/80 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="inline-flex items-center gap-1.5 bg-blue-700/90 hover:bg-blue-600 text-yellow-300 px-3.5 py-1.5 rounded-xl border border-blue-500/50 text-xs font-bold transition shadow-sm hover:scale-105">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Torna al menú de 3r</span>
+                </a>
+                <div class="hidden md:flex items-center gap-2 font-medium border-l border-slate-700/80 pl-3 text-slate-300">
+                    <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
+                    <span>Opcions de Lectura Fàcil</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-2">
+                <!-- Text size controls -->
+                <div class="flex items-center bg-slate-800/90 rounded-xl p-1 border border-slate-700/80">
+                    <span class="px-2 text-slate-400 font-bold hidden sm:inline">Mida text:</span>
+                    <button onclick="setFontSize('sm')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold transition" title="Text Petit">A-</button>
+                    <button onclick="setFontSize('base')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold bg-slate-700 transition" title="Text Normal">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-sm font-bold transition" title="Text Gran">A+</button>
+                    <button onclick="setFontSize('xl')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-base font-bold transition" title="Text Molt Gran">A++</button>
+                </div>
+
+                <!-- High contrast toggle -->
+                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold px-3.5 py-1.5 rounded-xl transition text-xs shadow-sm active:scale-95">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span class="hidden sm:inline">Alt Contrast</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white shadow-xl relative overflow-hidden border-b border-blue-900/40">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap justify-between items-center gap-4 relative z-10">
+            <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg ring-4 ring-blue-500/20 text-white flex items-center justify-center font-bold text-2xl w-14 h-14">
+                    <i class="fa-solid fa-scale-balanced fa-beat-fade" style="--fa-animation-duration: 3s;"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-blue-500/20 text-blue-300 text-[11px] font-black px-3 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-widest backdrop-blur-sm">3r d'ESO</span>
+                        <span class="text-xs text-blue-200/80 font-medium">IES S'Arenal · Tecnologia</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">Unitat 1: Les Palanques</h1>
+                </div>
+            </div>
+
+            <!-- Indicador de Secció Actual -->
+            <div class="hidden sm:flex items-center gap-3.5 bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blue-500/30 shadow-inner">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center font-black text-sm shadow-md" id="section-badge-num">1</div>
+                <div>
+                    <p class="text-[10px] text-blue-300/80 uppercase font-bold tracking-wider">Secció Activa</p>
+                    <p class="font-extrabold text-sm text-white" id="section-badge-title">Teoria Resumida</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS -->
+    <nav class="bg-slate-900/95 backdrop-blur-md border-b-2 border-blue-600 sticky top-10 z-40 shadow-xl">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between py-2.5 overflow-x-auto no-scrollbar gap-2">
+                
+                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">1</span>
+                    <i class="fa-solid fa-book text-sm"></i>
+                    <span>Teoria</span>
+                </button>
+
+                <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">2</span>
+                    <i class="fa-solid fa-sliders text-sm"></i>
+                    <span>Simulador</span>
+                </button>
+
+                <button onclick="switchTab('exercicis')" id="tab-exercicis" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">3</span>
+                    <i class="fa-solid fa-pen-to-square text-sm"></i>
+                    <span>Exercicis</span>
+                </button>
+
+                <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">4</span>
+                    <i class="fa-solid fa-clone text-sm"></i>
+                    <span>Targetes</span>
+                </button>
+
+                <button onclick="switchTab('test')" id="tab-test" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">5</span>
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                    <span>Test</span>
+                </button>
+
+                <button onclick="switchTab('glossari')" id="tab-glossari" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">6</span>
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    <span>Diccionari</span>
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contingut Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- TAB 1: TEORIA EN LECTURA FÀCIL -->
+        <section id="sec-teoria" class="tab-content space-y-8">
+            
+            <!-- Banner d'Introducció -->
+            <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden ring-1 ring-white/20">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl font-black">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <div class="max-w-3xl space-y-3 relative z-10">
+                    <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm inline-block">Secció 1 · Conceptes Clau</span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Què és una màquina i una palanca?</h2>
+                    <p class="text-blue-50 leading-relaxed text-sm sm:text-base font-medium">
+                        Una <strong class="text-white underline decoration-amber-400 decoration-2">màquina</strong> és un conjunt d'elements que utilitzen energia per fer un <strong class="text-white underline decoration-amber-400 decoration-2">treball útil</strong> d'una manera més fàcil, ràpida i amb menys esforç.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Les 3 Parts de qualsevol Màquina -->
+            <div class="space-y-5">
+                <div class="border-l-4 border-blue-600 pl-4 py-0.5">
+                    <h3 class="text-xl font-extrabold text-slate-800">Les 3 parts principals de qualsevol màquina:</h3>
+                    <p class="text-slate-600 text-sm">Totes les màquines tenen un origen d'energia, un camí de transmissió i un resultat final.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Part 1 -->
+                    <div class="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Part 1</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Element Motriu</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                És la <strong class="text-slate-800">font d'energia</strong> que posa en marxa la màquina.
+                            </p>
+                        </div>
+                        <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-100 text-xs text-amber-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i> <strong>Exemples:</strong> Els nostres músculs (pedalar), un motor elèctric, la força del vent.
+                        </div>
+                    </div>
+
+                    <!-- Part 2 -->
+                    <div class="bg-white rounded-3xl p-6 border border-blue-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-arrows-spin"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Part 2</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Mecanisme</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Transmet o <strong class="text-slate-800">transforma el moviment</strong> des de l'inici fins al final.
+                            </p>
+                        </div>
+                        <div class="bg-blue-50/80 p-3.5 rounded-2xl border border-blue-100 text-xs text-blue-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-blue-600 mr-1.5"></i> <strong>Exemples:</strong> La cadena de la bici, engranatges, eixos, palanques.
+                        </div>
+                    </div>
+
+                    <!-- Part 3 -->
+                    <div class="bg-white rounded-3xl p-6 border border-emerald-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-2xl shadow-inner">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                </div>
+                                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Part 3</span>
+                            </div>
+                            <h4 class="text-lg font-extrabold text-slate-800">Element Receptor</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Rep el moviment final i fa la <strong class="text-slate-800">tasca o treball útil</strong>.
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50/80 p-3.5 rounded-2xl border border-emerald-100 text-xs text-emerald-950 font-medium">
+                            <i class="fa-solid fa-lightbulb text-emerald-600 mr-1.5"></i> <strong>Exemples:</strong> La roda posterior, la pedra de moldre, les ganivetes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800/80 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <div class="flex justify-center items-center gap-2 text-white font-bold text-sm">
+                <i class="fa-solid fa-graduation-cap text-amber-400 text-base"></i>
+                <span>Departament de Tecnologia — IES S'Arenal</span>
+            </div>
+            <p>© Adaptat per a l'alumnat d'ESO · Disseny d'alta llegibilitat i usabilitat</p>
+        </div>
+    </footer>
+
+    <script>
+        const sectionTitles = {
+            'teoria': { num: '1', name: 'Teoria Resumida' },
+            'simulador': { num: '2', name: 'Simulador' },
+            'exercicis': { num: '3', name: 'Exercicis Pas a Pas' },
+            'cards': { num: '4', name: 'Targetes de Repàs' },
+            'test': { num: '5', name: 'Test d\'Autoavaluació' },
+            'glossari': { num: '6', name: 'Diccionari Clau' }
+        };
+
+        // Accessibility Controls
+        function setFontSize(sizeClass) {
+            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
+            document.body.classList.add('font-size-' + sizeClass);
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const targetSection = document.getElementById('sec-' + tabId);
+            const targetBtn = document.getElementById('tab-' + tabId);
+
+            if (targetSection) targetSection.classList.remove('hidden');
+            if (targetBtn) targetBtn.classList.add('active');
+
+            // Update badge in main header
+            if (sectionTitles[tabId]) {
+                document.getElementById('section-badge-num').innerText = sectionTitles[tabId].num;
+                document.getElementById('section-badge-title').innerText = sectionTitles[tabId].name;
+            }
+
+            // Scroll smoothly to top of active content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (tabId === 'simulador') {
+                updateSim();
+            }
+        }
+
+        // Simulator Logic
+        function updateSim() {
+            const F = parseFloat(document.getElementById('slider-f').value);
+            const dF = parseFloat(document.getElementById('slider-df').value);
+            const R = parseFloat(document.getElementById('slider-r').value);
+            const dR = parseFloat(document.getElementById('slider-dr').value);
+
+            document.getElementById('label-f-val').innerText = F + ' N';
+            document.getElementById('label-df-val').innerText = dF.toFixed(1) + ' m';
+            document.getElementById('label-r-val').innerText = R + ' N';
+            document.getElementById('label-dr-val').innerText = dR.toFixed(1) + ' m';
+
+            const MF = F * dF;
+            const MR = R * dR;
+
+            document.getElementById('calc-mf').innerText = MF.toFixed(1);
+            document.getElementById('calc-mr').innerText = MR.toFixed(1);
+
+            const diff = MR - MF;
+            let angle = Math.max(-14, Math.min(14, diff * 0.05));
+
+            document.getElementById('lever-beam-group').setAttribute('transform', `rotate(${angle}, 400, 180)`);
+
+            const offsetF = (dF / 3.0) * 280;
+            const offsetR = (dR / 3.0) * 280;
+
+            const posXF = 400 - offsetF;
+            const posXR = 400 + offsetR;
+
+            document.getElementById('arrow-f-line').setAttribute('x1', posXF);
+            document.getElementById('arrow-f-line').setAttribute('x2', posXF);
+            document.getElementById('box-f').setAttribute('x', posXF - 35);
+            document.getElementById('text-f-val').setAttribute('x', posXF);
+            document.getElementById('text-f-val').textContent = F + ' N';
+            document.getElementById('text-df-val').setAttribute('x', 400 - offsetF / 2);
+
+            document.getElementById('arrow-r-line').setAttribute('x1', posXR);
+            document.getElementById('arrow-r-line').setAttribute('x2', posXR);
+            document.getElementById('box-r').setAttribute('x', posXR - 35);
+            document.getElementById('text-r-val').setAttribute('x', posXR);
+            document.getElementById('text-r-val').textContent = R + ' N';
+            document.getElementById('text-dr-val').setAttribute('x', 400 + offsetR / 2);
+
+            const badge = document.getElementById('sim-status-badge');
+            if (Math.abs(MF - MR) < 0.1) {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-emerald-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri';
+            } else if (MF > MR) {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-blue-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Força (F)';
+            } else {
+                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-red-500 text-white shadow';
+                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Càrrega (R)';
+            }
+        }
+
+        function autoBalanceLever() {
+            const F = parseFloat(document.getElementById('slider-f').value);
+            const dF = parseFloat(document.getElementById('slider-df').value);
+            const R = parseFloat(document.getElementById('slider-r').value);
+
+            let neededDR = (F * dF) / R;
+            neededDR = Math.max(0.2, Math.min(3.0, neededDR));
+
+            document.getElementById('slider-dr').value = neededDR.toFixed(1);
+            updateSim();
+        }
+
+        function setPreset(type) {
+            if (type === 'balanci') {
+                document.getElementById('slider-f').value = 100;
+                document.getElementById('slider-df').value = 1.5;
+                document.getElementById('slider-r').value = 100;
+                document.getElementById('slider-dr').value = 1.5;
+            } else if (type === 'carreta') {
+                document.getElementById('slider-f').value = 50;
+                document.getElementById('slider-df').value = 2.0;
+                document.getElementById('slider-r').value = 200;
+                document.getElementById('slider-dr').value = 0.5;
+            } else if (type === 'desequilibri') {
+                document.getElementById('slider-f').value = 50;
+                document.getElementById('slider-df').value = 1.0;
+                document.getElementById('slider-r').value = 300;
+                document.getElementById('slider-dr').value = 2.0;
+            }
+            updateSim();
+        }
+
+        // Exercises Logic
+        function toggleSolution(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+
+        function checkEx3() {
+            const val = parseFloat(document.getElementById('ans-ex3').value);
+            const fb = document.getElementById('feedback-ex3');
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+            if (Math.abs(val - 13.33) <= 0.3 || Math.abs(val - 13.3) <= 0.3) {
+                fb.classList.add('text-emerald-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Molt bé! Resposta correcta: 13,33 cm.';
+            } else {
+                fb.classList.add('text-red-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (200 * 4) / 60 = 13,33 cm.';
+            }
+        }
+
+        function checkEx4() {
+            const val = parseFloat(document.getElementById('ans-ex4').value);
+            const fb = document.getElementById('feedback-ex4');
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+
+            if (Math.abs(val - 0.4) <= 0.05) {
+                fb.classList.add('text-emerald-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correcte! Resposta: 0,4 metres (40 cm).';
+            } else {
+                fb.classList.add('text-red-600');
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (40 * 1.2) / 120 = 0,4 m.';
+            }
+        }
+
+        // Flashcards Logic
+        const flashcardsData = [
+            { tag: "Pregunta 1 de 5", text: "Quins són els 3 elements principals de qualsevol màquina?", ans: "1. Element Motriu (energia inicial)<br>2. Mecanisme (transmet moviment)<br>3. Element Receptor (tasca útil)" },
+            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · d<sub>F</sub> = R · d<sub>R</sub></strong>" },
+            { tag: "Pregunta 3 de 5", text: "En quin tipus de palanca el Fulcre està al mig?", ans: "En les palanques de <strong>1er Gènere</strong> (ex: tisores, balancí)." },
+            { tag: "Pregunta 4 de 5", text: "En quin tipus de palanca la Resistència està al mig?", ans: "En les palanques de <strong>2n Gènere</strong> (ex: carretó, trencanous)." },
+            { tag: "Pregunta 5 de 5", text: "En quina unitat es mesuren les forces (F i R)?", ans: "En <strong>Newtons (N)</strong>." }
+        ];
+
+        let currentCardIndex = 0;
+        let isCardFlipped = false;
+
+        function updateCardDisplay() {
+            isCardFlipped = false;
+            const card = flashcardsData[currentCardIndex];
+            document.getElementById('card-tag').innerText = card.tag;
+            document.getElementById('card-text').innerHTML = card.text;
+            document.getElementById('card-counter').innerText = (currentCardIndex + 1) + " / " + flashcardsData.length;
+        }
+
+        function flipCard() {
+            const textEl = document.getElementById('card-text');
+            if (!isCardFlipped) {
+                textEl.innerHTML = flashcardsData[currentCardIndex].ans;
+                isCardFlipped = true;
+            } else {
+                textEl.innerHTML = flashcardsData[currentCardIndex].text;
+                isCardFlipped = false;
+            }
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % flashcardsData.length;
+            updateCardDisplay();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + flashcardsData.length) % flashcardsData.length;
+            updateCardDisplay();
+        }
+
+        // Quiz Logic
+        function evaluateQuiz() {
+            const answers = { q1: 'b', q2: 'c', q3: 'a', q4: 'b', q5: 'a' };
+            let score = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+
+            document.getElementById('quiz-score-badge').classList.remove('hidden');
+            document.getElementById('quiz-score').innerText = score;
+
+            const box = document.getElementById('quiz-feedback-box');
+            box.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-amber-100', 'text-amber-900', 'bg-red-100', 'text-red-900');
+
+            if (score === 5) {
+                box.classList.add('bg-emerald-100', 'text-emerald-900');
+                box.innerHTML = '🏆 <strong>Enhorabona! 5/5 perfecte!</strong><p class="text-xs mt-1">Has après tots els conceptes clau de la unitat.</p>';
+            } else if (score >= 3) {
+                box.classList.add('bg-amber-100', 'text-amber-900');
+                box.innerHTML = `👍 <strong>Bona feina! Puntuació: ${score}/5</strong><p class="text-xs mt-1">Repassa les targetes d'estudi per treure el 10!</p>`;
+            } else {
+                box.classList.add('bg-red-100', 'text-red-900');
+                box.innerHTML = `📖 <strong>Puntuació: ${score}/5</strong><p class="text-xs mt-1">Revisa la secció de teoria i torna a provar-ho.</p>`;
+            }
+        }
+
+        // Glossary Filter Logic
+        function filterGlossary() {
+            const query = document.getElementById('glossary-search').value.toLowerCase();
+            document.querySelectorAll('.glossary-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        window.onload = function() {
+            updateSim();
+        };
+    </script>
+</body>
+</html>
