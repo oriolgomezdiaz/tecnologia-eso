@@ -38,6 +38,108 @@
             margin: 0 auto;
         }
 
+        /* --- NAVEGACIÓ PRINCIPAL / BREADCRUMB --- */
+        .top-nav {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .breadcrumb li {
+            margin-bottom: 0;
+        }
+
+        .breadcrumb a {
+            color: #f8fafc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator {
+            color: #64748b;
+        }
+
+        .breadcrumb .current {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* --- NAVEGACIÓ SECUNDÀRIA / APARTATS DE LA UNITAT --- */
+        .unit-nav {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .unit-menu {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            background-color: #e2e8f0;
+        }
+
         header {
             background-color: var(--secondary);
             color: white;
@@ -187,6 +289,25 @@
             color: var(--primary);
         }
 
+        /* --- FOOTER DE NAVEGACIÓ --- */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
         @media (max-width: 600px) {
             .flow-container {
                 flex-direction: column;
@@ -194,12 +315,50 @@
             .flow-arrow {
                 transform: rotate(90deg);
             }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .unit-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .footer-nav {
+                flex-direction: column;
+            }
+            .footer-nav .nav-btn {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- 1. BREADCRUMB / NAVEGACIÓ GLOBAL -->
+        <nav class="top-nav" aria-label="Navegació global">
+            <ul class="breadcrumb">
+                <li><a href="../index.html">🏠 Inici</a></li>
+                <li class="separator">/</li>
+                <li><a href="index.html">3r ESO</a></li>
+                <li class="separator">/</li>
+                <li><a href="3ESO_U1_index.html">U1: Mecanismes</a></li>
+                <li class="separator">/</li>
+                <li class="current">U1.1 Màquines i Mecanismes</li>
+            </ul>
+        </nav>
+
+        <!-- 2. SUB-NAVEGACIÓ DE LA UNITAT -->
+        <nav class="unit-nav" aria-label="Navegació de la unitat">
+            <div class="unit-menu">
+                <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn active">1. Conceptes i Blocs</a>
+                <a href="3ESO_U1_2_palanques.html" class="nav-btn">2. Palanques</a>
+                <a href="3ESO_U1_3_transmissio.html" class="nav-btn">3. Transmissió</a>
+                <a href="3ESO_U1_4_transformacio.html" class="nav-btn">4. Transformació</a>
+            </div>
+            <a href="3ESO_U1_index.html" class="nav-btn">📋 Índex U1</a>
+        </nav>
+
         <header>
             <h1>Unitat 1: Màquines i Mecanismes</h1>
             <div class="meta">3r ESO — Tecnologia | I.E.S. S'Arenal (Prof. Oriol Gómez)</div>
@@ -303,7 +462,7 @@
                 </div>
             </div>
             <p style="margin-top: 0.75rem; font-size: 0.9rem; text-align: center; color: #64748b;">
-                * El bloc de <strong>Control</strong> dicta les ordres a cada pas del procés].
+                * El bloc de <strong>Control</strong> dicta les ordres a cada pas del procés.
             </p>
         </section>
 
@@ -344,6 +503,15 @@
                 </tbody>
             </table>
         </section>
+
+        <!-- 3. NAVEGACIÓ INFERIOR / FOOTER -->
+        <footer>
+            <div class="footer-nav">
+                <a href="#" class="nav-btn disabled">← Anterior (Inici de la Unitat)</a>
+                <a href="3ESO_U1_index.html" class="nav-btn">📋 Índex U1</a>
+                <a href="3ESO_U1_2_palanques.html" class="nav-btn">Següent: 2. Palanques i Politges →</a>
+            </div>
+        </footer>
     </div>
 
 </body>

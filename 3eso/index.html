@@ -4,27 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UP 1: Màquines i Mecanismes | Tecnologia 3r ESO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloUPflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estils generals reutilitzats del lloc web */
-        :root { --primary: #1e293b; --accent: #10b981; --bg: #f8fafc; }
-        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: #334155; margin: 0; padding: 2rem; }
+        :root { 
+            --primary: #1e293b; 
+            --accent: #10b981; 
+            --bg: #f8fafc; 
+            --border: #e2e8f0;
+            --text: #334155;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            padding: 2rem; 
+            line-height: 1.5;
+        }
+
         .container { max-width: 1100px; margin: 0 auto; }
-        .breadcrumb { font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; }
-        .breadcrumb a { color: var(--accent); text-decoration: none; font-weight: 600; }
-        .grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .card-module { background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
-        .card-module:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .btn-action { display: inline-block; padding: 0.6rem 1rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 600; margin-top: 1rem; font-size: 0.9rem; }
+
+        /* --- NAVEGACIÓ PRINCIPAL / BREADCRUMB --- */
+        .top-nav {
+            background-color: var(--primary);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb li { margin-bottom: 0; }
+
+        .breadcrumb a {
+            color: #f8fafc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator { color: #64748b; }
+        .breadcrumb .current { color: #38bdf8; font-weight: 600; }
+
+        /* --- NAVEGACIÓ SECUNDÀRIA / SUBBLOCS DE LA UNITAT --- */
+        .unit-nav {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .unit-menu {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .grid-modules { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 2rem; 
+        }
+
+        .card-module { 
+            background: white; 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            border: 1px solid #e2e8f0; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+        }
+
+        .card-module:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); 
+        }
+
+        .btn-action { 
+            display: inline-block; 
+            padding: 0.6rem 1rem; 
+            background: var(--primary); 
+            color: white; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            text-align: center; 
+            font-weight: 600; 
+            margin-top: 1rem; 
+            font-size: 0.9rem; 
+        }
+
         .btn-action:hover { background: #0f172a; }
+
         details summary::-webkit-details-marker { display: none; }
         details[open] .icon-arrow { transform: rotate(180deg); }
+
+        /* --- FOOTER DE NAVEGACIÓ --- */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .unit-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .footer-nav {
+                flex-direction: column;
+            }
+            .footer-nav .nav-btn {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <nav class="breadcrumb">
-            <a href="index.html"><i class="fa-solid fa-house"></i> Inici</a> &gt; <span>UP 1: Màquines i Mecanismes</span>
+        <!-- 1. BREADCRUMB / NAVEGACIÓ GLOBAL -->
+        <nav class="top-nav" aria-label="Navegació global">
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="fa-solid fa-house"></i> Inici</a></li>
+                <li class="separator">/</li>
+                <li><a href="index.html">3r ESO</a></li>
+                <li class="separator">/</li>
+                <li class="current">UP 1: Màquines i Mecanismes</li>
+            </ul>
+        </nav>
+
+        <!-- 2. SUB-NAVEGACIÓ DE LA UNITAT -->
+        <nav class="unit-nav" aria-label="Navegació de la unitat">
+            <div class="unit-menu">
+                <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn">1.0 Teoria General</a>
+                <a href="3ESO_U1_1_palanques.html" class="nav-btn">1.1 Palanques</a>
+                <a href="3ESO_U1_2_politges.html" class="nav-btn">1.2 Politges</a>
+                <a href="3ESO_U1_3_engranatges.html" class="nav-btn">1.3 Engranatges</a>
+                <a href="3ESO_U1_4_transformacio.html" class="nav-btn">1.4 Transformació</a>
+            </div>
+            <a href="3ESO_U1_index.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Índex UP1</a>
         </nav>
 
         <header style="margin-bottom: 2rem;">
@@ -68,7 +264,7 @@
                             <tr style="border-bottom: 1px solid #e2e8f0;">
                                 <td style="padding: 0.6rem; font-weight: bold;">Sostenibilitat Local</td>
                                 <td style="padding: 0.6rem;">Eficiència energètica i entorn de Mallorca.</td>
-                                <td style="padding: 0.6rem;">EstUPi de màquines industrials locals.</td>
+                                <td style="padding: 0.6rem;">Estudi de màquines industrials locals.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,7 +274,7 @@
 
         <!-- Grid dels Subblocs -->
         <main class="grid-modules">
-            <!-- Subbloc 1.0 (Nova pastilla afegida) -->
+            <!-- Subbloc 1.0 -->
             <article class="card-module">
                 <div>
                     <div style="color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-book-bookmark"></i></div>
@@ -128,6 +324,14 @@
                 <a href="3ESO_U1_4_transformacio.html" class="btn-action">Entrar al Mòdul <i class="fa-solid fa-arrow-right"></i></a>
             </article>
         </main>
+
+        <!-- 3. NAVEGACIÓ INFERIOR / FOOTER -->
+        <footer>
+            <div class="footer-nav">
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Tornar a l'Inici</a>
+                <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn">Començar Unitat: 1.0 Teoria General <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
