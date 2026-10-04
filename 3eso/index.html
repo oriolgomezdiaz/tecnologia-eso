@@ -574,54 +574,63 @@
             </a>
         </section>
 
-        <!-- Secció Eixos Transversals (PEC) -->
-        <section class="recursos-box" style="background-color: #f8fafc; border-color: #cbd5e1; margin-bottom: 2rem;">
-            <div class="recursos-title" style="color: #0f172a; margin-bottom: 0.8rem;">
-                <i class="fa-solid fa-compass fa-lg text-emerald-600"></i>
-                <div>
-                    <h3 style="font-size: 1.15rem; font-weight:700;">Integració dels Eixos Transversals del PEC</h3>
-                    <p style="font-size:0.85rem; color:#475569;">Concreció didàctica i mecanismes de treball en la matèria de Tecnologia (IES S'Arenal).</p>
-                </div>
-            </div>
+        <!-- Secció Eixos Transversals (PEC) - Desplegable -->
+        <section class="recursos-box" style="background-color: #f8fafc; border-color: #cbd5e1; margin-bottom: 2rem; padding: 0; overflow: hidden;">
+            <details style="width: 100%;">
+                <summary style="padding: 1.25rem 1.5rem; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f1f5f9'" onmouseout="this.style.backgroundColor='transparent'">
+                    <div class="recursos-title" style="color: #0f172a; margin-bottom: 0; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-compass fa-lg text-emerald-600"></i>
+                        <div>
+                            <h3 style="font-size: 1.1rem; font-weight:700; margin: 0;">Integració dels Eixos Transversals del PEC</h3>
+                            <p style="font-size:0.83rem; color:#475569; margin: 0;">Concreció didàctica i mecanismes de treball en la matèria de Tecnologia (IES S'Arenal)</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #64748b; font-size: 0.85rem; font-weight: 600;">
+                        <span class="text-desplegar">Veure taula</span>
+                        <i class="fa-solid fa-chevron-down icon-arrow" style="transition: transform 0.3s ease;"></i>
+                    </div>
+                </summary>
 
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-                    <thead>
-                        <tr style="background-color: #1e293b; color: white; text-align: left;">
-                            <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Eix Transversal del PEC</th>
-                            <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Descripció de la Concreció Didàctica</th>
-                            <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Mecanismes de Treball / Activitats</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Comprensió Lectora i Expressió (PLC)</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Treball sistemàtic del vocabulari específic de la matèria, cerca d'informació i lectura crítica.</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Glossaris temàtics, lectura de textos, exposicions orals.</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
-                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Competència Digital i Pensament Crític</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Ús ètic i responsable de les eines digitals i programari específic de la matèria.</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">AULA Virtual, cerca guiada, eines col·laboratives.</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Coeducació, Igualtat i Diversitat</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Eliminació d'estereotips, visibilització de referents femenins i llenguatge inclusiu.</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Anàlisi de biaixos, biografies de dones rellevants.</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
-                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Desenvolupament Sostenible i Entorn Local</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Connexió dels continguts amb el medi ambient i la realitat socioeconòmica de S'Arenal i Mallorca.</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Projectes de recerca sobre l'entorn local i dades IBESTAT.</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Convivència i Treball Cooperatiu</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Promoció del diàleg, resolució pacífica de conflictes i treball en equip heterogeni.</td>
-                            <td style="padding: 0.75rem 1rem; color: #334155;">Rols cooperatius assignats, coavaluació de tasques.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div style="padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid #e2e8f0; margin-top: 0.5rem; padding-top: 1rem;">
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+                            <thead>
+                                <tr style="background-color: #1e293b; color: white; text-align: left;">
+                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Eix Transversal del PEC</th>
+                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Descripció de la Concreció Didàctica</th>
+                                    <th style="padding: 0.75rem 1rem; border-bottom: 2px solid #0f172a;">Mecanismes de Treball / Activitats</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Comprensió Lectora i Expressió (PLC)</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Treball sistemàtic del vocabulari específic de la matèria, cerca d'informació i lectura crítica.</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Glossaris temàtics, lectura de textos, exposicions orals.</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
+                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Competència Digital i Pensament Crític</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Ús ètic i responsable de les eines digitals i programari específic de la matèria.</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">AULA Virtual, cerca guiada, eines col·laboratives.</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Coeducació, Igualtat i Diversitat</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Eliminació d'estereotips, visibilització de referents femenins i llenguatge inclusiu.</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
+                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Desenvolupament Sostenible i Entorn Local</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Connexió dels continguts amb el medi ambient i la realitat socioeconòmica de S'Arenal i Mallorca.</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Projectes de recerca sobre l'entorn local i dades IBESTAT.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0f172a;">Convivència i Treball Cooperatiu</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Promoció del diàleg, resolució pacífica de conflictes i treball en equip heterogeni.</td>
+                                    <td style="padding: 0.75rem 1rem; color: #334155;">Rols cooperatius assignats, coavaluació de tasques.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
         </section>
 
         <!-- Secció Recursos Digitals Generals -->
