@@ -1,538 +1,350 @@
 <!DOCTYPE html>
-<html lang="ca" class="scroll-smooth">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia 3r ESO - Màquines i Mecanismes</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Lexend i Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>3ESO U1.1: Màquines i Mecanismes</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --accent-bastidor: #64748b;
+            --accent-motor: #0284c7;
+            --accent-mecanisme: #ea580c;
+            --accent-control: #16a34a;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: 0.01em;
-        }
-        
-        /* Font size adjustment classes for accessibility */
-        body.font-size-sm { font-size: 14px; }
-        body.font-size-base { font-size: 16px; }
-        body.font-size-lg { font-size: 18px; }
-        body.font-size-xl { font-size: 20px; }
-
-        /* High contrast mode styling */
-        body.high-contrast {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-        }
-        body.high-contrast .bg-white,
-        body.high-contrast .bg-slate-50,
-        body.high-contrast .bg-slate-100,
-        body.high-contrast .bg-blue-50,
-        body.high-contrast .bg-indigo-50 {
-            background-color: #121212 !important;
-            color: #ffffff !important;
-            border-color: #ffff00 !important;
-        }
-        body.high-contrast .text-slate-800,
-        body.high-contrast .text-slate-700,
-        body.high-contrast .text-slate-600,
-        body.high-contrast .text-blue-900 {
-            color: #ffffff !important;
-        }
-        body.high-contrast button {
-            border: 2px solid #ffff00 !important;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
         }
 
-        /* Active Navigation Tab Style */
-        .tab-btn {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .tab-btn.active {
-            background-color: #2563eb;
-            color: #ffffff !important;
-            font-weight: 700;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-            border-color: #60a5fa !important;
-            transform: translateY(-1px);
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        /* Custom scrollbar for mobile navigation strip */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #f8fafc;
+        }
+
+        header .meta {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            background-color: #fff;
+        }
+
+        .card.bastidor { border-top: 4px solid var(--accent-bastidor); }
+        .card.motor { border-top: 4px solid var(--accent-motor); }
+        .card.mecanisme { border-top: 4px solid var(--accent-mecanisme); }
+        .card.control { border-top: 4px solid var(--accent-control); }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card.bastidor .card-title { color: var(--accent-bastidor); }
+        .card.motor .card-title { color: var(--accent-motor); }
+        .card.mecanisme .card-title { color: var(--accent-mecanisme); }
+        .card.control .card-title { color: var(--accent-control); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            background-color: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
+
+        .flow-arrow {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .flow-container {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
         }
     </style>
 </head>
-<body class="bg-slate-100/80 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
+<body>
 
-    <!-- Accessibility Bar -->
-    <div class="bg-slate-900/95 backdrop-blur-md text-slate-200 text-xs py-2 px-4 border-b border-slate-800/80 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center gap-3">
-                <a href="index.html" class="inline-flex items-center gap-1.5 bg-blue-700/90 hover:bg-blue-600 text-yellow-300 px-3.5 py-1.5 rounded-xl border border-blue-500/50 text-xs font-bold transition shadow-sm hover:scale-105">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Torna al menú de 3r</span>
-                </a>
-                <div class="hidden md:flex items-center gap-2 font-medium border-l border-slate-700/80 pl-3 text-slate-300">
-                    <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
-                    <span>Opcions de Lectura Fàcil</span>
-                </div>
-            </div>
+    <div class="container">
+        <header>
+            <h1>Unitat 1: Màquines i Mecanismes</h1>
+            <div class="meta">3r ESO — Tecnologia | I.E.S. S'Arenal (Prof. Oriol Gómez)</div>
+        </header>
+
+        <!-- 1. DEFINICIÓ I OBJECTIU -->
+        <section>
+            <h2>1. Definició i Objectiu de les Màquines</h2>
+            <p>L'objectiu principal de qualsevol tecnologia és <strong>resoldre un problema humà minimitzant l'esforç</strong> o el temps emprat.</p>
             
-            <div class="flex flex-wrap items-center gap-2">
-                <!-- Text size controls -->
-                <div class="flex items-center bg-slate-800/90 rounded-xl p-1 border border-slate-700/80">
-                    <span class="px-2 text-slate-400 font-bold hidden sm:inline">Mida text:</span>
-                    <button onclick="setFontSize('sm')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold transition" title="Text Petit">A-</button>
-                    <button onclick="setFontSize('base')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-xs font-bold bg-slate-700 transition" title="Text Normal">A</button>
-                    <button onclick="setFontSize('lg')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-sm font-bold transition" title="Text Gran">A+</button>
-                    <button onclick="setFontSize('xl')" class="px-2.5 py-0.5 rounded-lg hover:bg-slate-700 text-base font-bold transition" title="Text Molt Gran">A++</button>
+            <div class="highlight-box">
+                <p><strong>Què és una màquina?</strong></p>
+                <p>Una màquina és un conjunt d'elements mòbils i/o fixos connectats entre si amb una doble funció principal:</p>
+                <ul>
+                    <li><strong>Reduir l'esforç humà:</strong> Facilitar tasques aplicant forces més petites o en direccions més còmodes.</li>
+                    <li><strong>Transformar o aprofitar l'energia:</strong> Per exemple, passar d'energia elèctrica o química a energia mecànica/moviment.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. MAGNITUDS I CONCEPTES CLAU -->
+        <section>
+            <h2>2. Magnituds Físiques i Conceptes Clau</h2>
+            <p>Per entendre com funcionen les màquines, cal conèixer les magnituds associades a la mecànica:</p>
+
+            <h3>Força (<span class="formula">F</span>)</h3>
+            <p>És qualsevol acció d'empenyerr o estirar sobre un cos[cite: 25]. Es mesura en <strong>Newtons (N)</strong> (<span class="formula">F = m · a</span>)[cite: 25]. Quan s'aplica una força, es poden produir diferents efectes[cite: 26]:</p>
+            <ul>
+                <li><strong>Efecte dinàmic:</strong> Moure l'objecte o canviar la seva trajectòria[cite: 26].</li>
+                <li><strong>Deformació:</strong> Canviar la forma de l'objecte (temporal o permanentment)[cite: 26].</li>
+                <li><strong>Sense moviment:</strong> Si la força és menor que la resistència oposada (p. ex., empenyerr una paret)[cite: 26].</li>
+            </ul>
+
+            <h3>Treball (<span class="formula">W</span>)</h3>
+            <p>Físicament, el treball existeix quan una força aconsegueix moure un objecte al llarg d'una distància (<span class="formula">W = F · d</span>)[cite: 29]. Es mesura en <strong>Joules (J)</strong>[cite: 29]. Si un objecte no es mou, el treball realitzat sobre ell és zero, independentment del cansament muscular[cite: 27, 29].</p>
+
+            <h3>Avantatge Mecànic (<span class="formula">i</span>)</h3>
+            <p>És la relació entre l'esforç o força que ens estalviem i el pes real de l'objecte[cite: 32]. Per exemple, un pla inclinat (rampa) redueix la força necessària a canvi d'augmentar la distància a recórrer[cite: 32, 33].</p>
+
+            <h3>Rendiment (<span class="formula">η</span>)</h3>
+            <p>L'energia no desapareix, es transforma[cite: 36]. Quan una màquina perd part de la seva energia en forma de calor no desitjada (p. ex., pel frec de les pastilles de fre d'una bicicleta), el seu rendiment és inferior al 100%[cite: 34, 35, 36].</p>
+
+            <h3>Moment d'una Força i Efecte de Gir</h3>
+            <p>Com més lluny del punt de suport s'aplica una força, més efecte de gir s'aconsegueix (efecte palanca)[cite: 39, 40]. Aquest efecte depèn directament de la distància (<span class="formula">d</span>) al punt de suport[cite: 39].</p>
+
+            <h3>Fregament o Fricció (<span class="formula">F<sub>f</sub></span>)</h3>
+            <p>Resistència que fan dues superfícies en frecar[cite: 43]. La fricció provoca pèrdues d'energia en forma de calor i desgast[cite: 43]. L'ús de lubricants (oli/greix) ajuda a reduir aquest fregament[cite: 41, 42].</p>
+
+            <h3>Relació de Transmissió (<span class="formula">i</span>) i Velocitat de Gir</h3>
+            <p>Es mesura habitualment en <strong>revolucions per minut (rpm)</strong>[cite: 46]. En un sistema de canvi de marxes (com la bicicleta), es pot sacrificar velocitat a canvi de fer menys força (p. ex., plat petit i pinyó gran per pujar costes)[cite: 44, 45, 46].</p>
+        </section>
+
+        <!-- 3. ELS 4 BLOCS UNIVERSALS DE LES MÀQUINES -->
+        <section>
+            <h2>3. L'Anatomia de les Màquines: Els 4 Blocs Universals</h2>
+            <p>Per complexa que sigui una màquina, sempre està formada per 4 blocs estructurals interdependents[cite: 48]:</p>
+
+            <div class="grid-2">
+                <div class="card bastidor">
+                    <div class="card-title">1. Bastidor (Estructura)</div>
+                    <p><strong>Funció:</strong> Suport i protecció[cite: 49]. Aguanta la resta de peces, dona estabilitat i protegeix els components interns[cite: 49].</p>
+                    <p><em>Exemples:</em> El quadre d'una bicicleta, la carcassa de plàstic d'un trepant[cite: 49].</p>
                 </div>
 
-                <!-- High contrast toggle -->
-                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold px-3.5 py-1.5 rounded-xl transition text-xs shadow-sm active:scale-95">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span class="hidden sm:inline">Alt Contrast</span>
-                </button>
+                <div class="card motor">
+                    <div class="card-title">2. Motor (Font d'energia)</div>
+                    <p><strong>Funció:</strong> Generació de moviment[cite: 50]. Transforma una font d'energia (elèctrica, química o muscular) en moviment inicial[cite: 50].</p>
+                    <p><em>Exemples:</em> Motor elèctric, motor de combustió, les cames de l'usuari[cite: 50].</p>
+                </div>
+
+                <div class="card mecanisme">
+                    <div class="card-title">3. Mecanisme (Transmissió)</div>
+                    <p><strong>Funció:</strong> Adaptació del moviment[cite: 51]. Modifica la velocitat, la força o transforma el tipus de moviment des del motor fins a l'eina final[cite: 51].</p>
+                    <p><em>Exemples:</em> Engranatges, cadenes, politges, corretges, bieles[cite: 51].</p>
+                </div>
+
+                <div class="card control">
+                    <div class="card-title">4. Control (Interfície)</div>
+                    <p><strong>Funció:</strong> Regulació i seguretat[cite: 52]. Permet a l'usuari activar, aturar, canviar la velocitat o dirigir la màquina[cite: 52].</p>
+                    <p><em>Exemples:</em> Interruptors, gatells, pedals, manetes, pantalles[cite: 52].</p>
+                </div>
             </div>
-        </div>
+
+            <h3 style="margin-top: 2rem;">El Flux d'Energia</h3>
+            <p>Com col·laboren els blocs per realitzar la tasca[cite: 53]:</p>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <strong>Font d'Energia</strong>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Motor</strong><br><small>Transforma en gir inicial[cite: 53]</small>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Mecanisme</strong><br><small>Adapta força/velocitat[cite: 53]</small>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Eina Final</strong><br><small>Executa la tasca[cite: 53]</small>
+                </div>
+            </div>
+            <p style="margin-top: 0.75rem; font-size: 0.9rem; text-align: center; color: #64748b;">
+                * El bloc de <strong>Control</strong> dicta les ordres a cada pas del procés[cite: 53].
+            </p>
+        </section>
+
+        <!-- 4. EXEMPLE PRÀCTIC: PATINET ELÈCTRIC -->
+        <section>
+            <h2>4. Exemple d'Anàlisi Funcional: El Patinet Elèctric</h2>
+            <p>Aplicació pràctica dels 4 blocs universals en un objecte quotidià[cite: 55, 56]:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bloc Universal</th>
+                        <th>Component en el Patinet Elèctric</th>
+                        <th>Funció Concreta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bastidor</strong></td>
+                        <td>Base d'alumini i manillar[cite: 56]</td>
+                        <td>Suporta el pes de l'usuari i manté l'estructura unida[cite: 56].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motor</strong></td>
+                        <td>Bateria i motor integrat a la roda[cite: 56]</td>
+                        <td>Converteix l'energia elèctrica emmagatzemada en gir[cite: 56].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mecanisme</strong></td>
+                        <td>Coixinets i eixos de les rodes[cite: 56]</td>
+                        <td>Permeten que la roda giri fina i transmeten la força al terra[cite: 56].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Control</strong></td>
+                        <td>Palanca de l'accelerador i maneta de fre[cite: 56]</td>
+                        <td>Regulen la velocitat i la frenada enviant ordres al sistema[cite: 56].</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
 
-    <!-- Header Principal -->
-    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white shadow-xl relative overflow-hidden border-b border-blue-900/40">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap justify-between items-center gap-4 relative z-10">
-            <div class="flex items-center space-x-4">
-                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg ring-4 ring-blue-500/20 text-white flex items-center justify-center font-bold text-2xl w-14 h-14">
-                    <i class="fa-solid fa-scale-balanced fa-beat-fade" style="--fa-animation-duration: 3s;"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="bg-blue-500/20 text-blue-300 text-[11px] font-black px-3 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-widest backdrop-blur-sm">3r d'ESO</span>
-                        <span class="text-xs text-blue-200/80 font-medium">IES S'Arenal · Tecnologia</span>
-                    </div>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">Unitat 1: Les Palanques</h1>
-                </div>
-            </div>
-
-            <!-- Indicador de Secció Actual -->
-            <div class="hidden sm:flex items-center gap-3.5 bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blue-500/30 shadow-inner">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center font-black text-sm shadow-md" id="section-badge-num">1</div>
-                <div>
-                    <p class="text-[10px] text-blue-300/80 uppercase font-bold tracking-wider">Secció Activa</p>
-                    <p class="font-extrabold text-sm text-white" id="section-badge-title">Teoria Resumida</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS -->
-    <nav class="bg-slate-900/95 backdrop-blur-md border-b-2 border-blue-600 sticky top-10 z-40 shadow-xl">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between py-2.5 overflow-x-auto no-scrollbar gap-2">
-                
-                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-btn active whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">1</span>
-                    <i class="fa-solid fa-book text-sm"></i>
-                    <span>Teoria</span>
-                </button>
-
-                <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">2</span>
-                    <i class="fa-solid fa-sliders text-sm"></i>
-                    <span>Simulador</span>
-                </button>
-
-                <button onclick="switchTab('exercicis')" id="tab-exercicis" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">3</span>
-                    <i class="fa-solid fa-pen-to-square text-sm"></i>
-                    <span>Exercicis</span>
-                </button>
-
-                <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">4</span>
-                    <i class="fa-solid fa-clone text-sm"></i>
-                    <span>Targetes</span>
-                </button>
-
-                <button onclick="switchTab('test')" id="tab-test" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">5</span>
-                    <i class="fa-solid fa-circle-check text-sm"></i>
-                    <span>Test</span>
-                </button>
-
-                <button onclick="switchTab('glossari')" id="tab-glossari" class="tab-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-transparent transition flex items-center gap-2.5">
-                    <span class="w-5 h-5 rounded-full bg-white/20 text-[11px] flex items-center justify-center font-black">6</span>
-                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
-                    <span>Diccionari</span>
-                </button>
-
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contingut Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
-        <!-- TAB 1: TEORIA EN LECTURA FÀCIL -->
-        <section id="sec-teoria" class="tab-content space-y-8">
-            
-            <!-- Banner d'Introducció -->
-            <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden ring-1 ring-white/20">
-                <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl font-black">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                </div>
-                <div class="max-w-3xl space-y-3 relative z-10">
-                    <span class="bg-amber-400 text-slate-950 text-[11px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm inline-block">Secció 1 · Conceptes Clau</span>
-                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Què és una màquina i una palanca?</h2>
-                    <p class="text-blue-50 leading-relaxed text-sm sm:text-base font-medium">
-                        Una <strong class="text-white underline decoration-amber-400 decoration-2">màquina</strong> és un conjunt d'elements que utilitzen energia per fer un <strong class="text-white underline decoration-amber-400 decoration-2">treball útil</strong> d'una manera més fàcil, ràpida i amb menys esforç.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Les 3 Parts de qualsevol Màquina -->
-            <div class="space-y-5">
-                <div class="border-l-4 border-blue-600 pl-4 py-0.5">
-                    <h3 class="text-xl font-extrabold text-slate-800">Les 3 parts principals de qualsevol màquina:</h3>
-                    <p class="text-slate-600 text-sm">Totes les màquines tenen un origen d'energia, un camí de transmissió i un resultat final.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Part 1 -->
-                    <div class="bg-white rounded-3xl p-6 border border-amber-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-2xl shadow-inner">
-                                    <i class="fa-solid fa-bolt"></i>
-                                </div>
-                                <span class="text-[11px] font-black uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Part 1</span>
-                            </div>
-                            <h4 class="text-lg font-extrabold text-slate-800">Element Motriu</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                És la <strong class="text-slate-800">font d'energia</strong> que posa en marxa la màquina.
-                            </p>
-                        </div>
-                        <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-100 text-xs text-amber-950 font-medium">
-                            <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i> <strong>Exemples:</strong> Els nostres músculs (pedalar), un motor elèctric, la força del vent.
-                        </div>
-                    </div>
-
-                    <!-- Part 2 -->
-                    <div class="bg-white rounded-3xl p-6 border border-blue-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-2xl shadow-inner">
-                                    <i class="fa-solid fa-arrows-spin"></i>
-                                </div>
-                                <span class="text-[11px] font-black uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Part 2</span>
-                            </div>
-                            <h4 class="text-lg font-extrabold text-slate-800">Mecanisme</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Transmet o <strong class="text-slate-800">transforma el moviment</strong> des de l'inici fins al final.
-                            </p>
-                        </div>
-                        <div class="bg-blue-50/80 p-3.5 rounded-2xl border border-blue-100 text-xs text-blue-950 font-medium">
-                            <i class="fa-solid fa-lightbulb text-blue-600 mr-1.5"></i> <strong>Exemples:</strong> La cadena de la bici, engranatges, eixos, palanques.
-                        </div>
-                    </div>
-
-                    <!-- Part 3 -->
-                    <div class="bg-white rounded-3xl p-6 border border-emerald-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 space-y-3.5 flex flex-col justify-between">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-2xl shadow-inner">
-                                    <i class="fa-solid fa-bullseye"></i>
-                                </div>
-                                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Part 3</span>
-                            </div>
-                            <h4 class="text-lg font-extrabold text-slate-800">Element Receptor</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Rep el moviment final i fa la <strong class="text-slate-800">tasca o treball útil</strong>.
-                            </p>
-                        </div>
-                        <div class="bg-emerald-50/80 p-3.5 rounded-2xl border border-emerald-100 text-xs text-emerald-950 font-medium">
-                            <i class="fa-solid fa-lightbulb text-emerald-600 mr-1.5"></i> <strong>Exemples:</strong> La roda posterior, la pedra de moldre, les ganivetes.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800/80 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
-            <div class="flex justify-center items-center gap-2 text-white font-bold text-sm">
-                <i class="fa-solid fa-graduation-cap text-amber-400 text-base"></i>
-                <span>Departament de Tecnologia — IES S'Arenal</span>
-            </div>
-            <p>© Adaptat per a l'alumnat d'ESO · Disseny d'alta llegibilitat i usabilitat</p>
-        </div>
-    </footer>
-
-    <script>
-        const sectionTitles = {
-            'teoria': { num: '1', name: 'Teoria Resumida' },
-            'simulador': { num: '2', name: 'Simulador' },
-            'exercicis': { num: '3', name: 'Exercicis Pas a Pas' },
-            'cards': { num: '4', name: 'Targetes de Repàs' },
-            'test': { num: '5', name: 'Test d\'Autoavaluació' },
-            'glossari': { num: '6', name: 'Diccionari Clau' }
-        };
-
-        // Accessibility Controls
-        function setFontSize(sizeClass) {
-            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
-            document.body.classList.add('font-size-' + sizeClass);
-        }
-
-        function toggleHighContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-
-        // Tab Switching Logic
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
-            const targetSection = document.getElementById('sec-' + tabId);
-            const targetBtn = document.getElementById('tab-' + tabId);
-
-            if (targetSection) targetSection.classList.remove('hidden');
-            if (targetBtn) targetBtn.classList.add('active');
-
-            // Update badge in main header
-            if (sectionTitles[tabId]) {
-                document.getElementById('section-badge-num').innerText = sectionTitles[tabId].num;
-                document.getElementById('section-badge-title').innerText = sectionTitles[tabId].name;
-            }
-
-            // Scroll smoothly to top of active content
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            if (tabId === 'simulador') {
-                updateSim();
-            }
-        }
-
-        // Simulator Logic
-        function updateSim() {
-            const F = parseFloat(document.getElementById('slider-f').value);
-            const dF = parseFloat(document.getElementById('slider-df').value);
-            const R = parseFloat(document.getElementById('slider-r').value);
-            const dR = parseFloat(document.getElementById('slider-dr').value);
-
-            document.getElementById('label-f-val').innerText = F + ' N';
-            document.getElementById('label-df-val').innerText = dF.toFixed(1) + ' m';
-            document.getElementById('label-r-val').innerText = R + ' N';
-            document.getElementById('label-dr-val').innerText = dR.toFixed(1) + ' m';
-
-            const MF = F * dF;
-            const MR = R * dR;
-
-            document.getElementById('calc-mf').innerText = MF.toFixed(1);
-            document.getElementById('calc-mr').innerText = MR.toFixed(1);
-
-            const diff = MR - MF;
-            let angle = Math.max(-14, Math.min(14, diff * 0.05));
-
-            document.getElementById('lever-beam-group').setAttribute('transform', `rotate(${angle}, 400, 180)`);
-
-            const offsetF = (dF / 3.0) * 280;
-            const offsetR = (dR / 3.0) * 280;
-
-            const posXF = 400 - offsetF;
-            const posXR = 400 + offsetR;
-
-            document.getElementById('arrow-f-line').setAttribute('x1', posXF);
-            document.getElementById('arrow-f-line').setAttribute('x2', posXF);
-            document.getElementById('box-f').setAttribute('x', posXF - 35);
-            document.getElementById('text-f-val').setAttribute('x', posXF);
-            document.getElementById('text-f-val').textContent = F + ' N';
-            document.getElementById('text-df-val').setAttribute('x', 400 - offsetF / 2);
-
-            document.getElementById('arrow-r-line').setAttribute('x1', posXR);
-            document.getElementById('arrow-r-line').setAttribute('x2', posXR);
-            document.getElementById('box-r').setAttribute('x', posXR - 35);
-            document.getElementById('text-r-val').setAttribute('x', posXR);
-            document.getElementById('text-r-val').textContent = R + ' N';
-            document.getElementById('text-dr-val').setAttribute('x', 400 + offsetR / 2);
-
-            const badge = document.getElementById('sim-status-badge');
-            if (Math.abs(MF - MR) < 0.1) {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-emerald-500 text-white shadow';
-                badge.innerHTML = '<i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri';
-            } else if (MF > MR) {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-blue-500 text-white shadow';
-                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Força (F)';
-            } else {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-red-500 text-white shadow';
-                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Càrrega (R)';
-            }
-        }
-
-        function autoBalanceLever() {
-            const F = parseFloat(document.getElementById('slider-f').value);
-            const dF = parseFloat(document.getElementById('slider-df').value);
-            const R = parseFloat(document.getElementById('slider-r').value);
-
-            let neededDR = (F * dF) / R;
-            neededDR = Math.max(0.2, Math.min(3.0, neededDR));
-
-            document.getElementById('slider-dr').value = neededDR.toFixed(1);
-            updateSim();
-        }
-
-        function setPreset(type) {
-            if (type === 'balanci') {
-                document.getElementById('slider-f').value = 100;
-                document.getElementById('slider-df').value = 1.5;
-                document.getElementById('slider-r').value = 100;
-                document.getElementById('slider-dr').value = 1.5;
-            } else if (type === 'carreta') {
-                document.getElementById('slider-f').value = 50;
-                document.getElementById('slider-df').value = 2.0;
-                document.getElementById('slider-r').value = 200;
-                document.getElementById('slider-dr').value = 0.5;
-            } else if (type === 'desequilibri') {
-                document.getElementById('slider-f').value = 50;
-                document.getElementById('slider-df').value = 1.0;
-                document.getElementById('slider-r').value = 300;
-                document.getElementById('slider-dr').value = 2.0;
-            }
-            updateSim();
-        }
-
-        // Exercises Logic
-        function toggleSolution(id) {
-            document.getElementById(id).classList.toggle('hidden');
-        }
-
-        function checkEx3() {
-            const val = parseFloat(document.getElementById('ans-ex3').value);
-            const fb = document.getElementById('feedback-ex3');
-            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
-
-            if (Math.abs(val - 13.33) <= 0.3 || Math.abs(val - 13.3) <= 0.3) {
-                fb.classList.add('text-emerald-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Molt bé! Resposta correcta: 13,33 cm.';
-            } else {
-                fb.classList.add('text-red-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (200 * 4) / 60 = 13,33 cm.';
-            }
-        }
-
-        function checkEx4() {
-            const val = parseFloat(document.getElementById('ans-ex4').value);
-            const fb = document.getElementById('feedback-ex4');
-            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
-
-            if (Math.abs(val - 0.4) <= 0.05) {
-                fb.classList.add('text-emerald-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correcte! Resposta: 0,4 metres (40 cm).';
-            } else {
-                fb.classList.add('text-red-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (40 * 1.2) / 120 = 0,4 m.';
-            }
-        }
-
-        // Flashcards Logic
-        const flashcardsData = [
-            { tag: "Pregunta 1 de 5", text: "Quins són els 3 elements principals de qualsevol màquina?", ans: "1. Element Motriu (energia inicial)<br>2. Mecanisme (transmet moviment)<br>3. Element Receptor (tasca útil)" },
-            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · d<sub>F</sub> = R · d<sub>R</sub></strong>" },
-            { tag: "Pregunta 3 de 5", text: "En quin tipus de palanca el Fulcre està al mig?", ans: "En les palanques de <strong>1er Gènere</strong> (ex: tisores, balancí)." },
-            { tag: "Pregunta 4 de 5", text: "En quin tipus de palanca la Resistència està al mig?", ans: "En les palanques de <strong>2n Gènere</strong> (ex: carretó, trencanous)." },
-            { tag: "Pregunta 5 de 5", text: "En quina unitat es mesuren les forces (F i R)?", ans: "En <strong>Newtons (N)</strong>." }
-        ];
-
-        let currentCardIndex = 0;
-        let isCardFlipped = false;
-
-        function updateCardDisplay() {
-            isCardFlipped = false;
-            const card = flashcardsData[currentCardIndex];
-            document.getElementById('card-tag').innerText = card.tag;
-            document.getElementById('card-text').innerHTML = card.text;
-            document.getElementById('card-counter').innerText = (currentCardIndex + 1) + " / " + flashcardsData.length;
-        }
-
-        function flipCard() {
-            const textEl = document.getElementById('card-text');
-            if (!isCardFlipped) {
-                textEl.innerHTML = flashcardsData[currentCardIndex].ans;
-                isCardFlipped = true;
-            } else {
-                textEl.innerHTML = flashcardsData[currentCardIndex].text;
-                isCardFlipped = false;
-            }
-        }
-
-        function nextCard() {
-            currentCardIndex = (currentCardIndex + 1) % flashcardsData.length;
-            updateCardDisplay();
-        }
-
-        function prevCard() {
-            currentCardIndex = (currentCardIndex - 1 + flashcardsData.length) % flashcardsData.length;
-            updateCardDisplay();
-        }
-
-        // Quiz Logic
-        function evaluateQuiz() {
-            const answers = { q1: 'b', q2: 'c', q3: 'a', q4: 'b', q5: 'a' };
-            let score = 0;
-
-            for (let q in answers) {
-                const selected = document.querySelector(`input[name="${q}"]:checked`);
-                if (selected && selected.value === answers[q]) {
-                    score++;
-                }
-            }
-
-            document.getElementById('quiz-score-badge').classList.remove('hidden');
-            document.getElementById('quiz-score').innerText = score;
-
-            const box = document.getElementById('quiz-feedback-box');
-            box.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-amber-100', 'text-amber-900', 'bg-red-100', 'text-red-900');
-
-            if (score === 5) {
-                box.classList.add('bg-emerald-100', 'text-emerald-900');
-                box.innerHTML = '🏆 <strong>Enhorabona! 5/5 perfecte!</strong><p class="text-xs mt-1">Has après tots els conceptes clau de la unitat.</p>';
-            } else if (score >= 3) {
-                box.classList.add('bg-amber-100', 'text-amber-900');
-                box.innerHTML = `👍 <strong>Bona feina! Puntuació: ${score}/5</strong><p class="text-xs mt-1">Repassa les targetes d'estudi per treure el 10!</p>`;
-            } else {
-                box.classList.add('bg-red-100', 'text-red-900');
-                box.innerHTML = `📖 <strong>Puntuació: ${score}/5</strong><p class="text-xs mt-1">Revisa la secció de teoria i torna a provar-ho.</p>`;
-            }
-        }
-
-        // Glossary Filter Logic
-        function filterGlossary() {
-            const query = document.getElementById('glossary-search').value.toLowerCase();
-            document.querySelectorAll('.glossary-item').forEach(item => {
-                const text = item.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        window.onload = function() {
-            updateSim();
-        };
-    </script>
 </body>
 </html>
