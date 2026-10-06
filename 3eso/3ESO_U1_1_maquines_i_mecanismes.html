@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Google Fonts (mateixa font que a l'índex) -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -17,37 +17,7 @@
             letter-spacing: 0.01em;
         }
 
-        /* Ajustos de mida de font per accessibilitat */
-        body.font-size-sm { font-size: 14px; }
-        body.font-size-base { font-size: 16px; }
-        body.font-size-lg { font-size: 18px; }
-        body.font-size-xl { font-size: 20px; }
-
-        /* Estils de mode d'alt contrast */
-        body.high-contrast {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-        }
-        body.high-contrast .bg-white,
-        body.high-contrast .bg-slate-50,
-        body.high-contrast .bg-slate-100,
-        body.high-contrast .bg-blue-50,
-        body.high-contrast .bg-blue-50\/60 {
-            background-color: #121212 !important;
-            color: #ffffff !important;
-            border-color: #ffff00 !important;
-        }
-        body.high-contrast .text-slate-800,
-        body.high-contrast .text-slate-700,
-        body.high-contrast .text-slate-600,
-        body.high-contrast .text-blue-900 {
-            color: #ffffff !important;
-        }
-        body.high-contrast button {
-            border: 2px solid #ffff00 !important;
-        }
-
-        /* Pestanya activa */
+        /* Pestanya activa de navegació interna */
         .tab-btn.active {
             background-color: #059669;
             color: #ffffff;
@@ -60,42 +30,13 @@
         .dropdown:hover .dropdown-menu { display: block; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-size-base min-h-screen flex flex-col transition-all duration-200">
-
-    <!-- Barra d'Accessibilitat i Lectura Fàcil -->
-    <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
-            <div class="flex items-center gap-2 font-medium">
-                <i class="fa-solid fa-universal-access text-yellow-400 text-sm"></i>
-                <span>Lectura Fàcil & Accessibilitat:</span>
-            </div>
-            
-            <div class="flex flex-wrap items-center gap-3">
-                <div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
-                    <span class="px-2 text-slate-400 font-bold">Text:</span>
-                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold" title="Petit">A-</button>
-                    <button onclick="setFontSize('base')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-xs font-bold bg-slate-700" title="Normal">A</button>
-                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sm font-bold" title="Gran">A+</button>
-                    <button onclick="setFontSize('xl')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-base font-bold" title="Molt Gran">A++</button>
-                </div>
-
-                <button onclick="toggleHighContrast()" class="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold px-3 py-1 rounded-lg transition text-xs">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span>Alt Contrast</span>
-                </button>
-            </div>
-        </div>
-    </div>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col transition-all duration-200">
 
     <!-- Capçalera Principal -->
     <header class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
             
             <div class="flex items-center space-x-3">
-                <!-- Enllaç per tornar a l'Índex de 3r -->
-                <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-2xl transition flex items-center justify-center" title="Tornar a l'Índex de 3r d'ESO">
-                    <i class="fa-solid fa-arrow-left text-lg"></i>
-                </a>
                 <div class="bg-emerald-500 text-slate-950 p-2.5 rounded-2xl shadow-md flex items-center justify-center font-bold text-2xl w-12 h-12">
                     <i class="fa-solid fa-gear"></i>
                 </div>
@@ -105,10 +46,10 @@
                 </div>
             </div>
 
-            <!-- Navegació entre UDs -->
+            <!-- Navegació entre UDs / Desplegable -->
             <div class="flex items-center gap-3">
-                <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2">
-                    <i class="fa-solid fa-house"></i> Inici 3r
+                <a href="../index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Portal General
                 </a>
 
                 <!-- Desplegable d'Accés Ràpid a UDs -->
@@ -141,19 +82,19 @@
 
         </div>
 
-        <!-- Barra de Navegació de Continguts de la Unitat -->
+        <!-- Barra de Navegació Interna de la Unitat -->
         <nav class="bg-slate-950/60 backdrop-blur-md border-t border-white/10">
             <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex overflow-x-auto space-x-2 py-2.5 scrollbar-none">
-                <button onclick="switchTab('definiccio')" id="tab-definiccio" class="tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                <button onclick="switchTab('definiccio')" id="tab-definiccio" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
                     <i class="fa-solid fa-bullseye"></i> 1. Definició i Objectiu
                 </button>
-                <button onclick="switchTab('magnituds')" id="tab-magnituds" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                <button onclick="switchTab('magnituds')" id="tab-magnituds" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
                     <i class="fa-solid fa-calculator"></i> 2. Magnituds i Conceptes
                 </button>
-                <button onclick="switchTab('blocs')" id="tab-blocs" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                <button onclick="switchTab('blocs')" id="tab-blocs" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
                     <i class="fa-solid fa-cubes"></i> 3. Els 4 Blocs Universals
                 </button>
-                <button onclick="switchTab('exemple')" id="tab-exemple" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                <button onclick="switchTab('exemple')" id="tab-exemple" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
                     <i class="fa-solid fa-bolt-lightning"></i> 4. Anàlisi: Patinet Elèctric
                 </button>
             </div>
@@ -161,19 +102,38 @@
     </header>
 
     <!-- Contingut Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
+
+        <!-- BARRA D'UBICACIÓ / BREADCRUMB (Estil de la imatge adjunta) -->
+        <nav class="bg-slate-900 text-slate-300 px-5 py-3 rounded-2xl shadow-md text-xs sm:text-sm flex flex-wrap items-center gap-2 border border-slate-800">
+            <a href="../index.html" class="hover:text-white transition flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-house text-slate-400"></i> Inici
+            </a>
+            <span class="text-slate-600">/</span>
+            <a href="index.html" class="hover:text-white transition font-medium text-slate-300">
+                3r ESO
+            </a>
+            <span class="text-slate-600">/</span>
+            <span class="text-sky-400 font-semibold">
+                UP 1: Màquines i Mecanismes
+            </span>
+            <span class="text-slate-600">/</span>
+            <span class="text-slate-400 font-normal">
+                Teoria General
+            </span>
+        </nav>
 
         <!-- SUBTÍTOL I PROFESSORAT -->
         <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-wrap justify-between items-center text-xs text-slate-500 gap-2">
-            <div><i class="fa-solid fa-school text-emerald-600 mr-1"></i> <strong>Tecnologia 3r ESO</strong> — I.E.S. S'Arenal[cite: 1]</div>
-            <div><i class="fa-solid fa-user-gear text-emerald-600 mr-1"></i> Prof. Oriol Gómez[cite: 1]</div>
+            <div><i class="fa-solid fa-school text-emerald-600 mr-1"></i> <strong>Tecnologia 3r ESO</strong> — I.E.S. S'Arenal</div>
+            <div><i class="fa-solid fa-user-gear text-emerald-600 mr-1"></i> Prof. Oriol Gómez</div>
         </div>
 
         <!-- PESTANYA 1: DEFINICIÓ I OBJECTIU -->
         <section id="sec-definiccio" class="tab-content space-y-6">
             <div class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl">
                 <span class="bg-yellow-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Bloc 1</span>
-                <h2 class="text-2xl sm:text-3xl font-black mt-2">1. Definició i Objectiu de les Màquines[cite: 1]</h2>
+                <h2 class="text-2xl sm:text-3xl font-black mt-2">1. Definició i Objectiu de les Màquines</h2>
                 <p class="text-emerald-100 text-sm sm:text-base mt-2">
                     L'objectiu principal de qualsevol tecnologia és <strong>resoldre un problema humà minimitzant l'esforç</strong> o el temps emprat[cite: 1].
                 </p>
@@ -181,7 +141,7 @@
 
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
                 <div class="border-l-4 border-emerald-600 pl-4">
-                    <h3 class="text-xl font-bold text-slate-800">Què és una màquina?[cite: 1]</h3>
+                    <h3 class="text-xl font-bold text-slate-800">Què és una màquina?</h3>
                     <p class="text-slate-600 text-sm mt-1">
                         Una màquina és un conjunt d'elements mòbils i/o fixos connectats entre si amb una doble funció principal[cite: 1]:
                     </p>
@@ -192,9 +152,9 @@
                         <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">
                             <i class="fa-solid fa-person-arrow-down-to-line"></i>
                         </div>
-                        <h4 class="font-bold text-slate-800 text-base">Reduir l'esforç humà[cite: 1]</h4>
+                        <h4 class="font-bold text-slate-800 text-base">Reduir l'esforç humà</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Facilitar tasques aplicant forces més petites o en direccions més còmodes[cite: 1].
+                            Facilitar tasques aplicant forces més petites o en direccions més còmodes.
                         </p>
                     </div>
 
@@ -202,7 +162,7 @@
                         <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">
                             <i class="fa-solid fa-arrows-rotate"></i>
                         </div>
-                        <h4 class="font-bold text-slate-800 text-base">Transformar l'energia[cite: 1]</h4>
+                        <h4 class="font-bold text-slate-800 text-base">Transformar l'energia</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
                             Aprofitar o transformar l'energia; per exemple, passar d'energia elèctrica o química a energia mecànica/moviment[cite: 1].
                         </p>
@@ -214,7 +174,7 @@
         <!-- PESTANYA 2: MAGNITUDS FISIQUES I CONCEPTES CLAU -->
         <section id="sec-magnituds" class="tab-content hidden space-y-6">
             <div class="border-l-4 border-emerald-600 pl-4">
-                <h2 class="text-2xl font-black text-slate-800">2. Magnituds Físiques i Conceptes Clau[cite: 1]</h2>
+                <h2 class="text-2xl font-black text-slate-800">2. Magnituds Físiques i Conceptes Clau</h2>
                 <p class="text-slate-600 text-sm">Per entendre com funcionen les màquines, cal conèixer les magnituds associades a la mecànica[cite: 1]:</p>
             </div>
 
@@ -222,42 +182,42 @@
                 <!-- Força -->
                 <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
                     <span class="bg-blue-100 text-blue-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">F = m · a</span>
-                    <h3 class="text-lg font-bold text-slate-800">Força (F)[cite: 1]</h3>
+                    <h3 class="text-lg font-bold text-slate-800">Força (F)</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Acció d'empenyer o estirar sobre un cos[cite: 1]. Es mesura en <strong>Newtons (N)</strong>[cite: 1].
+                        Acció d'empenyer o estirar sobre un cos. Es mesura en <strong>Newtons (N)</strong>.
                     </p>
                     <ul class="text-xs text-slate-500 list-disc list-inside space-y-1 pt-1">
-                        <li><strong>Efecte dinàmic:</strong> Moure o canviar trajectòria[cite: 1].</li>
-                        <li><strong>Deformació:</strong> Canviar la forma[cite: 1].</li>
-                        <li><strong>Sense moviment:</strong> Si la força és menor que la resistència[cite: 1].</li>
+                        <li><strong>Efecte dinàmic:</strong> Moure o canviar trajectòria.</li>
+                        <li><strong>Deformació:</strong> Canviar la forma.</li>
+                        <li><strong>Sense moviment:</strong> Si la força és menor que la resistència.</li>
                     </ul>
                 </div>
 
                 <!-- Treball -->
                 <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
                     <span class="bg-indigo-100 text-indigo-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">W = F · d</span>
-                    <h3 class="text-lg font-bold text-slate-800">Treball (W)[cite: 1]</h3>
+                    <h3 class="text-lg font-bold text-slate-800">Treball (W)</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Existeix quan una força aconsegueix moure un objecte al llarg d'una distància[cite: 1]. Es mesura en <strong>Joules (J)</strong>[cite: 1].
+                        Existeix quan una força aconsegueix moure un objecte al llarg d'una distància. Es mesura en <strong>Joules (J)</strong>[cite: 1].
                     </p>
                     <p class="text-[11px] text-amber-700 bg-amber-50 p-2 rounded-xl border border-amber-200">
-                        Si un objecte no es mou, el treball és zero[cite: 1].
+                        Si un objecte no es mou, el treball és zero.
                     </p>
                 </div>
 
                 <!-- Avantatge Mecànic -->
                 <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
                     <span class="bg-emerald-100 text-emerald-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">Relació i</span>
-                    <h3 class="text-lg font-bold text-slate-800">Avantatge Mecànic (i)[cite: 1]</h3>
+                    <h3 class="text-lg font-bold text-slate-800">Avantatge Mecànic (i)</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Relació entre l'esforç que ens estalviem i el pes real de l'objecte[cite: 1]. Una rampa redueix la força necessària a canvi d'augmentar la distància[cite: 1].
+                        Relació entre l'esforç que ens estalviem i el pes real de l'objecte. Una rampa redueix la força necessària a canvi d'augmentar la distància[cite: 1].
                     </p>
                 </div>
 
                 <!-- Rendiment -->
                 <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
                     <span class="bg-teal-100 text-teal-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">η (%)</span>
-                    <h3 class="text-lg font-bold text-slate-800">Rendiment (η)[cite: 1]</h3>
+                    <h3 class="text-lg font-bold text-slate-800">Rendiment (η)</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">
                         Mesura les pèrdues d'energia en forma de calor no desitjada (p. ex., frec de les pastilles de fre d'una bicicleta)[cite: 1]. El rendiment sol ser inferior al 100%[cite: 1].
                     </p>
@@ -441,7 +401,7 @@
         </div>
     </footer>
 
-    <!-- Lògica de navegació i accessibilitat -->
+    <!-- Lògica de navegació per pestanyes -->
     <script>
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -449,15 +409,6 @@
 
             document.getElementById('sec-' + tabId).classList.remove('hidden');
             document.getElementById('tab-' + tabId).classList.add('active');
-        }
-
-        function setFontSize(size) {
-            document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
-            document.body.classList.add('font-size-' + size);
-        }
-
-        function toggleHighContrast() {
-            document.body.classList.toggle('high-contrast');
         }
     </script>
 </body>
