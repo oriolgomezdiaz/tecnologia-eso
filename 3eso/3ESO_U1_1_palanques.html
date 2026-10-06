@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia 3r ESO - Màquines i Mecanismes: Les Palanques</title>
+    <title>3ESO U1.1: Les Palanques | Tecnologia 3r ESO</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -12,9 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        :root { 
+            --primary: #1e293b; 
+            --accent: #10b981; 
+            --bg: #f8fafc; 
+            --border: #e2e8f0;
+            --text: #334155;
+            --card-bg: #ffffff;
+        }
+
         body {
-            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Lexend', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             letter-spacing: 0.01em;
+            background-color: var(--bg);
+            color: var(--text);
         }
         
         /* Font size adjustment classes for accessibility */
@@ -47,7 +58,95 @@
             border: 2px solid #ffff00 !important;
         }
 
-        /* Active Navigation Tab Style */
+        /* --- NAVEGACIÓ PRINCIPAL / BREADCRUMB --- */
+        .top-nav {
+            background-color: var(--primary);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb li { margin-bottom: 0; }
+
+        .breadcrumb a {
+            color: #f8fafc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator { color: #64748b; }
+        .breadcrumb .current { color: #38bdf8; font-weight: 600; }
+
+        /* --- NAVEGACIÓ SECUNDÀRIA / SUBBLOCS DE LA UNITAT --- */
+        .unit-nav {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .unit-menu {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Active Navigation Tab Style (Subopcions interiors) */
         .tab-btn {
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -67,6 +166,17 @@
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .unit-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
@@ -105,36 +215,63 @@
         </div>
     </div>
 
-    <!-- Header Principal -->
-    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white shadow-xl relative overflow-hidden border-b border-blue-900/40">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap justify-between items-center gap-4 relative z-10">
+    <!-- CONTENIDOR PRINCIPAL -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+
+        <!-- 1. BREADCRUMB / NAVEGACIÓ GLOBAL -->
+        <nav class="top-nav" aria-label="Navegació global">
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="fa-solid fa-house"></i> Inici</a></li>
+                <li class="separator">/</li>
+                <li><a href="index.html">3r ESO</a></li>
+                <li class="separator">/</li>
+                <li><a href="3ESO_U1_index.html">UP 1: Màquines i Mecanismes</a></li>
+                <li class="separator">/</li>
+                <li class="current">1.1 Palanques</li>
+            </ul>
+        </nav>
+
+        <!-- 2. SUB-NAVEGACIÓ DE LA UNITAT -->
+        <nav class="unit-nav" aria-label="Navegació de la unitat">
+            <div class="unit-menu">
+                <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn">1.0 Teoria General</a>
+                <a href="3ESO_U1_1_palanques.html" class="nav-btn active">1.1 Palanques</a>
+                <a href="3ESO_U1_2_politges.html" class="nav-btn">1.2 Politges</a>
+                <a href="3ESO_U1_3_engranatges.html" class="nav-btn">1.3 Engranatges</a>
+                <a href="3ESO_U1_4_transformacio.html" class="nav-btn">1.4 Transformació</a>
+            </div>
+            <a href="3ESO_U1_index.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Índex UP1</a>
+        </nav>
+
+        <!-- Header Principal Unificat -->
+        <header class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-6 shadow-xl relative overflow-hidden border border-slate-800 flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center space-x-4">
-                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg ring-4 ring-blue-500/20 text-white flex items-center justify-center font-bold text-2xl w-14 h-14">
-                    <i class="fa-solid fa-scale-balanced fa-beat-fade" style="--fa-animation-duration: 3s;"></i>
+                <div class="bg-emerald-600 p-3.5 rounded-2xl shadow-lg ring-4 ring-emerald-500/20 text-white flex items-center justify-center font-bold text-2xl w-14 h-14">
+                    <i class="fa-solid fa-scale-balanced"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="bg-blue-500/20 text-blue-300 text-[11px] font-black px-3 py-0.5 rounded-full border border-blue-400/30 uppercase tracking-widest backdrop-blur-sm">3r d'ESO</span>
-                        <span class="text-xs text-blue-200/80 font-medium">IES S'Arenal · Tecnologia</span>
+                        <span class="bg-emerald-500/20 text-emerald-300 text-[11px] font-black px-3 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-widest">Mòdul 1.1</span>
+                        <span class="text-xs text-slate-400 font-medium">3r ESO · Tecnologia | IES S'Arenal</span>
                     </div>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-blue-200">Unitat 1: Les Palanques</h1>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-white">UP 1.1: Les Palanques</h1>
                 </div>
             </div>
 
             <!-- Indicador de Secció Actual -->
-            <div class="hidden sm:flex items-center gap-3.5 bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-blue-500/30 shadow-inner">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center font-black text-sm shadow-md" id="section-badge-num">1</div>
+            <div class="hidden sm:flex items-center gap-3.5 bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700 shadow-inner">
+                <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-sm shadow-md" id="section-badge-num">1</div>
                 <div>
-                    <p class="text-[10px] text-blue-300/80 uppercase font-bold tracking-wider">Secció Activa</p>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Secció Activa</p>
                     <p class="font-extrabold text-sm text-white" id="section-badge-title">Teoria Resumida</p>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+
+    </div>
 
     <!-- BARRA DE NAVEGACIÓ INTUÏTIVA DE SECCIONS -->
-    <nav class="bg-slate-900/95 backdrop-blur-md border-b-2 border-blue-600 sticky top-10 z-40 shadow-xl">
+    <nav class="bg-slate-900/95 backdrop-blur-md border-b-2 border-emerald-500 sticky top-10 z-40 shadow-xl">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-2.5 overflow-x-auto no-scrollbar gap-2">
                 
@@ -183,8 +320,6 @@
 
         <!-- TAB 1: TEORIA EN LECTURA FÀCIL -->
         <section id="sec-teoria" class="tab-content space-y-8">
-            
-
             <!-- Palanques i Llei de la Palanca -->
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
                 <div class="flex items-center gap-3.5 border-b border-slate-100 pb-5">
@@ -841,121 +976,125 @@
             document.getElementById('text-dr-val').setAttribute('x', 400 + offsetR / 2);
 
             const badge = document.getElementById('sim-status-badge');
-            if (Math.abs(MF - MR) < 0.1) {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-emerald-500 text-white shadow';
+            if (Math.abs(diff) < 1) {
+                badge.className = "absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-emerald-500 text-white shadow-lg transition-all";
                 badge.innerHTML = '<i class="fa-solid fa-scale-balanced"></i> Palanca en Equilibri';
-            } else if (MF > MR) {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-blue-500 text-white shadow';
-                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Força (F)';
+            } else if (diff > 0) {
+                badge.className = "absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-rose-500 text-white shadow-lg transition-all";
+                badge.innerHTML = '<i class="fa-solid fa-arrow-trend-down"></i> Guanya la Càrrega (R)';
             } else {
-                badge.className = 'absolute top-4 right-4 text-xs font-bold px-4 py-2 rounded-full bg-red-500 text-white shadow';
-                badge.innerHTML = '<i class="fa-solid fa-arrow-down"></i> Guanya la Càrrega (R)';
+                badge.className = "absolute top-4 right-4 text-xs font-extrabold px-4 py-2 rounded-full bg-blue-500 text-white shadow-lg transition-all";
+                badge.innerHTML = '<i class="fa-solid fa-arrow-trend-up"></i> Guanya la Força (F)';
             }
-        }
-
-        function autoBalanceLever() {
-            const F = parseFloat(document.getElementById('slider-f').value);
-            const dF = parseFloat(document.getElementById('slider-df').value);
-            const R = parseFloat(document.getElementById('slider-r').value);
-
-            let neededDR = (F * dF) / R;
-            neededDR = Math.max(0.2, Math.min(3.0, neededDR));
-
-            document.getElementById('slider-dr').value = neededDR.toFixed(1);
-            updateSim();
         }
 
         function setPreset(type) {
             if (type === 'balanci') {
                 document.getElementById('slider-f').value = 100;
-                document.getElementById('slider-df').value = 1.5;
+                document.getElementById('slider-df').value = 1.0;
                 document.getElementById('slider-r').value = 100;
-                document.getElementById('slider-dr').value = 1.5;
+                document.getElementById('slider-dr').value = 1.0;
             } else if (type === 'carreta') {
                 document.getElementById('slider-f').value = 50;
                 document.getElementById('slider-df').value = 2.0;
                 document.getElementById('slider-r').value = 200;
                 document.getElementById('slider-dr').value = 0.5;
             } else if (type === 'desequilibri') {
-                document.getElementById('slider-f').value = 50;
+                document.getElementById('slider-f').value = 80;
                 document.getElementById('slider-df').value = 1.0;
                 document.getElementById('slider-r').value = 300;
-                document.getElementById('slider-dr').value = 2.0;
+                document.getElementById('slider-dr').value = 1.5;
             }
             updateSim();
         }
 
-        // Exercises Logic
-        function toggleSolution(id) {
-            document.getElementById(id).classList.toggle('hidden');
+        function autoBalanceLever() {
+            const R = parseFloat(document.getElementById('slider-r').value);
+            const dR = parseFloat(document.getElementById('slider-dr').value);
+            const dF = parseFloat(document.getElementById('slider-df').value);
+            
+            let reqF = (R * dR) / dF;
+            reqF = Math.min(500, Math.max(10, Math.round(reqF)));
+            
+            document.getElementById('slider-f').value = reqF;
+            updateSim();
         }
 
+        // Exercises Logic
         function checkEx3() {
             const val = parseFloat(document.getElementById('ans-ex3').value);
             const fb = document.getElementById('feedback-ex3');
-            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
-
-            if (Math.abs(val - 13.33) <= 0.3 || Math.abs(val - 13.3) <= 0.3) {
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+            if (Math.abs(val - 13.33) < 0.2 || Math.abs(val - 13.3) < 0.2) {
+                fb.innerText = "¡Correcte! dF = 13.33 cm";
                 fb.classList.add('text-emerald-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Molt bé! Resposta correcta: 13,33 cm.';
             } else {
-                fb.classList.add('text-red-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (200 * 4) / 60 = 13,33 cm.';
+                fb.innerText = "Incorrecte. Revisa la fórmula F · dF = R · dR";
+                fb.classList.add('text-rose-600');
             }
         }
 
         function checkEx4() {
             const val = parseFloat(document.getElementById('ans-ex4').value);
             const fb = document.getElementById('feedback-ex4');
-            fb.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
-
-            if (Math.abs(val - 0.4) <= 0.05) {
+            fb.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+            if (Math.abs(val - 0.4) < 0.05) {
+                fb.innerText = "¡Correcte! dR = 0.4 m";
                 fb.classList.add('text-emerald-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correcte! Resposta: 0,4 metres (40 cm).';
             } else {
-                fb.classList.add('text-red-600');
-                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Revisa el càlcul: (40 * 1.2) / 120 = 0,4 m.';
+                fb.innerText = "Incorrecte. Aïlla dR = (F · dF) / R";
+                fb.classList.add('text-rose-600');
             }
         }
 
-        // Flashcards Logic
-        const flashcardsData = [
-            { tag: "Pregunta 1 de 5", text: "Quins són els 3 elements principals de qualsevol màquina?", ans: "1. Element Motriu (energia inicial)<br>2. Mecanisme (transmet moviment)<br>3. Element Receptor (tasca útil)" },
-            { tag: "Pregunta 2 de 5", text: "Què diu la Llei de la Palanca?", ans: "Força per la seva distància és igual a Resistència per la seva distància:<br><strong>F · d<sub>F</sub> = R · d<sub>R</sub></strong>" },
-            { tag: "Pregunta 3 de 5", text: "En quin tipus de palanca el Fulcre està al mig?", ans: "En les palanques de <strong>1er Gènere</strong> (ex: tisores, balancí)." },
-            { tag: "Pregunta 4 de 5", text: "En quin tipus de palanca la Resistència està al mig?", ans: "En les palanques de <strong>2n Gènere</strong> (ex: carretó, trencanous)." },
-            { tag: "Pregunta 5 de 5", text: "En quina unitat es mesuren les forces (F i R)?", ans: "En <strong>Newtons (N)</strong>." }
+        function toggleSolution(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        // Flashcards Data
+        const cardsData = [
+            { q: "Quins són els 3 elements principals de qualsevol màquina?", a: "Element Motriu (Motor), Mecanisme de Transmissió i Element Receptor (Eina final)." },
+            { q: "Com s'anomena el punt immòbil sobre el qual gira la palanca?", a: "Fulcre o Punt de Suport (O)." },
+            { q: "Quina és la fórmula de la Llei de la Palanca?", a: "F · dF = R · dR (Força per braç de força = Resistència per braç de resistència)." },
+            { q: "Quin tipus de palanca té la Resistència (R) al mig?", a: "Palanca de 2n gènere o grau (Ex: Carretó, trencanous)." },
+            { q: "En quina unitat es mesuren les forces (F i R) al Sistema Internacional?", a: "En Newtons (N)." }
         ];
 
         let currentCardIndex = 0;
         let isCardFlipped = false;
 
         function updateCardDisplay() {
+            const card = cardsData[currentCardIndex];
+            const textEl = document.getElementById('card-text');
+            const tagEl = document.getElementById('card-tag');
+            const counterEl = document.getElementById('card-counter');
+
             isCardFlipped = false;
-            const card = flashcardsData[currentCardIndex];
-            document.getElementById('card-tag').innerText = card.tag;
-            document.getElementById('card-text').innerHTML = card.text;
-            document.getElementById('card-counter').innerText = (currentCardIndex + 1) + " / " + flashcardsData.length;
+            tagEl.innerText = `Pregunta ${currentCardIndex + 1} de ${cardsData.length}`;
+            textEl.innerText = card.q;
+            counterEl.innerText = `${currentCardIndex + 1} / ${cardsData.length}`;
         }
 
         function flipCard() {
+            const card = cardsData[currentCardIndex];
             const textEl = document.getElementById('card-text');
-            if (!isCardFlipped) {
-                textEl.innerHTML = flashcardsData[currentCardIndex].ans;
-                isCardFlipped = true;
+            
+            isCardFlipped = !isCardFlipped;
+            if (isCardFlipped) {
+                textEl.innerText = card.a;
             } else {
-                textEl.innerHTML = flashcardsData[currentCardIndex].text;
-                isCardFlipped = false;
+                textEl.innerText = card.q;
             }
         }
 
         function nextCard() {
-            currentCardIndex = (currentCardIndex + 1) % flashcardsData.length;
+            currentCardIndex = (currentCardIndex + 1) % cardsData.length;
             updateCardDisplay();
         }
 
         function prevCard() {
-            currentCardIndex = (currentCardIndex - 1 + flashcardsData.length) % flashcardsData.length;
+            currentCardIndex = (currentCardIndex - 1 + cardsData.length) % cardsData.length;
             updateCardDisplay();
         }
 
@@ -963,48 +1102,46 @@
         function evaluateQuiz() {
             const answers = { q1: 'b', q2: 'c', q3: 'a', q4: 'b', q5: 'a' };
             let score = 0;
+            const form = document.getElementById('quiz-form');
+            const formData = new FormData(form);
 
-            for (let q in answers) {
-                const selected = document.querySelector(`input[name="${q}"]:checked`);
-                if (selected && selected.value === answers[q]) {
+            for (let [key, value] of Object.entries(answers)) {
+                if (formData.get(key) === value) {
                     score++;
                 }
             }
 
-            document.getElementById('quiz-score-badge').classList.remove('hidden');
-            document.getElementById('quiz-score').innerText = score;
+            const scoreBadge = document.getElementById('quiz-score-badge');
+            const scoreVal = document.getElementById('quiz-score');
+            const feedbackBox = document.getElementById('quiz-feedback-box');
 
-            const box = document.getElementById('quiz-feedback-box');
-            box.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-amber-100', 'text-amber-900', 'bg-red-100', 'text-red-900');
+            scoreBadge.classList.remove('hidden');
+            scoreVal.innerText = score;
 
+            feedbackBox.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-rose-100', 'text-rose-900');
             if (score === 5) {
-                box.classList.add('bg-emerald-100', 'text-emerald-900');
-                box.innerHTML = '🏆 <strong>Enhorabona! 5/5 perfecte!</strong><p class="text-xs mt-1">Has après tots els conceptes clau de la unitat.</p>';
-            } else if (score >= 3) {
-                box.classList.add('bg-amber-100', 'text-amber-900');
-                box.innerHTML = `👍 <strong>Bona feina! Puntuació: ${score}/5</strong><p class="text-xs mt-1">Repassa les targetes d'estudi per treure el 10!</p>`;
+                feedbackBox.classList.add('bg-emerald-100', 'text-emerald-900');
+                feedbackBox.innerHTML = "<strong>¡Excel·lent! ¡5/5!</strong> Has demostrat un domini complet del tema.";
             } else {
-                box.classList.add('bg-red-100', 'text-red-900');
-                box.innerHTML = `📖 <strong>Puntuació: ${score}/5</strong><p class="text-xs mt-1">Revisa la secció de teoria i torna a provar-ho.</p>`;
+                feedbackBox.classList.add('bg-rose-100', 'text-rose-900');
+                feedbackBox.innerHTML = `<strong>Puntuació: ${score} de 5.</strong> Repassa la teoria o els exercicis i torna-ho a intentar.`;
             }
         }
 
-        // Glossary Filter Logic
+        // Glossary Search Logic
         function filterGlossary() {
             const query = document.getElementById('glossary-search').value.toLowerCase();
-            document.querySelectorAll('.glossary-item').forEach(item => {
+            const items = document.querySelectorAll('.glossary-item');
+
+            items.forEach(item => {
                 const text = item.innerText.toLowerCase();
                 if (text.includes(query)) {
-                    item.style.display = 'block';
+                    item.style.display = "block";
                 } else {
-                    item.style.display = 'none';
+                    item.style.display = "none";
                 }
             });
         }
-
-        window.onload = function() {
-            updateSim();
-        };
     </script>
 </body>
 </html>
