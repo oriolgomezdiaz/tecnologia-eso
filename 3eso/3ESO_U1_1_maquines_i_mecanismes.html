@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3r d'ESO - Tecnologia | Espai de l'Alumnat</title>
+    <title>3ESO U1.1: Màquines i Mecanismes</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -12,31 +12,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Lexend', 'Inter', sans-serif; }
-        
-        /* Ajustos d'accessibilitat */
+        body {
+            font-family: 'Lexend', 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        /* Ajustos de mida de font per accessibilitat */
         body.font-size-sm { font-size: 14px; }
         body.font-size-base { font-size: 16px; }
         body.font-size-lg { font-size: 18px; }
         body.font-size-xl { font-size: 20px; }
 
+        /* Estils de mode d'alt contrast */
         body.high-contrast {
             background-color: #000000 !important;
             color: #ffffff !important;
         }
         body.high-contrast .bg-white,
         body.high-contrast .bg-slate-50,
-        body.high-contrast .bg-slate-100 {
+        body.high-contrast .bg-slate-100,
+        body.high-contrast .bg-blue-50,
+        body.high-contrast .bg-blue-50\/60 {
             background-color: #121212 !important;
             color: #ffffff !important;
             border-color: #ffff00 !important;
         }
         body.high-contrast .text-slate-800,
         body.high-contrast .text-slate-700,
-        body.high-contrast .text-slate-600 {
+        body.high-contrast .text-slate-600,
+        body.high-contrast .text-blue-900 {
             color: #ffffff !important;
         }
+        body.high-contrast button {
+            border: 2px solid #ffff00 !important;
+        }
 
+        /* Pestanya activa */
+        .tab-btn.active {
+            background-color: #059669;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Menú desplegable */
         .dropdown-menu { display: none; }
         .dropdown:hover .dropdown-menu { display: block; }
     </style>
@@ -68,27 +87,31 @@
         </div>
     </div>
 
-    <!-- Capçalera Principal de 3r d'ESO -->
+    <!-- Capçalera Principal -->
     <header class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
             
             <div class="flex items-center space-x-3">
-                <!-- Enllaç per tornar al Portal General -->
-                <a href="../index.html" class="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-2xl transition flex items-center justify-center" title="Tornar al Portal General de Tecnologia">
-                    <i class="fa-solid fa-house text-lg"></i>
+                <!-- Enllaç per tornar a l'Índex de 3r -->
+                <a href="index.html" class="bg-white/10 hover:bg-white/20 text-white p-2.5 rounded-2xl transition flex items-center justify-center" title="Tornar a l'Índex de 3r d'ESO">
+                    <i class="fa-solid fa-arrow-left text-lg"></i>
                 </a>
                 <div class="bg-emerald-500 text-slate-950 p-2.5 rounded-2xl shadow-md flex items-center justify-center font-bold text-2xl w-12 h-12">
-                    <i class="fa-solid fa-microchip"></i>
+                    <i class="fa-solid fa-gear"></i>
                 </div>
                 <div>
-                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">Curs Acadèmic</span>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Tecnologia 3r d'ESO</h1>
+                    <span class="bg-emerald-500/30 text-emerald-200 text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-400/30 uppercase tracking-wider">3r d'ESO | UD 1.1</span>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">Màquines i Mecanismes</h1>
                 </div>
             </div>
 
-            <!-- Navegació / Menú desplegable -->
+            <!-- Navegació entre UDs -->
             <div class="flex items-center gap-3">
-                <!-- Desplegable d'Accés Ràpid a UDs de 3r -->
+                <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Inici 3r
+                </a>
+
+                <!-- Desplegable d'Accés Ràpid a UDs -->
                 <div class="relative dropdown">
                     <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow transition">
                         <i class="fa-solid fa-list-check"></i> Unitats Didàctiques <i class="fa-solid fa-chevron-down text-xs"></i>
@@ -97,7 +120,7 @@
                         <div class="bg-emerald-50 p-3 border-b border-emerald-100 text-xs font-bold text-emerald-900">
                             Unitats de 3r d'ESO
                         </div>
-                        <a href="ud1-maquines-mecanismes.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 font-bold border-b border-slate-100">
+                        <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 font-bold bg-emerald-50/50 border-b border-slate-100">
                             <strong>UD 1:</strong> Màquines i Mecanismes
                         </a>
                         <a href="ud2-plastics.html" class="block px-4 py-2.5 text-xs hover:bg-emerald-50 hover:text-emerald-600 border-b border-slate-100">
@@ -117,169 +140,294 @@
             </div>
 
         </div>
+
+        <!-- Barra de Navegació de Continguts de la Unitat -->
+        <nav class="bg-slate-950/60 backdrop-blur-md border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 flex overflow-x-auto space-x-2 py-2.5 scrollbar-none">
+                <button onclick="switchTab('definiccio')" id="tab-definiccio" class="tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-bullseye"></i> 1. Definició i Objectiu
+                </button>
+                <button onclick="switchTab('magnituds')" id="tab-magnituds" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-calculator"></i> 2. Magnituds i Conceptes
+                </button>
+                <button onclick="switchTab('blocs')" id="tab-blocs" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-cubes"></i> 3. Els 4 Blocs Universals
+                </button>
+                <button onclick="switchTab('exemple')" id="tab-exemple" class="tab-btn text-white/90 hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-bolt-lightning"></i> 4. Anàlisi: Patinet Elèctric
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <!-- Contingut Principal de la Presentació -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-12">
+    <!-- Contingut Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
 
-        <!-- Banner de Benvinguda i Presentació de l'Assignatura -->
-        <section class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
-            <div class="max-w-3xl space-y-4 relative z-10">
-                <span class="bg-yellow-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow">Espai de l'Alumnat</span>
-                <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Benvinguts a Tecnologia de 3r d'ESO!</h2>
-                <p class="text-emerald-100 leading-relaxed text-sm sm:text-base">
-                    En aquest curs farem un pas més en el disseny i la construcció. Aprendrem com funcionen les <strong>màquines i els seus mecanismes</strong>, analitzarem els <strong>plàstics</strong>, dissenyarem <strong>circuits elèctrics</strong> i programarem els nostres primers projectes de <strong>robòtica i control</strong>.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#unitats" class="bg-white text-slate-900 hover:bg-emerald-50 font-extrabold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow transition flex items-center gap-2">
-                        <i class="fa-solid fa-book-bookmark text-emerald-700"></i> Explorar les Unitats Didàctiques
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓ 1: RECURSOS DIGITALS I EINES GENERALS -->
-        <section id="recursos-generals" class="bg-blue-50/60 rounded-3xl p-6 sm:p-8 border border-blue-100 space-y-4">
-            <div class="flex items-center gap-3 border-b border-blue-200/80 pb-3">
-                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-800">Recursos Digitals i Eines Generals</h3>
-                    <p class="text-xs text-slate-500">Ajudes interactives, simuladors i eines transversals per a tot el curs</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex items-start gap-4">
-                    <div class="w-10 h-10 bg-blue-100 text-blue-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
-                        <i class="fa-solid fa-sliders"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Simuladors Virtuals</h4>
-                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Simula palanques en equilibri, mecanismes de transmissió i circuits elèctrics interactius directament des de la web.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-blue-200/60 shadow-sm flex items-start gap-4">
-                    <div class="w-10 h-10 bg-indigo-100 text-indigo-800 rounded-lg flex items-center justify-center font-bold text-base shrink-0">
-                        <i class="fa-solid fa-check-double"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Activitats Autovaluables</h4>
-                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                            Tests ràpids d'autoavaluació i targetes interactives (flashcards) per repassar abans dels exàmens.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEPARADOR VISUAL -->
-        <div class="relative flex py-2 items-center">
-            <div class="flex-grow border-t border-slate-200"></div>
-            <span class="flex-shrink mx-4 text-slate-400 text-xs font-bold uppercase tracking-wider bg-slate-50 px-3 py-1 rounded-full border border-slate-200">
-                <i class="fa-solid fa-graduation-cap text-emerald-600 mr-1"></i> Continguts del Curs
-            </span>
-            <div class="flex-grow border-t border-slate-200"></div>
+        <!-- SUBTÍTOL I PROFESSORAT -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-wrap justify-between items-center text-xs text-slate-500 gap-2">
+            <div><i class="fa-solid fa-school text-emerald-600 mr-1"></i> <strong>Tecnologia 3r ESO</strong> — I.E.S. S'Arenal[cite: 1]</div>
+            <div><i class="fa-solid fa-user-gear text-emerald-600 mr-1"></i> Prof. Oriol Gómez[cite: 1]</div>
         </div>
 
-        <!-- SECCIÓ 2: GRAELLA D'UNITATS DIDÀCTIQUES -->
-        <section id="unitats" class="space-y-6">
+        <!-- PESTANYA 1: DEFINICIÓ I OBJECTIU -->
+        <section id="sec-definiccio" class="tab-content space-y-6">
+            <div class="bg-gradient-to-br from-emerald-700 via-teal-800 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl">
+                <span class="bg-yellow-400 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">Bloc 1</span>
+                <h2 class="text-2xl sm:text-3xl font-black mt-2">1. Definició i Objectiu de les Màquines[cite: 1]</h2>
+                <p class="text-emerald-100 text-sm sm:text-base mt-2">
+                    L'objectiu principal de qualsevol tecnologia és <strong>resoldre un problema humà minimitzant l'esforç</strong> o el temps emprat[cite: 1].
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
+                <div class="border-l-4 border-emerald-600 pl-4">
+                    <h3 class="text-xl font-bold text-slate-800">Què és una màquina?[cite: 1]</h3>
+                    <p class="text-slate-600 text-sm mt-1">
+                        Una màquina és un conjunt d'elements mòbils i/o fixos connectats entre si amb una doble funció principal[cite: 1]:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-100 space-y-2">
+                        <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-person-arrow-down-to-line"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">Reduir l'esforç humà[cite: 1]</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Facilitar tasques aplicant forces més petites o en direccions més còmodes[cite: 1].
+                        </p>
+                    </div>
+
+                    <div class="bg-teal-50/60 p-5 rounded-2xl border border-teal-100 space-y-2">
+                        <div class="w-10 h-10 bg-teal-600 text-white rounded-xl flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">Transformar l'energia[cite: 1]</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Aprofitar o transformar l'energia; per exemple, passar d'energia elèctrica o química a energia mecànica/moviment[cite: 1].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTANYA 2: MAGNITUDS FISIQUES I CONCEPTES CLAU -->
+        <section id="sec-magnituds" class="tab-content hidden space-y-6">
             <div class="border-l-4 border-emerald-600 pl-4">
-                <h2 class="text-2xl font-black text-slate-800">Unitats Didàctiques de 3r d'ESO</h2>
-                <p class="text-slate-600 text-sm">Selecciona la unitat de treball actual per accedir als apunts, exercicis i eines:</p>
+                <h2 class="text-2xl font-black text-slate-800">2. Magnituds Físiques i Conceptes Clau[cite: 1]</h2>
+                <p class="text-slate-600 text-sm">Per entendre com funcionen les màquines, cal conèixer les magnituds associades a la mecànica[cite: 1]:</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- UD 1 (DISPONIBLE) -->
-                <article class="bg-white rounded-3xl p-6 border-2 border-emerald-300 shadow-md hover:shadow-lg transition space-y-4 flex flex-col justify-between relative overflow-hidden">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full uppercase">UD 1</span>
-                            <span class="bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-md uppercase">Disponible</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">Màquines i Mecanismes</h3>
-                        <p class="text-slate-600 text-xs leading-relaxed">
-                            Elements motrius, receptors, tipus de palanques, la Llei de la Palanca i simulador interactiu d'equilibri.
-                        </p>
-                    </div>
-                    <a href="ud1-maquines-mecanismes.html" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 mt-4 shadow-sm">
-                        <i class="fa-solid fa-arrow-right"></i> Entrar a la Unitat 1
-                    </a>
-                </article>
+                <!-- Força -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-blue-100 text-blue-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">F = m · a</span>
+                    <h3 class="text-lg font-bold text-slate-800">Força (F)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Acció d'empenyer o estirar sobre un cos[cite: 1]. Es mesura en <strong>Newtons (N)</strong>[cite: 1].
+                    </p>
+                    <ul class="text-xs text-slate-500 list-disc list-inside space-y-1 pt-1">
+                        <li><strong>Efecte dinàmic:</strong> Moure o canviar trajectòria[cite: 1].</li>
+                        <li><strong>Deformació:</strong> Canviar la forma[cite: 1].</li>
+                        <li><strong>Sense moviment:</strong> Si la força és menor que la resistència[cite: 1].</li>
+                    </ul>
+                </div>
 
-                <!-- UD 2 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 2</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-700">Plàstics i Materials de Construcció</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Tipus de plàstics (termoplàstics, termoestables), tècniques de conformat i impacte ambiental.
-                        </p>
-                    </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
-                        En preparació
-                    </button>
-                </article>
+                <!-- Treball -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-indigo-100 text-indigo-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">W = F · d</span>
+                    <h3 class="text-lg font-bold text-slate-800">Treball (W)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Existeix quan una força aconsegueix moure un objecte al llarg d'una distància[cite: 1]. Es mesura en <strong>Joules (J)</strong>[cite: 1].
+                    </p>
+                    <p class="text-[11px] text-amber-700 bg-amber-50 p-2 rounded-xl border border-amber-200">
+                        Si un objecte no es mou, el treball és zero[cite: 1].
+                    </p>
+                </div>
 
-                <!-- UD 3 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 3</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 2</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-700">Circuits Elèctrics i Magnètics</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Llei d'Ohm, circuits en sèrie i paral·lel, simula la intensitat, el voltatge i la resistència.
-                        </p>
-                    </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
-                        En preparació
-                    </button>
-                </article>
+                <!-- Avantatge Mecànic -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-emerald-100 text-emerald-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">Relació i</span>
+                    <h3 class="text-lg font-bold text-slate-800">Avantatge Mecànic (i)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Relació entre l'esforç que ens estalviem i el pes real de l'objecte[cite: 1]. Una rampa redueix la força necessària a canvi d'augmentar la distància[cite: 1].
+                    </p>
+                </div>
 
-                <!-- UD 4 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 4</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-700">TIC i Seguretat Digital</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Fulls de càlcul per a la memòria de projectes, xarxes locals i bones pràctiques de ciberseguretat.
-                        </p>
-                    </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
-                        En preparació
-                    </button>
-                </article>
+                <!-- Rendiment -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-teal-100 text-teal-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">η (%)</span>
+                    <h3 class="text-lg font-bold text-slate-800">Rendiment (η)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Mesura les pèrdues d'energia en forma de calor no desitjada (p. ex., frec de les pastilles de fre d'una bicicleta)[cite: 1]. El rendiment sol ser inferior al 100%[cite: 1].
+                    </p>
+                </div>
 
-                <!-- UD 5 (Properament) -->
-                <article class="bg-white/80 rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between opacity-80">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-start">
-                            <span class="bg-slate-100 text-slate-600 text-xs font-black px-3 py-1 rounded-full uppercase">UD 5</span>
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2.5 py-0.5 rounded-md">Trimestre 3</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-700">Control i Robòtica</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">
-                            Programació de plaques de control (Arduino / Micro:bit), sensors, actuadors i automatismes.
-                        </p>
-                    </div>
-                    <button disabled class="bg-slate-200 text-slate-500 text-xs font-bold py-3 px-4 rounded-xl text-center cursor-not-allowed">
-                        En preparació
-                    </button>
-                </article>
+                <!-- Moment d'una Força -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-amber-100 text-amber-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">M = F · d</span>
+                    <h3 class="text-lg font-bold text-slate-800">Moment i Gir[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Com més lluny del punt de suport s'aplica una força, més efecte de gir s'aconsegueix (efecte palanca)[cite: 1].
+                    </p>
+                </div>
 
+                <!-- Fregament i Velocitat -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+                    <span class="bg-slate-100 text-slate-800 font-mono text-xs font-bold px-2.5 py-1 rounded-lg">F<sub>f</sub> i rpm</span>
+                    <h3 class="text-lg font-bold text-slate-800">Fricció i Velocitat[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        La <strong>fricció</strong> provoca pèrdues per calor i desgast (es redueix amb oli/greix)[cite: 1]. La velocitat es mesura en <strong>rpm</strong>[cite: 1].
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTANYA 3: ELS 4 BLOCS UNIVERSALS -->
+        <section id="sec-blocs" class="tab-content hidden space-y-6">
+            <div class="border-l-4 border-emerald-600 pl-4">
+                <h2 class="text-2xl font-black text-slate-800">3. L'Anatomia de les Màquines: Els 4 Blocs Universals[cite: 1]</h2>
+                <p class="text-slate-600 text-sm">Per complexa que sigui una màquina, sempre està formada per 4 blocs estructurals interdependents[cite: 1]:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 1. Bastidor -->
+                <div class="bg-white p-6 rounded-3xl border-t-4 border-slate-500 border-x border-b border-slate-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-black text-slate-600 uppercase bg-slate-100 px-3 py-1 rounded-full">Bloc 1</span>
+                        <i class="fa-solid fa-cube text-slate-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Bastidor (Estructura)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        <strong>Funció:</strong> Suport i protecció[cite: 1]. Aguanta la resta de peces, dona estabilitat i protegeix els components interns[cite: 1].
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs text-slate-700">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <strong>Exemples:</strong> El quadre d'una bicicleta, la carcassa de plàstic d'un trepant[cite: 1].
+                    </div>
+                </div>
+
+                <!-- 2. Motor -->
+                <div class="bg-white p-6 rounded-3xl border-t-4 border-sky-500 border-x border-b border-slate-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-black text-sky-600 uppercase bg-sky-100 px-3 py-1 rounded-full">Bloc 2</span>
+                        <i class="fa-solid fa-bolt text-sky-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Motor (Font d'energia)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        <strong>Funció:</strong> Generació de moviment[cite: 1]. Transforma una font d'energia (elèctrica, química o muscular) en moviment inicial[cite: 1].
+                    </p>
+                    <div class="bg-sky-50 p-3 rounded-2xl border border-sky-200 text-xs text-slate-700">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <strong>Exemples:</strong> Motor elèctric, motor de combustió, les cames de l'usuari[cite: 1].
+                    </div>
+                </div>
+
+                <!-- 3. Mecanisme -->
+                <div class="bg-white p-6 rounded-3xl border-t-4 border-orange-500 border-x border-b border-slate-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-black text-orange-600 uppercase bg-orange-100 px-3 py-1 rounded-full">Bloc 3</span>
+                        <i class="fa-solid fa-gears text-orange-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Mecanisme (Transmissió)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        <strong>Funció:</strong> Adaptació del moviment[cite: 1]. Modifica la velocitat, la força o transforma el tipus de moviment des del motor fins a l'eina final[cite: 1].
+                    </p>
+                    <div class="bg-orange-50 p-3 rounded-2xl border border-orange-200 text-xs text-slate-700">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <strong>Exemples:</strong> Engranatges, cadenes, politges, corretges, bieles[cite: 1].
+                    </div>
+                </div>
+
+                <!-- 4. Control -->
+                <div class="bg-white p-6 rounded-3xl border-t-4 border-emerald-500 border-x border-b border-slate-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-black text-emerald-600 uppercase bg-emerald-100 px-3 py-1 rounded-full">Bloc 4</span>
+                        <i class="fa-solid fa-sliders text-emerald-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Control (Interfície)[cite: 1]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        <strong>Funció:</strong> Regulació i seguretat[cite: 1]. Permet a l'usuari activar, aturar, canviar la velocitat o dirigir la màquina[cite: 1].
+                    </p>
+                    <div class="bg-emerald-50 p-3 rounded-2xl border border-emerald-200 text-xs text-slate-700">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> <strong>Exemples:</strong> Interruptors, gatells, pedals, manetes, pantalles[cite: 1].
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flux d'Energia -->
+            <div class="bg-blue-50/60 rounded-3xl p-6 sm:p-8 border border-blue-100 space-y-4">
+                <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project text-blue-600"></i>
+                    El Flux d'Energia[cite: 1]
+                </h3>
+                <p class="text-xs text-slate-600">Com col·laboren els blocs per realitzar la tasca[cite: 1]:</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-center">
+                    <div class="bg-white p-4 rounded-2xl border border-blue-200 shadow-sm">
+                        <span class="text-[10px] uppercase font-extrabold text-blue-600">Pas 1</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1">Font d'Energia[cite: 1]</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-blue-200 shadow-sm">
+                        <span class="text-[10px] uppercase font-extrabold text-blue-600">Pas 2</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1">Motor[cite: 1]</p>
+                        <p class="text-[10px] text-slate-500">Transforma en gir inicial[cite: 1]</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-blue-200 shadow-sm">
+                        <span class="text-[10px] uppercase font-extrabold text-blue-600">Pas 3</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1">Mecanisme[cite: 1]</p>
+                        <p class="text-[10px] text-slate-500">Adapta força/velocitat[cite: 1]</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-blue-200 shadow-sm">
+                        <span class="text-[10px] uppercase font-extrabold text-blue-600">Pas 4</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1">Eina Final[cite: 1]</p>
+                        <p class="text-[10px] text-slate-500">Executa la tasca[cite: 1]</p>
+                    </div>
+                </div>
+                <p class="text-[11px] text-center text-slate-500 italic">
+                    * El bloc de <strong>Control</strong> dicta les ordres a cada pas del procés[cite: 1].
+                </p>
+            </div>
+        </section>
+
+        <!-- PESTANYA 4: ANÀLISI PRÀCTICA -->
+        <section id="sec-exemple" class="tab-content hidden space-y-6">
+            <div class="border-l-4 border-emerald-600 pl-4">
+                <h2 class="text-2xl font-black text-slate-800">4. Exemple d'Anàlisi Funcional: El Patinet Elèctric[cite: 1]</h2>
+                <p class="text-slate-600 text-sm">Aplicació pràctica dels 4 blocs universals en un objecte quotidià[cite: 1]:</p>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-bold">
+                                <th class="p-4">Bloc Universal[cite: 1]</th>
+                                <th class="p-4">Component en el Patinet Elèctric[cite: 1]</th>
+                                <th class="p-4">Funció Concreta[cite: 1]</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Bastidor[cite: 1]</td>
+                                <td class="p-4">Base d'alumini i manillar[cite: 1]</td>
+                                <td class="p-4">Suporta el pes de l'usuari i manté l'estructura unida[cite: 1].</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-sky-600">Motor[cite: 1]</td>
+                                <td class="p-4">Bateria i motor integrat a la roda[cite: 1]</td>
+                                <td class="p-4">Converteix l'energia elèctrica emmagatzemada en gir[cite: 1].</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-orange-600">Mecanisme[cite: 1]</td>
+                                <td class="p-4">Coixinets i eixos de les rodes[cite: 1]</td>
+                                <td class="p-4">Permeten que la roda giri fina i transmeten la força al terra[cite: 1].</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-emerald-600">Control[cite: 1]</td>
+                                <td class="p-4">Palanca de l'accelerador i maneta de fre[cite: 1]</td>
+                                <td class="p-4">Regulen la velocitat i la frenada enviant ordres al sistema[cite: 1].</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -293,8 +441,16 @@
         </div>
     </footer>
 
-    <!-- Scripts d'Accessibilitat -->
+    <!-- Lògica de navegació i accessibilitat -->
     <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
         function setFontSize(size) {
             document.body.classList.remove('font-size-sm', 'font-size-base', 'font-size-lg', 'font-size-xl');
             document.body.classList.add('font-size-' + size);
