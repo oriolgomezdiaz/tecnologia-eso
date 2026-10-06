@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3ESO U1.1: Màquines i Mecanismes</title>
+    <!-- Icones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Full d'estils unificat a l'arrel -->
+    <link rel="stylesheet" href="../estils.css">
+
+    <style>
+        /* ESTILS ESPECÍFICS PER A LA NAVEGACIÓ I EL MENÚ */
+        :root { 
+            --primary: #1e293b; 
+            --accent: #10b981; 
+            --bg: #f8fafc; 
+            --border: #e2e8f0;
+            --text: #334155;
+            --card-bg: #ffffff;
+        }
+
+        /* --- NAVEGACIÓ PRINCIPAL / BREADCRUMB --- */
+        .top-nav {
+            background-color: var(--primary);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            list-style: none;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .breadcrumb li { margin-bottom: 0; }
+
+        .breadcrumb a {
+            color: #f8fafc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator { color: #64748b; }
+        .breadcrumb .current { color: #38bdf8; font-weight: 600; }
+
+        /* --- NAVEGACIÓ SECUNDÀRIA / SUBBLOCS DE LA UNITAT --- */
+        .unit-nav {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .unit-menu {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* AJUST DE LA CAPÇALERA PER EVITAR TEXT INVISIBLE */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        header .meta {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* FOOTER DE NAVEGACIÓ */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. BREADCRUMB / NAVEGACIÓ GLOBAL -->
+        <nav class="top-nav" aria-label="Navegació global">
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="fa-solid fa-house"></i> Inici</a></li>
+                <li class="separator">/</li>
+                <li><a href="index.html">3r ESO</a></li>
+                <li class="separator">/</li>
+                <li class="current">UP 1: Màquines i Mecanismes</li>
+            </ul>
+        </nav>
+
+        <!-- 2. SUB-NAVEGACIÓ DE LA UNITAT -->
+        <nav class="unit-nav" aria-label="Navegació de la unitat">
+            <div class="unit-menu">
+                <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn active">1.0 Teoria General</a>
+                <a href="3ESO_U1_1_palanques.html" class="nav-btn">1.1 Palanques</a>
+                <a href="3ESO_U1_2_politges.html" class="nav-btn">1.2 Politges</a>
+                <a href="3ESO_U1_3_engranatges.html" class="nav-btn">1.3 Engranatges</a>
+                <a href="3ESO_U1_4_transformacio.html" class="nav-btn">1.4 Transformació</a>
+            </div>
+            <a href="index.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Índex UP1</a>
+        </nav>
+
+        <!-- CAPÇALERA DE LA PÀGINA -->
+        <header>
+            <h1>Unitat 1: Màquines i Mecanismes</h1>
+            <div class="meta">3r ESO — Tecnologia | I.E.S. S'Arenal (Prof. Oriol Gómez)</div>
+        </header>
+
+        <!-- 1. DEFINICIÓ I OBJECTIU -->
+        <section>
+            <h2>1. Definició i Objectiu de les Màquines</h2>
+            <p>L'objectiu principal de qualsevol tecnologia és <strong>resoldre un problema humà minimitzant l'esforç</strong> o el temps emprat.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Què és una màquina?</strong></p>
+                <p>Una màquina és un conjunt d'elements mòbils i/o fixos connectats entre si amb una doble funció principal:</p>
+                <ul>
+                    <li><strong>Reduir l'esforç humà:</strong> Facilitar tasques aplicant forces més petites o en direccions més còmodes.</li>
+                    <li><strong>Transformar o aprofitar l'energia:</strong> Per exemple, passar d'energia elèctrica o química a energia mecànica/moviment.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. MAGNITUDS I CONCEPTES CLAU -->
+        <section>
+            <h2>2. Magnituds Físiques i Conceptes Clau</h2>
+            <p>Per entendre com funcionen les màquines, cal conèixer les magnituds associades a la mecànica:</p>
+
+            <h3>Força (<span class="formula">F</span>)</h3>
+            <p>És qualsevol acció d'empenyerr o estirar sobre un cos. Es mesura en <strong>Newtons (N)</strong> (<span class="formula">F = m · a</span>). Quan s'aplica una força, es poden produir diferents efectes:</p>
+            <ul>
+                <li><strong>Efecte dinàmic:</strong> Moure l'objecte o canviar la seva trajectòria.</li>
+                <li><strong>Deformació:</strong> Canviar la forma de l'objecte (temporal o permanentment).</li>
+                <li><strong>Sense moviment:</strong> Si la força és menor que la resistència oposada (p. ex., empenyerr una paret).</li>
+            </ul>
+
+            <h3>Treball (<span class="formula">W</span>)</h3>
+            <p>Físicament, el treball existeix quan una força aconsegueix moure un objecte al llarg d'una distància (<span class="formula">W = F · d</span>). Es mesura en <strong>Joules (J)</strong>. Si un objecte no es mou, el treball realitzat sobre ell és zero, independentment del cansament muscular.</p>
+
+            <h3>Avantatge Mecànic (<span class="formula">i</span>)</h3>
+            <p>És la relació entre l'esforç o força que ens estalviem i el pes real de l'objecte. Per exemple, un pla inclinat (rampa) redueix la força necessària a canvi d'augmentar la distància a recórrer.</p>
+
+            <h3>Rendiment (<span class="formula">η</span>)</h3>
+            <p>L'energia no desapareix, es transforma. Quan una màquina perd part de la seva energia en forma de calor no desitjada (p. ex., pel frec de les pastilles de fre d'una bicicleta), el seu rendiment és inferior al 100%.</p>
+
+            <h3>Moment d'una Força i Efecte de Gir</h3>
+            <p>Com més lluny del punt de suport s'aplica una força, més efecte de gir s'aconsegueix (efecte palanca). Aquest efecte depèn directament de la distància (<span class="formula">d</span>) al punt de suport.</p>
+
+            <h3>Fregament o Fricció (<span class="formula">F<sub>f</sub></span>)</h3>
+            <p>Resistència que fan dues superfícies en frecar. La fricció provoca pèrdues d'energia en forma de calor i desgast. L'ús de lubricants (oli/greix) ajuda a reduir aquest fregament.</p>
+
+            <h3>Relació de Transmissió (<span class="formula">i</span>) i Velocitat de Gir</h3>
+            <p>Es mesura habitualment en <strong>revolucions per minut (rpm)</strong>. En un sistema de canvi de marxes (com la bicicleta), es pot sacrificar velocitat a canvi de fer menys força (p. ex., plat petit i pinyó gran per pujar costes).</p>
+        </section>
+
+        <!-- 3. ELS 4 BLOCS UNIVERSALS DE LES MÀQUINES -->
+        <section>
+            <h2>3. L'Anatomia de les Màquines: Els 4 Blocs Universals</h2>
+            <p>Per complexa que sigui una màquina, sempre està formada per 4 blocs estructurals interdependents:</p>
+
+            <div class="grid-2">
+                <div class="card bastidor">
+                    <div class="card-title">1. Bastidor (Estructura)</div>
+                    <p><strong>Funció:</strong> Suport i protecció. Aguanta la resta de peces, dona estabilitat i protegeix els components interns.</p>
+                    <p><em>Exemples:</em> El quadre d'una bicicleta, la carcassa de plàstic d'un trepant.</p>
+                </div>
+
+                <div class="card motor">
+                    <div class="card-title">2. Motor (Font d'energia)</div>
+                    <p><strong>Funció:</strong> Generació de moviment. Transforma una font d'energia (elèctrica, química o muscular) en moviment inicial.</p>
+                    <p><em>Exemples:</em> Motor elèctric, motor de combustió, les cames de l'usuari.</p>
+                </div>
+
+                <div class="card mecanisme">
+                    <div class="card-title">3. Mecanisme (Transmissió)</div>
+                    <p><strong>Funció:</strong> Adaptació del moviment. Modifica la velocitat, la força o transforma el tipus de moviment des del motor fins a l'eina final.</p>
+                    <p><em>Exemples:</em> Engranatges, cadenes, politges, corretges, bieles.</p>
+                </div>
+
+                <div class="card control">
+                    <div class="card-title">4. Control (Interfície)</div>
+                    <p><strong>Funció:</strong> Regulació i seguretat. Permet a l'usuari activar, aturar, canviar la velocitat o dirigir la màquina.</p>
+                    <p><em>Exemples:</em> Interruptors, gatells, pedals, manetes, pantalles.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">El Flux d'Energia</h3>
+            <p>Com col·laboren els blocs per realitzar la tasca:</p>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <strong>Font d'Energia</strong>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Motor</strong><br><small>Transforma en gir inicial</small>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Mecanisme</strong><br><small>Adapta força/velocitat</small>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                    <strong>Eina Final</strong><br><small>Executa la tasca</small>
+                </div>
+            </div>
+            <p style="margin-top: 0.75rem; font-size: 0.9rem; text-align: center; color: #64748b;">
+                * El bloc de <strong>Control</strong> dicta les ordres a cada pas del procés.
+            </p>
+        </section>
+
+        <!-- 4. EXEMPLE PRÀCTIC: PATINET ELÈCTRIC -->
+        <section>
+            <h2>4. Exemple d'Anàlisi Funcional: El Patinet Elèctric</h2>
+            <p>Aplicació pràctica dels 4 blocs universals en un objecte quotidià:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bloc Universal</th>
+                        <th>Component en el Patinet Elèctric</th>
+                        <th>Funció Concreta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bastidor</strong></td>
+                        <td>Base d'alumini i manillar</td>
+                        <td>Suporta el pes de l'usuari i manté l'estructura unida.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motor</strong></td>
+                        <td>Bateria i motor integrat a la roda</td>
+                        <td>Converteix l'energia elèctrica emmagatzemada en gir.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mecanisme</strong></td>
+                        <td>Coixinets i eixos de les rodes</td>
+                        <td>Permeten que la roda giri fina i transmeten la força al terra.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Control</strong></td>
+                        <td>Palanca de l'accelerador i maneta de fre</td>
+                        <td>Regulen la velocitat i la frenada enviant ordres al sistema.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FOOTER DE NAVEGACIÓ -->
+        <footer>
+            <div class="footer-nav">
+                <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Tornar a l'Inici</a>
+                <a href="3ESO_U1_1_palanques.html" class="nav-btn">Següent: 1.1 Palanques <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
