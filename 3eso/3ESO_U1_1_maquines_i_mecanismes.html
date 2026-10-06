@@ -4,245 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3ESO U1.1: Màquines i Mecanismes | Tecnologia 3r ESO</title>
-    
-    <!-- Script de Tailwind CSS per a funcionalitats addicionals -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        /* ESTILS DIRECTES PER GARANTIR EL DISSENY CORRECTE */
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        /* NAVEGACIÓ */
-        nav {
-            margin-bottom: 20px;
-        }
-
-        .breadcrumb {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-
-        .breadcrumb a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        .unit-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            background: #f1f5f9;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-
-        .unit-menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .nav-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            background-color: #ffffff;
-            color: #334155;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s;
-        }
-
-        .nav-btn:hover {
-            background-color: #e2e8f0;
-        }
-
-        .nav-btn.active {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            border-color: var(--primary-color);
-        }
-
-        .nav-btn.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        /* ENCAPÇALAMENT */
-        header {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            color: #0f172a;
-            font-size: 2rem;
-            margin: 0 0 8px 0;
-        }
-
-        .meta {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* SECCIONS I CONTINGUT */
-        section {
-            margin-bottom: 35px;
-        }
-
-        h2 {
-            color: #1e3a8a;
-            font-size: 1.4rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
-            margin-top: 25px;
-        }
-
-        h3 {
-            color: #1d4ed8;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        .formula {
-            font-family: 'Courier New', Courier, monospace;
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .highlight-box {
-            background-color: #eff6ff;
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 15px 0;
-        }
-
-        /* TAGS I GRAELLES */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .card-title {
-            font-weight: bold;
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-            color: #0f172a;
-        }
-
-        /* FLUX D'ENERGIA */
-        .flow-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-top: 15px;
-        }
-
-        .flow-step {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-align: center;
-            flex: 1;
-            min-width: 130px;
-        }
-
-        .flow-arrow {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* TAULES */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: #f1f5f9;
-            color: #334155;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid var(--border-color);
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-    </style>
+    <!-- Vincle al full d'estils principal (estils.css a la carpeta arrel) -->
+    <link rel="stylesheet" href="../estils.css">
 </head>
 <body>
 
@@ -252,9 +16,9 @@
             <ul class="breadcrumb">
                 <li><a href="../index.html">🏠 Inici</a></li>
                 <li class="separator">/</li>
-                <li><a href="../index.html">3r ESO</a></li>
+                <li><a href="index.html">3r ESO</a></li>
                 <li class="separator">/</li>
-                <li><a href="3ESO_U1_espai_estudi.html">U1: Mecanismes</a></li>
+                <li><a href="index.html">U1: Mecanismes</a></li>
                 <li class="separator">/</li>
                 <li class="current">U1.1 Màquines i Mecanismes</li>
             </ul>
@@ -265,10 +29,10 @@
             <div class="unit-menu">
                 <a href="3ESO_U1_1_maquines_i_mecanismes.html" class="nav-btn active">1. Conceptes i Blocs</a>
                 <a href="3ESO_U1_1_palanques.html" class="nav-btn">2. Palanques</a>
-                <a href="3ESO_U1_3_engranatges.html" class="nav-btn">3. Transmissió</a>
-                <a href="3ESO_U1_4_transformacio.html" class="nav-btn">4. Transformació</a>
+                <a href="3ESO_U1_1_transmissio.html" class="nav-btn">3. Transmissió</a>
+                <a href="3ESO_U1_1_transformacio.html" class="nav-btn">4. Transformació</a>
             </div>
-            <a href="3ESO_U1_espai_estudi.html" class="nav-btn">📋 Índex U1</a>
+            <a href="index.html" class="nav-btn">📋 Índex U1</a>
         </nav>
 
         <header>
@@ -419,9 +183,9 @@
         <!-- 3. NAVEGACIÓ INFERIOR / FOOTER -->
         <footer>
             <div class="footer-nav">
-                <a href="#" class="nav-btn disabled">← Anterior (Inici)</a>
-                <a href="3ESO_U1_espai_estudi.html" class="nav-btn">📋 Índex U1</a>
-                <a href="3ESO_U1_1_palanques.html" class="nav-btn">Següent: 2. Palanques →</a>
+                <a href="#" class="nav-btn disabled">← Anterior (Inici de la Unitat)</a>
+                <a href="index.html" class="nav-btn">📋 Índex U1</a>
+                <a href="3ESO_U1_1_palanques.html" class="nav-btn">Següent: 2. Palanques i Politges →</a>
             </div>
         </footer>
     </div>
